@@ -11,7 +11,6 @@ import 'package:trim_spot_barber_side/widgets/otp_page/headings_and_texts.dart';
 import 'package:trim_spot_barber_side/widgets/otp_page/otp_box.dart';
 
 import 'package:trim_spot_barber_side/widgets/otp_page/submit_button.dart';
-import 'package:trim_spot_barber_side/widgets/otp_page/success_snackbar.dart';
 import 'package:trim_spot_barber_side/widgets/signup_widgets/screen_padding.dart';
 
 class OtpVerificationScreen extends StatelessWidget {
@@ -22,14 +21,13 @@ class OtpVerificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<RegisterButtonBloc, RegisterButtonState>(
       listener: (context, state) {
-        
         if (state is NavigateToRegisterSuccessPage) {
           Navigator.pop(context);
-          Navigator.of(context).push(
+          Navigator.of(context).pushAndRemoveUntil(
             FadeTransitionPageRoute(
                 child: RegistrationSuccessfulMessageScreen()),
+            (route) => false,
           );
-          registrationSuccessSnackBar(context).show(context);
         }
       },
       child: Scaffold(

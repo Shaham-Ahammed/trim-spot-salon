@@ -3,10 +3,10 @@ import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/constant_variables/registration_success_failure.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 import 'package:flutter/services.dart';
-import 'package:trim_spot_barber_side/widgets/registration_failed/drawer_items.dart';
+import 'package:trim_spot_barber_side/widgets/registration_failed/appbar_items.dart';
+import 'package:trim_spot_barber_side/widgets/registration_failed/dawer_items.dart';
 import 'package:trim_spot_barber_side/widgets/registration_failed/failure_image.dart';
 import 'package:trim_spot_barber_side/widgets/registration_failed/registration_failed_text.dart';
-import 'package:trim_spot_barber_side/widgets/registration_success/drawer_items.dart';
 
 class RegistrationFailedMessageScreen extends StatelessWidget {
  
@@ -27,7 +27,7 @@ class RegistrationFailedMessageScreen extends StatelessWidget {
       drawer: Drawer(
         width: mediaqueryWidth(0.6, context),
         backgroundColor: blackColor,
-        child: DrawerItems()
+        child: DrawerItemsRegistrationFailure()
       ),
       body: SafeArea(
         child: Padding(

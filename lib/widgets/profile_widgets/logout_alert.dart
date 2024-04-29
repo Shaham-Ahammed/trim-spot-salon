@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:trim_spot_barber_side/data/shared_preference_operations/functions.dart';
 import 'package:trim_spot_barber_side/screens/login.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/font.dart';
@@ -50,7 +51,8 @@ import 'package:trim_spot_barber_side/utils/page_transitions/fade_transition.dar
                         color: greyColor3,
                       ),
                       GestureDetector(
-                        onTap: () {
+                        onTap: ()async {
+                           await SharedPreferenceOperation().setPhoneNumber("");
                           Navigator.of(context).push(FadeTransitionPageRoute(
                             child: LoginScreen(),
                           ));

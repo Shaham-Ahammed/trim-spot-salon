@@ -7,8 +7,8 @@ import 'package:trim_spot_barber_side/utils/font.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 import 'package:trim_spot_barber_side/utils/page_transitions/no_transition_page_route.dart';
 
-class DrawerItems extends StatelessWidget {
-  const DrawerItems({
+class DrawerItemsRegistrationFailure extends StatelessWidget {
+  const DrawerItemsRegistrationFailure({
     super.key,
   });
 

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/data/firebase_references/shop_collection_reference.dart';
 import 'package:trim_spot_barber_side/data/repository/barber_id.dart';
+import 'package:trim_spot_barber_side/data/shared_preference_operations/functions.dart';
 import 'package:trim_spot_barber_side/utils/constant_variables/login_screen_constants.dart';
 
 import 'package:trim_spot_barber_side/utils/login_page/form_key.dart';
@@ -40,6 +41,8 @@ class LoginValidationBloc
 
         final password = data['password'];
         if (password == loginPasswordController.text) {
+          await SharedPreferenceOperation()
+              .setPhoneNumber(loginPhoneController.text);
           emit(LoginSuccess());
         } else {
           emit(LoginFailure("incorrect password"));
