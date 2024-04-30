@@ -8,7 +8,6 @@ import 'package:trim_spot_barber_side/utils/homepage/drawer/listtile_widget.dart
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 import 'package:trim_spot_barber_side/utils/page_transitions/fade_transition.dart';
 import 'package:trim_spot_barber_side/widgets/drawer_home/logout_confirmation_home.dart';
-import 'package:trim_spot_barber_side/widgets/profile_widgets/logout_alert.dart';
 
 Expanded listviewDrawerHome(BuildContext context) {
   return Expanded(

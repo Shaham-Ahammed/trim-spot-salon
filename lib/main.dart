@@ -63,7 +63,14 @@ class App extends StatelessWidget {
           bottomSheetTheme: BottomSheetThemeData(
             backgroundColor: introductionColor,
           )),
-      home: FirstIntroductionPage(),
+      home:
+      
+      
+
+      
+      
+      
+       FirstIntroductionPage(),
     );
   }
 }

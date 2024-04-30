@@ -2,11 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trim_spot_barber_side/data/firebae_authentication/phone_number_validation.dart';
 import 'package:trim_spot_barber_side/data/shared_preference_operations/functions.dart';
 import 'package:trim_spot_barber_side/utils/otp_page/formkey.dart';
-
 import 'package:trim_spot_barber_side/utils/registration_page/form_key.dart';
 import 'package:trim_spot_barber_side/utils/registration_page/container_validations.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
