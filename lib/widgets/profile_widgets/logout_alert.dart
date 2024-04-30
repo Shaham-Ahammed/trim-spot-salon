@@ -52,10 +52,13 @@ import 'package:trim_spot_barber_side/utils/page_transitions/fade_transition.dar
                       ),
                       GestureDetector(
                         onTap: ()async {
-                           await SharedPreferenceOperation().setPhoneNumber("");
-                          Navigator.of(context).push(FadeTransitionPageRoute(
+                          await SharedPreferenceOperation().setPhoneNumber("");
+                        Navigator.of(context).pushAndRemoveUntil(
+                          FadeTransitionPageRoute(
                             child: LoginScreen(),
-                          ));
+                          ),
+                          (route) => false,
+                        );
                         },
                         child: myFont("Logout",
                             fontFamily: balooChettan,

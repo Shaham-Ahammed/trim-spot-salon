@@ -11,9 +11,7 @@ import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 import 'package:trim_spot_barber_side/utils/network_error_snackbar.dart';
 import 'package:trim_spot_barber_side/utils/page_transitions/fade_transition.dart';
 import 'package:trim_spot_barber_side/widgets/login_widgets/background_image.dart';
-
 import 'package:trim_spot_barber_side/widgets/login_widgets/login_button.dart';
-
 import 'package:trim_spot_barber_side/widgets/login_widgets/resgister_text.dart';
 import 'package:trim_spot_barber_side/widgets/login_widgets/textformfields.dart';
 import 'package:trim_spot_barber_side/widgets/login_widgets/titles.dart';

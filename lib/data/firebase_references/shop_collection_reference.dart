@@ -3,7 +3,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class ShopDetailsReference{
+class CollectionReferences{
 
 
 CollectionReference shopDetailsReference(){

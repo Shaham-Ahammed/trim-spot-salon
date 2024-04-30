@@ -28,7 +28,7 @@ class LoginValidationBloc
         return;
       }
       emit(LoginLoadingState());
-      final QuerySnapshot shopDetailsCollection = await ShopDetailsReference()
+      final QuerySnapshot shopDetailsCollection = await CollectionReferences()
           .shopDetailsReference()
           .where("phone", isEqualTo: loginPhoneController.text)
           .get();

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:trim_spot_barber_side/data/shared_preference_operations/functions.dart';
 import 'package:trim_spot_barber_side/screens/customer_support.dart';
-import 'package:trim_spot_barber_side/screens/login.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/font.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 import 'package:trim_spot_barber_side/utils/page_transitions/no_transition_page_route.dart';
+import 'package:trim_spot_barber_side/widgets/registration_success/logout_confirmation.dart';
 
 class DrawerItems extends StatelessWidget {
   const DrawerItems({
@@ -38,12 +37,8 @@ class DrawerItems extends StatelessWidget {
                   fontSize: mediaqueryHeight(0.02, context),
                   fontWeight: FontWeight.normal,
                   fontColor: greyColor),
-              onTap: () async {
-                await SharedPreferenceOperation().setPhoneNumber("");
-                Navigator.of(context).pushAndRemoveUntil(
-                  NoTransitionPageRoute(child: LoginScreen()),
-                  (route) => false,
-                );
+              onTap: () {
+                logoutConfirmationFailureMessageScreen(context);
               },
             ),
             ListTile(

@@ -15,7 +15,7 @@ import 'package:trim_spot_barber_side/blocs/registration_blocs/register_button_b
 import 'package:trim_spot_barber_side/blocs/registration_blocs/service_bloc/service_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/registration_blocs/working_hours/working_hours_bloc.dart';
 import 'package:trim_spot_barber_side/firebase_options.dart';
-import 'package:trim_spot_barber_side/screens/onboarding_screen.dart';
+import 'package:trim_spot_barber_side/screens/splash_screen.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'blocs/on_boarding_bloc/onboardind_bloc_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -64,13 +64,13 @@ class App extends StatelessWidget {
             backgroundColor: introductionColor,
           )),
       home:
-      
-      
+      SplashScreen()
+
 
       
       
       
-       FirstIntroductionPage(),
+      //  FirstIntroductionPage(),
     );
   }
 }

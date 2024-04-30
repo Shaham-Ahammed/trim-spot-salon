@@ -29,7 +29,7 @@ class AppBarHomeScreen extends StatelessWidget {
                           homeScaffoldKey.currentState?.openDrawer();
                         },
                         child: StreamBuilder<QuerySnapshot>(
-                          stream: ShopDetailsReference()
+                          stream: CollectionReferences()
                               .shopDetailsReference()
                               // .where("phone",
                               //     isEqualTo: loginPhoneController.text)

@@ -19,7 +19,7 @@ class RegisterProfileToFirebase {
         .licenseImageToFirebaseStorage(context);
 
     final CollectionReference collection =
-        ShopDetailsReference().shopDetailsReference();
+        CollectionReferences().shopDetailsReference();
 
     final data = RegistraitonModel(
         name: registrationNameController.text.trim(),
