@@ -12,6 +12,7 @@ class ProfileEmailBloc extends Bloc<ProfileEmailEvent, ProfileEmailState> {
   }
   _emailEditButtonPressed(
       EmailEditButtonPressed event, Emitter<ProfileEmailState> emit) {
-    emit(ProfileEmailInitial(email: state.email, editPressed: event.editPressed));
+    emit(ProfileEmailInitial(
+        email: state.email, editPressed: event.editPressed));
   }
 }

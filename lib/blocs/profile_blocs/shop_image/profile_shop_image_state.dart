@@ -2,17 +2,17 @@ part of 'profile_shop_image_bloc.dart';
 
 @immutable
 sealed class ProfileShopImageState {
-  final String ShopImage;
-  final String newShopImage;
+   final Uint8List? newShopImageUnit8list;
+  final String newShopImagePath;
+  final String originalShopPic;
 
-  ProfileShopImageState({
-    required this.ShopImage,
- required this.newShopImage
-  });
+  ProfileShopImageState({required this.newShopImageUnit8list, required this.newShopImagePath, required this.originalShopPic});
+
+
+ 
 }
 
 final class ProfileShopImageInitial extends ProfileShopImageState {
-  ProfileShopImageInitial({
-    required super.ShopImage, required super.newShopImage,
-  });
+  ProfileShopImageInitial({required super.newShopImageUnit8list, required super.newShopImagePath, required super.originalShopPic});
+ 
 }

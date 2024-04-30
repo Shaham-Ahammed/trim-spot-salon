@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:trim_spot_barber_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_barber_side/data/firebase_references/shop_collection_reference.dart';
 import 'package:trim_spot_barber_side/data/repository/document_model.dart';
+import 'package:trim_spot_barber_side/data/repository/loggedin_details.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/homepage/drawer/scaffold_key.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:trim_spot_barber_side/utils/logo.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
+import 'package:shimmer/shimmer.dart';
 
 class AppBarHomeScreen extends StatelessWidget {
   @override
@@ -28,35 +32,12 @@ class AppBarHomeScreen extends StatelessWidget {
                         onTap: () {
                           homeScaffoldKey.currentState?.openDrawer();
                         },
-                        child: StreamBuilder<QuerySnapshot>(
-                          stream: CollectionReferences()
-                              .shopDetailsReference()
-                              // .where("phone",
-                              //     isEqualTo: loginPhoneController.text)
-                              .snapshots(),
-                          builder:
-                              (context,  snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return CircularProgressIndicator();
-                            }
-
-                            if (snapshot.hasData &&
-                                snapshot.data!.docs.isNotEmpty) {
-                              final doc =
-                                  snapshot.data!.docs.first[SalonDocumentModel.name];
-
-                              return CircleAvatar(
-                                backgroundImage: NetworkImage(doc),
-                              );
-                            } else {
-                            
-                              return CircleAvatar(
-                                radius: 20,
-                                backgroundColor: Colors.amber,
-                              );
-                            }
-                          },
+                        child: CircleAvatar(
+                          radius: mediaqueryHeight(0.029, context),
+                          backgroundImage: NetworkImage(context
+                              .watch<UserDetailsBloc>()
+                              .state
+                              .profileImage),
                         ))),
                 AppLogo(
                   size: mediaqueryHeight(0.045, context),

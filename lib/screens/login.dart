@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/login_button_bloc/login_validation_bloc.dart';
-import 'package:trim_spot_barber_side/screens/bottom_navigation.dart';
 import 'package:trim_spot_barber_side/utils/constant_variables/login_screen_constants.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/error_snackbars.dart';
@@ -9,7 +8,7 @@ import 'package:trim_spot_barber_side/utils/loading_indicator.dart';
 import 'package:trim_spot_barber_side/utils/login_page/form_key.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 import 'package:trim_spot_barber_side/utils/network_error_snackbar.dart';
-import 'package:trim_spot_barber_side/utils/page_transitions/fade_transition.dart';
+import 'package:trim_spot_barber_side/utils/splash_screen/screen_decision.dart';
 import 'package:trim_spot_barber_side/widgets/login_widgets/background_image.dart';
 import 'package:trim_spot_barber_side/widgets/login_widgets/login_button.dart';
 import 'package:trim_spot_barber_side/widgets/login_widgets/resgister_text.dart';
@@ -42,8 +41,7 @@ class LoginScreen extends StatelessWidget {
           }
           if (state is LoginSuccess) {
             Navigator.pop(context);
-            Navigator.of(context)
-                .push(FadeTransitionPageRoute(child: BottomNavigationScreen()));
+            checkTheRegistrationStatus(loginPhoneController.text, context);
           }
         },
         child: Scaffold(

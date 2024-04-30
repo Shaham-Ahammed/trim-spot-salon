@@ -7,4 +7,10 @@ class SharedPreferenceOperation {
         await SharedPreferences.getInstance();
     sharedPreference.setString(loggedInNumber, phoneNumber);
   }
+
+ Future<String?> getPhoneNumber() async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    return sharedPreferences.getString(loggedInNumber);
+  }
 }

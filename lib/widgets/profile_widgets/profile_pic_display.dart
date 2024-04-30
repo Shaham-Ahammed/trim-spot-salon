@@ -1,8 +1,8 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/user_profile_image_bloc/profile_user_image_bloc.dart';
+import 'package:trim_spot_barber_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 import 'package:trim_spot_barber_side/widgets/profile_widgets/profile_pic_edit_button.dart';
 
@@ -19,11 +19,12 @@ class ProfilePictureDispaly extends StatelessWidget {
           child: BlocBuilder<ProfileUserImageBloc, ProfileUserImageState>(
             builder: (context, state) {
               return CircleAvatar(
-                radius: mediaqueryWidth(0.17, context),
-                backgroundImage: state.newImagePath.isNotEmpty
-                    ? FileImage(File(state.newImagePath)) as ImageProvider
-                    : AssetImage(state.profileImage) as ImageProvider,
-              );
+                  radius: mediaqueryWidth(0.17, context),
+                  backgroundImage: state.newImagePath.isEmpty
+                      ? NetworkImage(
+                         state.originalProfilePic)
+                      : MemoryImage(state.newProfileUnit8list!)
+                          as ImageProvider);
             },
           ),
         ),

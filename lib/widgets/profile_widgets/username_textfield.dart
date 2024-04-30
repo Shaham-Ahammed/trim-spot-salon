@@ -17,7 +17,7 @@ class UserNameTextField extends StatelessWidget {
     return BlocBuilder<ProfileNameBloc, ProfileNameState>(
       builder: (context, state) {
         return Container(
-          height: mediaqueryHeight(0.05, context),
+          height: mediaqueryHeight(0.06, context),
           decoration: BoxDecoration(
               color: state.editPressed ? whiteColor : greyColor3,
               borderRadius: BorderRadius.circular(8)),

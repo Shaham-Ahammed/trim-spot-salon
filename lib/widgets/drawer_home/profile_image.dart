@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:trim_spot_barber_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_barber_side/screens/profile.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
@@ -13,7 +15,7 @@ class ProfileImageDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: mediaqueryHeight(0.05, context),
-      backgroundImage: AssetImage("assets/images/s2.jpg"),
+      backgroundImage: NetworkImage(context.watch<UserDetailsBloc>().state.profileImage),
     );
   }
 }

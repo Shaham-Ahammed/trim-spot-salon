@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/email_bloc/profile_email_bloc.dart';
@@ -17,7 +16,7 @@ class EmailTextField extends StatelessWidget {
     return BlocBuilder<ProfileEmailBloc, ProfileEmailState>(
       builder: (context, state) {
         return Container(
-          height: mediaqueryHeight(0.05, context),
+          height: mediaqueryHeight(0.06, context),
           decoration: BoxDecoration(
               color: state.editPressed ? whiteColor : greyColor3,
               borderRadius: BorderRadius.circular(8)),

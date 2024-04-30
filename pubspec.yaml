@@ -58,6 +58,8 @@ dependencies:
   lottie: ^3.1.0
   another_flushbar: ^1.12.30
   shared_preferences: ^2.2.3
+  shimmer: ^3.0.0
+ 
   
   
 
@@ -105,6 +107,7 @@ flutter:
     - assets/images/registration success.png
     - assets/images/registraion denied.png
     - assets/animations/email_sended.json
+    - assets/images/icons8-person-48.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

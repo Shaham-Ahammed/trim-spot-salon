@@ -18,7 +18,7 @@ class PhoneTextField extends StatelessWidget {
     return BlocBuilder<ProfilePhoneBloc, ProfilePhoneState>(
       builder: (context, state) {
         return Container(
-          height: mediaqueryHeight(0.05, context),
+          height: mediaqueryHeight(0.06, context),
           decoration: BoxDecoration(
               color: state.editPressed ? whiteColor : greyColor3,
               borderRadius: BorderRadius.circular(8)),

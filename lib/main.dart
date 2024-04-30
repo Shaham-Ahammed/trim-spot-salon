@@ -14,6 +14,7 @@ import 'package:trim_spot_barber_side/blocs/registration_blocs/location_bloc/loc
 import 'package:trim_spot_barber_side/blocs/registration_blocs/register_button_bloc/register_button_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/registration_blocs/service_bloc/service_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/registration_blocs/working_hours/working_hours_bloc.dart';
+import 'package:trim_spot_barber_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_barber_side/firebase_options.dart';
 import 'package:trim_spot_barber_side/screens/splash_screen.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
@@ -26,11 +27,12 @@ void main(List<String> args) async {
   Bloc.observer = AppBlocObserver();
   runApp(MultiBlocProvider(
     providers: [
-         BlocProvider(create: (context) => HolidayBloc()),
-        BlocProvider<ServiceBloc>(create: (context) => ServiceBloc()),
-        BlocProvider<WorkingHoursBloc>(create: (context) => WorkingHoursBloc()),
-        BlocProvider<ImageBloc>(create: (context) => ImageBloc()),
-         BlocProvider(create: (context) => RegisterButtonBloc()),
+        BlocProvider(create: (context) => UserDetailsBloc()),
+      BlocProvider(create: (context) => HolidayBloc()),
+      BlocProvider<ServiceBloc>(create: (context) => ServiceBloc()),
+      BlocProvider<WorkingHoursBloc>(create: (context) => WorkingHoursBloc()),
+      BlocProvider<ImageBloc>(create: (context) => ImageBloc()),
+      BlocProvider(create: (context) => RegisterButtonBloc()),
       BlocProvider<ProfileEmailBloc>(create: (context) => ProfileEmailBloc()),
       BlocProvider<ProfilePhoneBloc>(create: (context) => ProfilePhoneBloc()),
       BlocProvider<ProfileShopImageBloc>(
@@ -55,22 +57,14 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.dark,
-      theme: ThemeData(
-          textSelectionTheme:
-              TextSelectionThemeData(selectionHandleColor: cyanColor),
-          bottomSheetTheme: BottomSheetThemeData(
-            backgroundColor: introductionColor,
-          )),
-      home:
-      SplashScreen()
-
-
-      
-      
-      
-      //  FirstIntroductionPage(),
-    );
+        debugShowCheckedModeBanner: false,
+        themeMode: ThemeMode.dark,
+        theme: ThemeData(
+            textSelectionTheme:
+                TextSelectionThemeData(selectionHandleColor: cyanColor),
+            bottomSheetTheme: BottomSheetThemeData(
+              backgroundColor: introductionColor,
+            )),
+        home: SplashScreen());
   }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:trim_spot_barber_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/fade_transition_applogo.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
@@ -15,6 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     checkTheScreen(context);
+    context.read<UserDetailsBloc>().add(FetchingUserDetailsFromSplash());
     super.initState();
   }
 

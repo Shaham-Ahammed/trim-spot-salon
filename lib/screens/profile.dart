@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/email_bloc/profile_email_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/name_bloc/profile_name_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/phone_bloc/profile_phone_bloc.dart';
+import 'package:trim_spot_barber_side/blocs/profile_blocs/shop_image/profile_shop_image_bloc.dart';
+import 'package:trim_spot_barber_side/blocs/profile_blocs/user_profile_image_bloc/profile_user_image_bloc.dart';
+import 'package:trim_spot_barber_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 import 'package:trim_spot_barber_side/utils/profile_screen/controllers.dart';
@@ -28,9 +31,11 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-
   @override
   void initState() {
+    context.read<ProfileUserImageBloc>().add(FetchUserProfileImage());
+    context.read<ProfileShopImageBloc>().add(FetchShopImage());
+    context.read<UserDetailsBloc>().add(FetchingUserDetailsFromSplash());
     context.read<ProfilePhoneBloc>().add(ProfilPhoneEdit(editPressed: false));
     context
         .read<ProfileNameBloc>()
@@ -40,11 +45,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
         .add(EmailEditButtonPressed(editPressed: false));
 
     profilePhoneController.text =
-        BlocProvider.of<ProfilePhoneBloc>(context).state.phone;
+        BlocProvider.of<UserDetailsBloc>(context).state.phone;
     profileNameController.text =
-        BlocProvider.of<ProfileNameBloc>(context).state.name;
+        BlocProvider.of<UserDetailsBloc>(context).state.userName;
     profileEmailController.text =
-        BlocProvider.of<ProfileEmailBloc>(context).state.email;
+        BlocProvider.of<UserDetailsBloc>(context).state.email;
     super.initState();
   }
 
