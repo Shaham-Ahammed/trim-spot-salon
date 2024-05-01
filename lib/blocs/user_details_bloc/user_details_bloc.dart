@@ -14,7 +14,6 @@ class UserDetailsBloc extends Bloc<UserDetailsEvent, UserDetailsState> {
             userName: '',
             phone: '',
             shopImage: '',
-           
             password: '',
             email: '')) {
     on<FetchingUserDetailsFromSplash>(_fetchingDetailsFromSplash);
@@ -28,7 +27,6 @@ class UserDetailsBloc extends Bloc<UserDetailsEvent, UserDetailsState> {
         .get();
     final userData = collection.docs.first;
     emit(UserDetailsInitial(
-        
         profileImage: userData[SalonDocumentModel.profileImage],
         userName: userData[SalonDocumentModel.name],
         phone: userData[SalonDocumentModel.phone],

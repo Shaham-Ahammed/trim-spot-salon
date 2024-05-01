@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/font.dart';
@@ -16,7 +15,15 @@ class NewPasswordTextFormField extends StatelessWidget {
       controller: profileNewPasswordController,
       cursorColor: greyColor,
       style: TextStyle(color: whiteColor),
-      onChanged: (value) {},
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return "please enter your new password";
+        } else if (value.length < 8) {
+          return "must contain atleast 8 characters";
+        }
+        return null;
+      },
       decoration: InputDecoration(
         labelStyle: TextStyle(
           color: greyColor3,

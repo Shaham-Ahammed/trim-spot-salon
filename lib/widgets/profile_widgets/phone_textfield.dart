@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/phone_bloc/profile_phone_bloc.dart';
-import 'package:trim_spot_barber_side/screens/edit_phone_number.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/font.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
-import 'package:trim_spot_barber_side/utils/page_transitions/no_transition_page_route.dart';
 import 'package:trim_spot_barber_side/utils/profile_screen/controllers.dart';
 
 class PhoneTextField extends StatelessWidget {
@@ -39,12 +37,6 @@ class PhoneTextField extends StatelessWidget {
                   enableInteractiveSelection: false,
                   enabled: state.editPressed,
                 )),
-                GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(
-                          NoTransitionPageRoute(child: (EditPhoneScreen())));
-                    },
-                    child: Icon(Icons.edit))
               ],
             ),
           ),

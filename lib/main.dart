@@ -8,6 +8,7 @@ import 'package:trim_spot_barber_side/blocs/profile_blocs/name_bloc/profile_name
 import 'package:trim_spot_barber_side/blocs/profile_blocs/phone_bloc/profile_phone_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/shop_image/profile_shop_image_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/user_profile_image_bloc/profile_user_image_bloc.dart';
+import 'package:trim_spot_barber_side/blocs/profile_blocs/profile_password_bloc/profile_password_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/registration_blocs/holiday_bloc/holiday_bloc_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/registration_blocs/image_bloc/image_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/registration_blocs/location_bloc/location_bloc.dart';
@@ -27,7 +28,8 @@ void main(List<String> args) async {
   Bloc.observer = AppBlocObserver();
   runApp(MultiBlocProvider(
     providers: [
-        BlocProvider(create: (context) => UserDetailsBloc()),
+      BlocProvider(create: (context) => ProfilePasswordBloc()),
+      BlocProvider(create: (context) => UserDetailsBloc()),
       BlocProvider(create: (context) => HolidayBloc()),
       BlocProvider<ServiceBloc>(create: (context) => ServiceBloc()),
       BlocProvider<WorkingHoursBloc>(create: (context) => WorkingHoursBloc()),

@@ -9,7 +9,7 @@ import 'package:trim_spot_barber_side/data/data_provider/user_data_document.dart
 import 'package:trim_spot_barber_side/data/firebase_references/shop_collection_reference.dart';
 import 'package:trim_spot_barber_side/data/repository/document_model.dart';
 import 'package:trim_spot_barber_side/utils/profile_screen/controllers.dart';
-import 'package:trim_spot_barber_side/utils/profile_screen/global_key.dart';
+import 'package:trim_spot_barber_side/utils/profile_screen/form_keys.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 part 'profile_save_button_event.dart';
 part 'profile_save_button_state.dart';
