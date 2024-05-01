@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:trim_spot_barber_side/blocs/bloc/profile_save_button_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/email_bloc/profile_email_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/name_bloc/profile_name_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/phone_bloc/profile_phone_bloc.dart';
@@ -7,8 +8,10 @@ import 'package:trim_spot_barber_side/blocs/profile_blocs/shop_image/profile_sho
 import 'package:trim_spot_barber_side/blocs/profile_blocs/user_profile_image_bloc/profile_user_image_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
+import 'package:trim_spot_barber_side/utils/loading_indicator.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 import 'package:trim_spot_barber_side/utils/profile_screen/controllers.dart';
+import 'package:trim_spot_barber_side/utils/profile_screen/global_key.dart';
 import 'package:trim_spot_barber_side/widgets/profile_widgets/change_password_alert.dart';
 import 'package:trim_spot_barber_side/widgets/profile_widgets/change_password_text.dart';
 import 'package:trim_spot_barber_side/widgets/profile_widgets/email_textfield.dart';
@@ -55,69 +58,105 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: blackColor,
-      appBar: PreferredSize(
-          preferredSize:
-              Size(double.infinity, mediaqueryHeight(0.106, context)),
-          child: profileAppBar(context)),
-      body: SafeArea(
-          child: Padding(
-        padding: EdgeInsets.all(mediaqueryHeight(0.02, context)),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ProfilePictureDispaly(),
-              SizedBox(
-                height: mediaqueryHeight(0.015, context),
+    return BlocProvider(
+      create: (context) => ProfileSaveButtonBloc(),
+      child: BlocListener<ProfileSaveButtonBloc, ProfileSaveButtonState>(
+        listener: (context, state) {
+          if (state is ProfileUpdating) {
+            loadingIndicator(context);
+          }
+          if (state is ProfileUpdationFinished) {
+            context.read<ProfileUserImageBloc>().add(FetchUserProfileImage());
+            context.read<ProfileShopImageBloc>().add(FetchShopImage());
+            context
+                .read<UserDetailsBloc>()
+                .add(FetchingUserDetailsFromSplash());
+            context
+                .read<ProfilePhoneBloc>()
+                .add(ProfilPhoneEdit(editPressed: false));
+            context
+                .read<ProfileNameBloc>()
+                .add(NameEditButtonPressed(editPressed: false));
+            context
+                .read<ProfileEmailBloc>()
+                .add(EmailEditButtonPressed(editPressed: false));
+
+            profilePhoneController.text =
+                context.watch<UserDetailsBloc>().state.phone;
+            profileNameController.text =
+                context.watch<UserDetailsBloc>().state.userName;
+            profileEmailController.text =
+                context.watch<UserDetailsBloc>().state.email;
+          }
+        },
+        child: Scaffold(
+          backgroundColor: blackColor,
+          appBar: PreferredSize(
+              preferredSize:
+                  Size(double.infinity, mediaqueryHeight(0.106, context)),
+              child: profileAppBar(context)),
+          body: SafeArea(
+              child: Padding(
+            padding: EdgeInsets.all(mediaqueryHeight(0.02, context)),
+            child: SingleChildScrollView(
+              child: Form(
+                key: profileFormKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ProfilePictureDispaly(),
+                    SizedBox(
+                      height: mediaqueryHeight(0.015, context),
+                    ),
+                    UserNameDisaply(),
+                    SizedBox(
+                      height: mediaqueryHeight(0.015, context),
+                    ),
+                    profilePageHeadings(context, "Name"),
+                    spaceBetweenHeadingAndTextfield(context),
+                    UserNameTextField(),
+                    SizedBox(
+                      height: mediaqueryHeight(0.014, context),
+                    ),
+                    profilePageHeadings(context, "Phone"),
+                    spaceBetweenHeadingAndTextfield(context),
+                    PhoneTextField(),
+                    SizedBox(
+                      height: mediaqueryHeight(0.014, context),
+                    ),
+                    profilePageHeadings(context, "Email"),
+                    spaceBetweenHeadingAndTextfield(context),
+                    EmailTextField(),
+                    SizedBox(
+                      height: mediaqueryHeight(0.03, context),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        changePasswordAlert(context);
+                      },
+                      child: changePasswordText(context),
+                    ),
+                    SizedBox(
+                      height: mediaqueryHeight(0.014, context),
+                    ),
+                    profilePageHeadings(context, "Shop Image"),
+                    shopImageCaption(context),
+                    SizedBox(
+                      height: mediaqueryHeight(0.012, context),
+                    ),
+                    ShopImageDisplay(),
+                    SizedBox(
+                      height: mediaqueryHeight(0.04, context),
+                    ),
+                    SubmitButton()
+                  ],
+                ),
               ),
-              UserNameDisaply(),
-              SizedBox(
-                height: mediaqueryHeight(0.015, context),
-              ),
-              profilePageHeadings(context, "Name"),
-              spaceBetweenHeadingAndTextfield(context),
-              UserNameTextField(),
-              SizedBox(
-                height: mediaqueryHeight(0.014, context),
-              ),
-              profilePageHeadings(context, "Phone"),
-              spaceBetweenHeadingAndTextfield(context),
-              PhoneTextField(),
-              SizedBox(
-                height: mediaqueryHeight(0.014, context),
-              ),
-              profilePageHeadings(context, "Email"),
-              spaceBetweenHeadingAndTextfield(context),
-              EmailTextField(),
-              SizedBox(
-                height: mediaqueryHeight(0.03, context),
-              ),
-              GestureDetector(
-                onTap: () {
-                  changePasswordAlert(context);
-                },
-                child: changePasswordText(context),
-              ),
-              SizedBox(
-                height: mediaqueryHeight(0.014, context),
-              ),
-              profilePageHeadings(context, "Shop Image"),
-              shopImageCaption(context),
-              SizedBox(
-                height: mediaqueryHeight(0.012, context),
-              ),
-              ShopImageDisplay(),
-              SizedBox(
-                height: mediaqueryHeight(0.04, context),
-              ),
-              SubmitButton()
-            ],
-          ),
+            ),
+          )),
         ),
-      )),
+      ),
     );
   }
 }

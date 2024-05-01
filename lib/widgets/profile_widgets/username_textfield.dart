@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/name_bloc/profile_name_bloc.dart';
@@ -29,10 +28,21 @@ class UserNameTextField extends StatelessWidget {
               children: [
                 Expanded(
                     child: TextFormField(
+                      
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "please enter a name";
+                    } else {
+                      return null;
+                    }
+                  },
                   style: TextStyle(
                       color: state.editPressed ? blackColor : whiteColor,
                       fontFamily: b612),
-                  decoration: InputDecoration(border: InputBorder.none),
+                  decoration: InputDecoration(
+                     contentPadding: EdgeInsets.symmetric(vertical: mediaqueryHeight(0.0072, context)),
+                    border: InputBorder.none),
                   controller: profileNameController,
                   cursorColor: Colors.blueGrey.shade200,
                   enableInteractiveSelection: false,

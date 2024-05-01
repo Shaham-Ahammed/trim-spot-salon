@@ -28,10 +28,26 @@ class EmailTextField extends StatelessWidget {
               children: [
                 Expanded(
                     child: TextFormField(
+                      keyboardType: TextInputType.emailAddress,
+                      
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "please enter a email";
+                    } else if (!value.contains("@gmail.com")) {
+                      return "enter a valid email";
+                    }
+
+                    return null;
+                  },
+                  
                   style: TextStyle(
+                      
                       color: state.editPressed ? blackColor : whiteColor,
                       fontFamily: b612),
-                  decoration: InputDecoration(border: InputBorder.none),
+                  decoration: InputDecoration(
+                      contentPadding: EdgeInsets.symmetric(vertical: mediaqueryHeight(0.0072, context)),
+                    border: InputBorder.none),
                   controller: profileEmailController,
                   cursorColor: Colors.blueGrey.shade200,
                   enableInteractiveSelection: false,

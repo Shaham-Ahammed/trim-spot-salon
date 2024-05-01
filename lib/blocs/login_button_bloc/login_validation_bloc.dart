@@ -4,7 +4,6 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/data/firebase_references/shop_collection_reference.dart';
-import 'package:trim_spot_barber_side/data/repository/loggedin_details.dart';
 import 'package:trim_spot_barber_side/data/repository/unique_number.dart';
 import 'package:trim_spot_barber_side/data/shared_preference_operations/functions.dart';
 import 'package:trim_spot_barber_side/utils/constant_variables/login_screen_constants.dart';

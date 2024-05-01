@@ -3,18 +3,18 @@ import 'package:loading_indicator/loading_indicator.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 
-
-
 Future<dynamic> loadingIndicator(BuildContext context) {
-    return showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return const Center(child: RegisterLoadingIndicator());
-      },
-    );
+  return showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return PopScope(
+          onPopInvoked: (didPop) => false,
+          canPop: false,
+          child: const Center(child: RegisterLoadingIndicator()));
+    },
+  );
 }
-
 
 class RegisterLoadingIndicator extends StatelessWidget {
   const RegisterLoadingIndicator({

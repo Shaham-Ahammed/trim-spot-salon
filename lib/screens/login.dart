@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/login_button_bloc/login_validation_bloc.dart';
+import 'package:trim_spot_barber_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_barber_side/utils/constant_variables/login_screen_constants.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/error_snackbars.dart';
@@ -40,7 +41,9 @@ class LoginScreen extends StatelessWidget {
                 .showSnackBar(errorSnackBar(state.exception));
           }
           if (state is LoginSuccess) {
+
             Navigator.pop(context);
+              context.read<UserDetailsBloc>().add(FetchingUserDetailsFromSplash());
             checkTheRegistrationStatus(loginPhoneController.text, context);
           }
         },

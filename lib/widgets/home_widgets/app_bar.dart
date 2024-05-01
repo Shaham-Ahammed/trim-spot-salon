@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/user_details_bloc/user_details_bloc.dart';
-import 'package:trim_spot_barber_side/data/firebase_references/shop_collection_reference.dart';
-import 'package:trim_spot_barber_side/data/repository/document_model.dart';
-import 'package:trim_spot_barber_side/data/repository/loggedin_details.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/homepage/drawer/scaffold_key.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:trim_spot_barber_side/utils/logo.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
-import 'package:shimmer/shimmer.dart';
 
 class AppBarHomeScreen extends StatelessWidget {
   @override

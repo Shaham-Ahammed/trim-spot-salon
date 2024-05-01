@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/data/firebase_references/shop_collection_reference.dart';
 import 'package:trim_spot_barber_side/data/repository/document_model.dart';
 import 'package:trim_spot_barber_side/data/shared_preference_operations/functions.dart';
-import 'package:trim_spot_barber_side/utils/profile_screen/controllers.dart';
 
 part 'user_details_event.dart';
 part 'user_details_state.dart';
