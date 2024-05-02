@@ -21,6 +21,9 @@ class UserDetailsBloc extends Bloc<UserDetailsEvent, UserDetailsState> {
   _fetchingDetailsFromSplash(FetchingUserDetailsFromSplash event,
       Emitter<UserDetailsState> emit) async {
     final phone = await SharedPreferenceOperation().getPhoneNumber();
+    if (phone == null || phone.isEmpty) {
+      return;
+    }
     final collection = await CollectionReferences()
         .shopDetailsReference()
         .where(SalonDocumentModel.phone, isEqualTo: phone)

@@ -23,9 +23,7 @@ class RegisterProfileToFirebase {
 
     final data = RegistraitonModel(
       name: registrationNameController.text.trim(),
-     
       email: registrationEmailController.text.trim(),
-   
       holidays: BlocProvider.of<HolidayBloc>(context).state.holidays,
       parsedClosingTime: BlocProvider.of<WorkingHoursBloc>(context)
           .state
@@ -46,6 +44,7 @@ class RegisterProfileToFirebase {
       shopName: registrationShopNameController.text.trim(),
       services: serviceToMapConversion(context),
       isRejected: false,
+      occasionalClosures: [],
     ).toMap();
     try {
       await collection.add(data);

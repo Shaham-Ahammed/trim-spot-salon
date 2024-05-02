@@ -10,8 +10,8 @@ class RegistraitonModel {
   String shopLicenseImage;
   String profileImage;
   String shopImage;
-  Map<String, Map<String, String>> services;
- 
+  List<Map<String, Map<String, String>>> services;
+  List<Timestamp> occasionalClosures;
   String parsedOpeningTime;
 
   String parsedClosingTime;
@@ -20,28 +20,25 @@ class RegistraitonModel {
   bool isApproved;
   bool isRejected;
 
-
-  RegistraitonModel(
-      {required this.name,
-      required this.email,
-      required this.phone,
-      required this.shopName,
-      required this.shopLocationLatLng,
-      required this.shopLocationName,
-      required this.shopLicenseImage,
-      required this.profileImage,
-      required this.shopImage,
-      required this.services,
-    
-      required this.parsedOpeningTime,
-
-      required this.parsedClosingTime,
-      required this.holidays,
-      required this.password,
-      required this.isApproved,
-      required this.isRejected,
-    
-      });
+  RegistraitonModel({
+    required this.name,
+    required this.email,
+    required this.phone,
+    required this.shopName,
+    required this.shopLocationLatLng,
+    required this.shopLocationName,
+    required this.shopLicenseImage,
+    required this.occasionalClosures,
+    required this.profileImage,
+    required this.shopImage,
+    required this.services,
+    required this.parsedOpeningTime,
+    required this.parsedClosingTime,
+    required this.holidays,
+    required this.password,
+    required this.isApproved,
+    required this.isRejected,
+  });
 
   Map<String, dynamic> toMap() {
     return {
@@ -55,16 +52,13 @@ class RegistraitonModel {
       "profileImage": profileImage,
       "shopImage": shopImage,
       "services": services,
-     
       "parsedOpeningTime": parsedOpeningTime,
-     
       "parsedClosingTime": parsedClosingTime,
       "holidays": holidays,
       "password": password,
       "isApproved": isApproved,
       "isRejected": isRejected,
-     
-
+      "occasionalClosures":occasionalClosures
     };
   }
 }

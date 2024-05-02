@@ -22,10 +22,10 @@ class ShopManagementHolidayBloc extends Bloc<ShopManagementHolidayBlocEvent,
 
   _fetchOriginalHolidays(FetchOriginalHolidays event,
       Emitter<ShopManagementHolidayBlocState> emit) async {
-    emit(HolidayBlocInitial(holidays: []));
     final data = await UserDataDocumentFromFirebase().userDocument();
 
-    List<String> holidays =( data[SalonDocumentModel.holidays] as List<dynamic>).cast<String>() ;
+    List<String> holidays =
+        (data[SalonDocumentModel.holidays] as List<dynamic>).cast<String>();
     emit(HolidayBlocInitial(holidays: holidays));
   }
 }
