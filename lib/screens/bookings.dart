@@ -6,7 +6,8 @@ import 'package:trim_spot_barber_side/utils/constant_variables/bookings.dart';
 import 'package:trim_spot_barber_side/widgets/bookings_widgets/appbar.dart';
 
 class BookingsScreen extends StatefulWidget {
-  const BookingsScreen({super.key});
+  final bool fromDrawer;
+  const BookingsScreen({super.key,this.fromDrawer=false});
 
   @override
   State<BookingsScreen> createState() => _BookingsScreenState();
@@ -14,7 +15,6 @@ class BookingsScreen extends StatefulWidget {
 
 class _BookingsScreenState extends State<BookingsScreen>
     with SingleTickerProviderStateMixin {
-      
   @override
   void initState() {
     super.initState();
@@ -31,7 +31,7 @@ class _BookingsScreenState extends State<BookingsScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: blackColor,
-      appBar: appBar(context),
+      appBar: appBar(context,widget.fromDrawer),
       body: TabBarView(
         controller: tabController,
         children: [PendingBookingsScreen(), CompletedBookingsScreen()],

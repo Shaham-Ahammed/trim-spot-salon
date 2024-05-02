@@ -11,15 +11,15 @@ class RegistraitonModel {
   String profileImage;
   String shopImage;
   Map<String, Map<String, String>> services;
-  DateTime openingTime;
+ 
   String parsedOpeningTime;
-  DateTime closingTime;
+
   String parsedClosingTime;
   List<String> holidays;
   String password;
   bool isApproved;
   bool isRejected;
-  Map<String,Map<String,int>> reviewsAndRatings;
+
 
   RegistraitonModel(
       {required this.name,
@@ -32,15 +32,15 @@ class RegistraitonModel {
       required this.profileImage,
       required this.shopImage,
       required this.services,
-      required this.openingTime,
+    
       required this.parsedOpeningTime,
-      required this.closingTime,
+
       required this.parsedClosingTime,
       required this.holidays,
       required this.password,
       required this.isApproved,
       required this.isRejected,
-      required this.reviewsAndRatings,
+    
       });
 
   Map<String, dynamic> toMap() {
@@ -55,15 +55,15 @@ class RegistraitonModel {
       "profileImage": profileImage,
       "shopImage": shopImage,
       "services": services,
-      "openingTime": openingTime,
+     
       "parsedOpeningTime": parsedOpeningTime,
-      "closingTime": closingTime,
+     
       "parsedClosingTime": parsedClosingTime,
       "holidays": holidays,
       "password": password,
       "isApproved": isApproved,
       "isRejected": isRejected,
-      "reviewsAndRatings":reviewsAndRatings
+     
 
     };
   }

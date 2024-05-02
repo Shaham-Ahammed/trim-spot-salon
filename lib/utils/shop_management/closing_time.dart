@@ -1,11 +1,10 @@
 import 'package:day_night_time_picker/day_night_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:trim_spot_barber_side/blocs/registration_blocs/working_hours/working_hours_bloc.dart';
+import 'package:trim_spot_barber_side/blocs/shop_management_blocs/working_hours/working_hours_bloc.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/font.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
-
 
 class ClosingTimeSelector extends StatelessWidget {
   const ClosingTimeSelector({
@@ -31,8 +30,8 @@ class ClosingTimeSelector extends StatelessWidget {
               duskSpanInMinutes: 120,
               onChangeDateTime: (time) {
                 context
-                    .read<WorkingHoursBloc>()
-                    .add(ClosingTimeSelected(closingTime: time));
+                    .read<ShopManagementWorkingHoursBloc>()
+                    .add(ShopManagementClosingTimeSelected(closingTime: time));
               },
             ),
           );
@@ -50,23 +49,13 @@ class ClosingTimeSelector extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                BlocBuilder<WorkingHoursBloc, WorkingHoursState>(
-                  builder: (context, state) {
-                    if (state is WorkingHoursInitial &&
-                        state.closingTime != null) {
-                      return myFont(state.closingTimeDisplayText,
+           
+                       myFont(context.watch<ShopManagementWorkingHoursBloc>().state.closingTimeDisplayText,
                           fontFamily: balooChettan,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          fontColor: whiteColor);
-                    }
-                    return myFont("Closing Time",
-                        fontFamily: balooChettan,
-                        fontSize: 16,
-                        fontWeight: FontWeight.normal,
-                        fontColor: greyColor2);
-                  },
-                ),
+                          fontColor: whiteColor),
+                  
                 Icon(
                   Icons.schedule,
                   color: Colors.red.shade600,
@@ -79,4 +68,3 @@ class ClosingTimeSelector extends StatelessWidget {
     );
   }
 }
-

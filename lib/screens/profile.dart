@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/profile_save_button_bloc/profile_save_button_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/email_bloc/profile_email_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/name_bloc/profile_name_bloc.dart';
-import 'package:trim_spot_barber_side/blocs/profile_blocs/phone_bloc/profile_phone_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/shop_image/profile_shop_image_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/user_profile_image_bloc/profile_user_image_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/user_details_bloc/user_details_bloc.dart';
@@ -27,7 +26,8 @@ import 'package:trim_spot_barber_side/widgets/profile_widgets/username_display.d
 import 'package:trim_spot_barber_side/widgets/profile_widgets/username_textfield.dart';
 
 class ProfileScreen extends StatefulWidget {
-  ProfileScreen({super.key});
+  final bool fromDawer;
+  ProfileScreen({super.key, this.fromDawer = false});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -39,7 +39,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     context.read<ProfileUserImageBloc>().add(FetchUserProfileImage());
     context.read<ProfileShopImageBloc>().add(FetchShopImage());
     context.read<UserDetailsBloc>().add(FetchingUserDetailsFromSplash());
-    context.read<ProfilePhoneBloc>().add(ProfilPhoneEdit(editPressed: false));
+
     context
         .read<ProfileNameBloc>()
         .add(NameEditButtonPressed(editPressed: false));
@@ -71,9 +71,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             context
                 .read<UserDetailsBloc>()
                 .add(FetchingUserDetailsFromSplash());
-            context
-                .read<ProfilePhoneBloc>()
-                .add(ProfilPhoneEdit(editPressed: false));
+
             context
                 .read<ProfileNameBloc>()
                 .add(NameEditButtonPressed(editPressed: false));
@@ -94,7 +92,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           appBar: PreferredSize(
               preferredSize:
                   Size(double.infinity, mediaqueryHeight(0.106, context)),
-              child: profileAppBar(context)),
+              child: profileAppBar(context, widget.fromDawer)),
           body: SafeArea(
               child: Padding(
             padding: EdgeInsets.all(mediaqueryHeight(0.02, context)),

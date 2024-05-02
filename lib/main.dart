@@ -5,7 +5,6 @@ import 'package:trim_spot_barber_side/blocs/bloc_observer.dart';
 import 'package:trim_spot_barber_side/blocs/bottom_navigation_bloc/bottom_navigation_bar_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/email_bloc/profile_email_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/name_bloc/profile_name_bloc.dart';
-import 'package:trim_spot_barber_side/blocs/profile_blocs/phone_bloc/profile_phone_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/shop_image/profile_shop_image_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/user_profile_image_bloc/profile_user_image_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/profile_password_bloc/profile_password_bloc.dart';
@@ -15,6 +14,7 @@ import 'package:trim_spot_barber_side/blocs/registration_blocs/location_bloc/loc
 import 'package:trim_spot_barber_side/blocs/registration_blocs/register_button_bloc/register_button_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/registration_blocs/service_bloc/service_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/registration_blocs/working_hours/working_hours_bloc.dart';
+import 'package:trim_spot_barber_side/blocs/shop_management_blocs/working_hours/working_hours_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_barber_side/firebase_options.dart';
 import 'package:trim_spot_barber_side/screens/splash_screen.dart';
@@ -28,6 +28,7 @@ void main(List<String> args) async {
   Bloc.observer = AppBlocObserver();
   runApp(MultiBlocProvider(
     providers: [
+      BlocProvider(create: (context) => ShopManagementWorkingHoursBloc()),
       BlocProvider(create: (context) => ProfilePasswordBloc()),
       BlocProvider(create: (context) => UserDetailsBloc()),
       BlocProvider(create: (context) => HolidayBloc()),
@@ -36,7 +37,6 @@ void main(List<String> args) async {
       BlocProvider<ImageBloc>(create: (context) => ImageBloc()),
       BlocProvider(create: (context) => RegisterButtonBloc()),
       BlocProvider<ProfileEmailBloc>(create: (context) => ProfileEmailBloc()),
-      BlocProvider<ProfilePhoneBloc>(create: (context) => ProfilePhoneBloc()),
       BlocProvider<ProfileShopImageBloc>(
           create: (context) => ProfileShopImageBloc()),
       BlocProvider<ProfileUserImageBloc>(

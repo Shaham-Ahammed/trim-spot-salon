@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/occasional_closure_bloc/occasional_closure_bloc.dart';
-import 'package:trim_spot_barber_side/blocs/registration_blocs/holiday_bloc/holiday_bloc_bloc.dart';
-import 'package:trim_spot_barber_side/blocs/registration_blocs/service_bloc/service_bloc.dart';
-import 'package:trim_spot_barber_side/blocs/registration_blocs/working_hours/working_hours_bloc.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 import 'package:trim_spot_barber_side/utils/shop_management/appbar.dart';
@@ -17,7 +14,8 @@ import 'package:trim_spot_barber_side/utils/submit_buttons.dart';
 import 'package:trim_spot_barber_side/widgets/shop_management_widgets/headings.dart';
 
 class ShopManagementScreen extends StatefulWidget {
-  const ShopManagementScreen({super.key});
+  final bool fromDrawer;
+  const ShopManagementScreen({super.key, this.fromDrawer = false});
 
   @override
   State<ShopManagementScreen> createState() => _ShopManagementScreenState();
@@ -30,17 +28,15 @@ class _ShopManagementScreenState extends State<ShopManagementScreen> {
     return MultiBlocProvider(
       providers: [
         BlocProvider<OccasionalClosureBloc>(
-          create: (context) => OccasionalClosureBloc()),
-       BlocProvider(create: (context) => HolidayBloc()),
-        BlocProvider<ServiceBloc>(create: (context) => ServiceBloc()),
-        BlocProvider<WorkingHoursBloc>(create: (context) => WorkingHoursBloc()),
+            create: (context) => OccasionalClosureBloc()),
+      
       ],
       child: Scaffold(
         backgroundColor: blackColor,
         appBar: PreferredSize(
             preferredSize:
                 Size(double.infinity, mediaqueryHeight(0.106, context)),
-            child: appBarShopManagement()),
+            child: appBarShopManagement(fromDrawer: widget.fromDrawer)),
         body: SingleChildScrollView(
           child: SafeArea(
               child: Padding(

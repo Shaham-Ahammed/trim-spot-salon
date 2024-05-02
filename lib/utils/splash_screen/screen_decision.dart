@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trim_spot_barber_side/data/firebase_references/shop_collection_reference.dart';
 import 'package:trim_spot_barber_side/data/repository/document_model.dart';
-import 'package:trim_spot_barber_side/data/repository/unique_number.dart';
+
 import 'package:trim_spot_barber_side/data/shared_preference_operations/login_key.dart';
 import 'package:trim_spot_barber_side/screens/bottom_navigation.dart';
 import 'package:trim_spot_barber_side/screens/login.dart';
@@ -35,8 +35,6 @@ checkTheScreen(context) async {
         .pushReplacement(FadeTransitionPageRoute(child: LoginScreen()));
     return;
   } else {
-    uniquePhoneNumber = loginNumber;
-    
     checkTheRegistrationStatus(loginNumber, context);
   }
 }
@@ -49,7 +47,6 @@ checkTheRegistrationStatus(String loginNumber, context) async {
   if (data.docs.isNotEmpty) {
     final userData = data.docs.first;
     if (userData[SalonDocumentModel.isApproved]) {
-    
       Navigator.of(context).pushReplacement(
           FadeTransitionPageRoute(child: BottomNavigationScreen()));
       return;

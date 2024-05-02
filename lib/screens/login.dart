@@ -41,9 +41,11 @@ class LoginScreen extends StatelessWidget {
                 .showSnackBar(errorSnackBar(state.exception));
           }
           if (state is LoginSuccess) {
-
             Navigator.pop(context);
-              context.read<UserDetailsBloc>().add(FetchingUserDetailsFromSplash());
+            context
+                .read<UserDetailsBloc>()
+                .add(FetchingUserDetailsFromSplash());
+           
             checkTheRegistrationStatus(loginPhoneController.text, context);
           }
         },

@@ -1,16 +1,28 @@
 import 'package:day_night_time_picker/day_night_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:trim_spot_barber_side/blocs/registration_blocs/working_hours/working_hours_bloc.dart';
+import 'package:trim_spot_barber_side/blocs/shop_management_blocs/working_hours/working_hours_bloc.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/font.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 
-
-class OpeningTimeSelector extends StatelessWidget {
+class OpeningTimeSelector extends StatefulWidget {
   const OpeningTimeSelector({
     super.key,
   });
+
+  @override
+  State<OpeningTimeSelector> createState() => _OpeningTimeSelectorState();
+}
+
+class _OpeningTimeSelectorState extends State<OpeningTimeSelector> {
+  @override
+  void initState() {
+    context
+        .read<ShopManagementWorkingHoursBloc>()
+        .add(FetchingOriginalWorkingTime());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +43,8 @@ class OpeningTimeSelector extends StatelessWidget {
               duskSpanInMinutes: 120,
               onChangeDateTime: (time) {
                 context
-                    .read<WorkingHoursBloc>()
-                    .add(OpeningTimeSelected(openingTime: time));
+                    .read<ShopManagementWorkingHoursBloc>()
+                    .add(ShopManagementOpeningTimeSelected(openingTime: time));
               },
             ),
           );
@@ -50,27 +62,21 @@ class OpeningTimeSelector extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                BlocBuilder<WorkingHoursBloc, WorkingHoursState>(
+                BlocBuilder<ShopManagementWorkingHoursBloc,
+                    ShopManagementWorkingHoursState>(
                   builder: (context, state) {
-                    if (state is WorkingHoursInitial &&
-                        state.openingTime != null) {
+                    {
                       return myFont(state.openTimeDisplayText,
                           fontFamily: balooChettan,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           fontColor: whiteColor);
                     }
-                    return myFont("Opening Time",
-                        fontFamily: balooChettan,
-                        fontSize: 18,
-                        fontWeight: FontWeight.normal,
-                        fontColor: greyColor2);
                   },
                 ),
                 Transform.flip(
                   flipX: true,
-                  child: Icon(Icons.schedule,
-                      color: Colors.blue.shade400),
+                  child: Icon(Icons.schedule, color: Colors.blue.shade400),
                 )
               ],
             ),
@@ -80,4 +86,3 @@ class OpeningTimeSelector extends StatelessWidget {
     );
   }
 }
-

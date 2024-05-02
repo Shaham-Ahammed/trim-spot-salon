@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/data/firebae_authentication/phone_number_validation.dart';
-import 'package:trim_spot_barber_side/data/repository/unique_number.dart';
+
 import 'package:trim_spot_barber_side/data/shared_preference_operations/functions.dart';
 import 'package:trim_spot_barber_side/utils/otp_page/formkey.dart';
 import 'package:trim_spot_barber_side/utils/registration_page/form_key.dart';
@@ -62,7 +62,7 @@ class RegisterButtonBloc
                 event.verificationId, event.context);
         await SharedPreferenceOperation()
             .setPhoneNumber(registrationPhoneController.text);
-        uniquePhoneNumber = registrationPhoneController.text;
+      
         emit(NavigateToRegisterSuccessPage(buttonPressed: state.buttonPressed));
       } catch (e) {
         emit(RegisrationFailure("error in verification",

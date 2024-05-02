@@ -22,21 +22,21 @@ Expanded listviewDrawerHome(BuildContext context) {
             function: () {
           Navigator.pop(context);
           Navigator.of(context)
-              .push(FadeTransitionPageRoute(child: BookingsScreen()));
+              .push(FadeTransitionPageRoute(child: BookingsScreen(fromDrawer: true,)));
           return null;
         }, icon: Icons.calendar_today_outlined, title: "Bookings"),
         drawerListTiles(context, iconSize: mediaqueryHeight(0.029, context),
             function: () {
           Navigator.pop(context);
           Navigator.of(context)
-              .push(FadeTransitionPageRoute(child: ShopManagementScreen()));
+              .push(FadeTransitionPageRoute(child: ShopManagementScreen(fromDrawer: true,)));
           return null;
         }, icon: Icons.store_mall_directory_outlined, title: "Shop Management"),
         drawerListTiles(context, iconSize: mediaqueryHeight(0.029, context),
             function: () {
           Navigator.pop(context);
           Navigator.of(context)
-              .push(FadeTransitionPageRoute(child: ProfileScreen()));
+              .push(FadeTransitionPageRoute(child: ProfileScreen(fromDawer: true,)));
           return null;
         }, icon: Icons.person_3_outlined, title: "Profile"),
         drawerListTiles(context, iconSize: mediaqueryHeight(0.029, context),

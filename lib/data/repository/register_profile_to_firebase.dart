@@ -22,40 +22,31 @@ class RegisterProfileToFirebase {
         CollectionReferences().shopDetailsReference();
 
     final data = RegistraitonModel(
-        name: registrationNameController.text.trim(),
-        closingTime:
-            BlocProvider.of<WorkingHoursBloc>(context).state.closingTime!,
-        email: registrationEmailController.text.trim(),
-        openingTime:
-            BlocProvider.of<WorkingHoursBloc>(context).state.openingTime!,
-        holidays: BlocProvider.of<HolidayBloc>(context).state.holidays,
-        parsedClosingTime: BlocProvider.of<WorkingHoursBloc>(context)
-            .state
-            .closingTimeDisplayText,
-        parsedOpeningTime: BlocProvider.of<WorkingHoursBloc>(context)
-            .state
-            .openTimeDisplayText,
-        isApproved: false,
-        password: registrationPasswordController.text,
-        phone: registrationPhoneController.text,
-        profileImage: profileImageUrl,
-        shopImage: shopImageUrl,
-        shopLicenseImage: licenseImageUrl,
-        shopLocationLatLng: GeoPoint(
-            BlocProvider.of<LocationBloc>(context).state.latLng.latitude,
-            BlocProvider.of<LocationBloc>(context).state.latLng.longitude),
-        shopLocationName: BlocProvider.of<LocationBloc>(context)
-            .state
-            .address
-            .split(",")
-            .first,
-        shopName: registrationShopNameController.text.trim(),
-        services: serviceToMapConversion(context),
-        isRejected: false,
-        reviewsAndRatings: {
-          "review1": {"wow": 3},
-          "review2": {"excellend": 5}
-        }).toMap();
+      name: registrationNameController.text.trim(),
+     
+      email: registrationEmailController.text.trim(),
+   
+      holidays: BlocProvider.of<HolidayBloc>(context).state.holidays,
+      parsedClosingTime: BlocProvider.of<WorkingHoursBloc>(context)
+          .state
+          .closingTimeDisplayText,
+      parsedOpeningTime:
+          BlocProvider.of<WorkingHoursBloc>(context).state.openTimeDisplayText,
+      isApproved: false,
+      password: registrationPasswordController.text,
+      phone: registrationPhoneController.text,
+      profileImage: profileImageUrl,
+      shopImage: shopImageUrl,
+      shopLicenseImage: licenseImageUrl,
+      shopLocationLatLng: GeoPoint(
+          BlocProvider.of<LocationBloc>(context).state.latLng.latitude,
+          BlocProvider.of<LocationBloc>(context).state.latLng.longitude),
+      shopLocationName:
+          BlocProvider.of<LocationBloc>(context).state.address.split(",").first,
+      shopName: registrationShopNameController.text.trim(),
+      services: serviceToMapConversion(context),
+      isRejected: false,
+    ).toMap();
     try {
       await collection.add(data);
     } catch (e) {
