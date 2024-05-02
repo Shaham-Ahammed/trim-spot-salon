@@ -13,15 +13,10 @@ import 'package:trim_spot_barber_side/utils/shop_management/services.dart';
 import 'package:trim_spot_barber_side/utils/submit_buttons.dart';
 import 'package:trim_spot_barber_side/widgets/shop_management_widgets/headings.dart';
 
-class ShopManagementScreen extends StatefulWidget {
+class ShopManagementScreen extends StatelessWidget {
   final bool fromDrawer;
   const ShopManagementScreen({super.key, this.fromDrawer = false});
 
-  @override
-  State<ShopManagementScreen> createState() => _ShopManagementScreenState();
-}
-
-class _ShopManagementScreenState extends State<ShopManagementScreen> {
   @override
   Widget build(BuildContext context) {
     getOneWeekFromToday();
@@ -35,7 +30,7 @@ class _ShopManagementScreenState extends State<ShopManagementScreen> {
         appBar: PreferredSize(
             preferredSize:
                 Size(double.infinity, mediaqueryHeight(0.106, context)),
-            child: appBarShopManagement(fromDrawer: widget.fromDrawer)),
+            child: appBarShopManagement(fromDrawer: fromDrawer)),
         body: SingleChildScrollView(
           child: SafeArea(
               child: Padding(

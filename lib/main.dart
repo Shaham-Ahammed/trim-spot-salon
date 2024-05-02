@@ -14,6 +14,7 @@ import 'package:trim_spot_barber_side/blocs/registration_blocs/location_bloc/loc
 import 'package:trim_spot_barber_side/blocs/registration_blocs/register_button_bloc/register_button_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/registration_blocs/service_bloc/service_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/registration_blocs/working_hours/working_hours_bloc.dart';
+import 'package:trim_spot_barber_side/blocs/shop_management_blocs/holiday_bloc/holiday_bloc_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/shop_management_blocs/working_hours/working_hours_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_barber_side/firebase_options.dart';
@@ -28,6 +29,8 @@ void main(List<String> args) async {
   Bloc.observer = AppBlocObserver();
   runApp(MultiBlocProvider(
     providers: [
+      BlocProvider(create: (context) => ShopManagementHolidayBloc()),
+   
       BlocProvider(create: (context) => ShopManagementWorkingHoursBloc()),
       BlocProvider(create: (context) => ProfilePasswordBloc()),
       BlocProvider(create: (context) => UserDetailsBloc()),
