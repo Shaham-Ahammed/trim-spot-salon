@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trim_spot_barber_side/screens/otp_verification_profile_section.dart';
+import 'package:trim_spot_barber_side/screens/unused_screens/otp_verification_profile_section.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 import 'package:trim_spot_barber_side/utils/page_transitions/no_transition_page_route.dart';
 import 'package:trim_spot_barber_side/utils/submit_buttons.dart';

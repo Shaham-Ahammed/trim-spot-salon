@@ -2,14 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/registration_blocs/register_button_bloc/register_button_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/registration_blocs/service_bloc/service_bloc.dart';
-import 'package:trim_spot_barber_side/utils/error_snackbars.dart';
-import 'package:trim_spot_barber_side/utils/loading_indicator.dart';
-import 'package:trim_spot_barber_side/utils/network_error_snackbar.dart';
 import 'package:trim_spot_barber_side/utils/registration_page/container_validations.dart';
 import 'package:trim_spot_barber_side/utils/registration_page/form_key.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
-import 'package:trim_spot_barber_side/utils/registration_page/textediting_controllers.dart';
 import 'package:trim_spot_barber_side/widgets/login_widgets/background_image.dart';
 import 'package:trim_spot_barber_side/widgets/signup_widgets/closing_time_picker.dart';
 import 'package:trim_spot_barber_side/widgets/signup_widgets/error_displays_widgets/closing_time_error.dart';
@@ -27,6 +23,7 @@ import 'package:trim_spot_barber_side/widgets/signup_widgets/screen_padding.dart
 import 'package:trim_spot_barber_side/widgets/signup_widgets/service_piker.dart';
 import 'package:trim_spot_barber_side/widgets/signup_widgets/shop_image_picker.dart';
 import 'package:trim_spot_barber_side/widgets/signup_widgets/sizedbox.dart';
+import 'package:trim_spot_barber_side/widgets/signup_widgets/state_handler/signup_state_handler.dart';
 import 'package:trim_spot_barber_side/widgets/signup_widgets/textfields.dart';
 import 'package:trim_spot_barber_side/widgets/signup_widgets/welocme.dart';
 
@@ -42,26 +39,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return BlocListener<RegisterButtonBloc, RegisterButtonState>(
       listener: (context, state) {
-        if (state is LoadingState) {
-          loadingIndicator(context);
-        }
-        if (state is NetworkError) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(networkErrorSnackbar(context));
-        
-        }
-        if (state is RegisrationFailure) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(errorSnackBar("${state.error}"));
-          Navigator.pop(context);
-        }
-        if (state is PhoneNumberAlreadyRegistered) {
-          registrationPhoneController.clear();
-          Navigator.pop(context);
-          ScaffoldMessenger.of(context)
-              .showSnackBar(errorSnackBar("phone already registered"));
-          Navigator.pop(context);
-        }
+        SignUpStateHandler.stateHandler(context, state);
       },
       child: Scaffold(
         backgroundColor: blackColor,

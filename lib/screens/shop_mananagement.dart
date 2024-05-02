@@ -29,7 +29,6 @@ class _ShopManagementScreenState extends State<ShopManagementScreen> {
       providers: [
         BlocProvider<OccasionalClosureBloc>(
             create: (context) => OccasionalClosureBloc()),
-      
       ],
       child: Scaffold(
         backgroundColor: blackColor,
