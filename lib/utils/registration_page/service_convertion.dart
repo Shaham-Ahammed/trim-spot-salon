@@ -2,14 +2,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/registration_blocs/service_bloc/service_bloc.dart';
 import 'package:trim_spot_barber_side/utils/registration_page/textediting_controllers.dart';
 
-List<Map<String, Map<String, String>>> serviceToMapConversion(context) {
- List< Map<String, Map<String, String>>> ListOfServices = [];
+Map<String, Map<String, String>> serviceToMapConversion(context) {
+ Map<String, Map<String, String>> ListOfServices = {};
   final bloc = BlocProvider.of<ServiceBloc>(context, listen: false);
   final switches = bloc.state.switches;
   List<String> services =
       switches.keys.where((element) => switches[element] == true).toList();
   if (services.contains("haircut")) {
-    ListOfServices.add({
+    ListOfServices.addAll({
       "haircut": {
         "time": haircutTimeController.text.toString(),
         "rate": haircutRateController.text.toString()
@@ -17,7 +17,7 @@ List<Map<String, Map<String, String>>> serviceToMapConversion(context) {
     });
   }
   if (services.contains("facial")) {
-    ListOfServices.add({
+    ListOfServices.addAll({
       "facial": {
         "time": facialTimeController.text.toString(),
         "rate": facialRateController.text.toString()
@@ -25,7 +25,7 @@ List<Map<String, Map<String, String>>> serviceToMapConversion(context) {
     });
   }
   if (services.contains("straighten")) {
-    ListOfServices.add({
+    ListOfServices.addAll({
       "straighten": {
         "time": straightenTimeController.text.toString(),
         "rate": straightenRateController.text.toString()
@@ -33,7 +33,7 @@ List<Map<String, Map<String, String>>> serviceToMapConversion(context) {
     });
   }
   if (services.contains("massage")) {
-    ListOfServices.add({
+    ListOfServices.addAll({
       "massage": {
         "time": massageTimeController.text.toString(),
         "rate": massageRateController.text.toString()
@@ -41,7 +41,7 @@ List<Map<String, Map<String, String>>> serviceToMapConversion(context) {
     });
   }
   if (services.contains("beard trim")) {
-    ListOfServices.add({
+    ListOfServices.addAll({
       "beard trim": {
         "time": beardTrimTimeController.text.toString(),
         "rate": beardTrimRateController.text.toString()
@@ -49,7 +49,7 @@ List<Map<String, Map<String, String>>> serviceToMapConversion(context) {
     });
   }
   if (services.contains("shave")) {
-    ListOfServices.add({
+    ListOfServices.addAll({
       "shave": {
         "time": shaveTimeController.text.toString(),
         "rate": shaveRateController.text.toString()

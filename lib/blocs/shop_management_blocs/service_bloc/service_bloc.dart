@@ -1,0 +1,62 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:trim_spot_barber_side/data/data_provider/user_data_document.dart';
+import 'package:trim_spot_barber_side/data/repository/document_model.dart';
+
+part 'service_state.dart';
+part 'service_event.dart';
+
+class ShopManagementServiceBloc extends Bloc<ShopManagementServiceBlocEvent,
+    ShopManagementServiceBlocState> {
+  ShopManagementServiceBloc()
+      : super(ServiceBlocInitial(switches: {
+          "haircut": false,
+          "facial": false,
+          "shave": false,
+          "beard trim": false,
+          "massage": false,
+          "straighten": false
+        })) {
+    on<ServiceSwitchPressed>(_serviceSwitchPressed);
+    on<FetchingOriginalServices>(_fetchingOriginalServices);
+  }
+  void _serviceSwitchPressed(ServiceSwitchPressed event,
+      Emitter<ShopManagementServiceBlocState> emit) {
+    final updatedSwitches =
+        Map<String, bool>.from((state as ServiceBlocInitial).switches);
+    updatedSwitches[event.service] = !updatedSwitches[event.service]!;
+    if (updatedSwitches[event.service] == false) {
+      event.ratecontroller.clear();
+      event.timeController.clear();
+    }
+    emit(ServiceBlocInitial(
+      switches: updatedSwitches,
+    ));
+  }
+
+  _fetchingOriginalServices(FetchingOriginalServices event,
+      Emitter<ShopManagementServiceBlocState> emit) async {
+    final data = await UserDataDocumentFromFirebase().userDocument();
+    final rawData = data[SalonDocumentModel.services] as Map<String, dynamic>;
+    final Map<String, Map<String, String>> currentServices = {};
+
+    rawData.forEach((key, value) {
+      if (value is Map<String, dynamic>) {
+        currentServices[key] =
+            Map<String, String>.from(value.cast<String, String>());
+      }
+    });
+    print(currentServices);
+    List<String> services = [];
+    currentServices.forEach((key, value) {
+      services.add(key);
+    });
+    Map<String, bool> map = state.switches;
+    services.forEach((element) {
+      if (map.containsKey(element)) {
+        map[element] = true;
+      }
+    });
+    emit(ServiceBlocInitial(switches: map));
+  }
+}

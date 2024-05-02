@@ -10,7 +10,7 @@ class RegistraitonModel {
   String shopLicenseImage;
   String profileImage;
   String shopImage;
-  List<Map<String, Map<String, String>>> services;
+  Map<String, Map<String, String>> services;
   List<Timestamp> occasionalClosures;
   String parsedOpeningTime;
 

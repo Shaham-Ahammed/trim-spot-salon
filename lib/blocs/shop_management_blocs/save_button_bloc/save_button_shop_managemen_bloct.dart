@@ -23,9 +23,8 @@ class ShopManagementSaveButtonBloc
         await CollectionReferences().shopDetailsReference();
     final data = await UserDataDocumentFromFirebase().userDocument();
     final newUpdates = ShopUpdationModel(
-            shopName: data[SalonDocumentModel.shopName],
             shopImage: data[SalonDocumentModel.shopImage],
-       //     services: data[SalonDocumentModel.services],
+            //     services: data[SalonDocumentModel.services],
             occasionalClosures: BlocProvider.of<OccasionalClosureBloc>(
                     event.context,
                     listen: false)
@@ -41,15 +40,16 @@ class ShopManagementSaveButtonBloc
                     listen: false)
                 .state
                 .closingTimeDisplayText,
-            holidays: BlocProvider.of<ShopManagementHolidayBloc>(event.context, listen: false)
+            holidays: BlocProvider.of<ShopManagementHolidayBloc>(event.context,
+                    listen: false)
                 .state
                 .holidays)
         .toMap();
-       
+
     emit(ShopManagementSaveButtonStateInitial());
     try {
       await collectionreference.doc(data.id).update(newUpdates);
-       Navigator.pop(event.context);
+      Navigator.pop(event.context);
       emit(ShopManagementSaveButtonStateInitial());
     } catch (e) {
       print("error adichu $e");
