@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/registration_blocs/register_button_bloc/register_button_bloc.dart';
-import 'package:trim_spot_barber_side/blocs/registration_blocs/service_bloc/service_bloc.dart';
-import 'package:trim_spot_barber_side/utils/registration_page/container_validations.dart';
 import 'package:trim_spot_barber_side/utils/registration_page/form_key.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
@@ -11,6 +9,7 @@ import 'package:trim_spot_barber_side/widgets/signup_widgets/closing_time_picker
 import 'package:trim_spot_barber_side/widgets/signup_widgets/error_displays_widgets/closing_time_error.dart';
 import 'package:trim_spot_barber_side/widgets/signup_widgets/error_displays_widgets/location_error.dart';
 import 'package:trim_spot_barber_side/widgets/signup_widgets/error_displays_widgets/opening_time_error.dart';
+import 'package:trim_spot_barber_side/widgets/signup_widgets/error_displays_widgets/service_error.dart';
 import 'package:trim_spot_barber_side/widgets/signup_widgets/error_displays_widgets/shop_image_error.dart';
 import 'package:trim_spot_barber_side/widgets/signup_widgets/headings.dart';
 import 'package:trim_spot_barber_side/widgets/signup_widgets/holiday_picker.dart';
@@ -98,36 +97,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         height: 3,
                       ),
                       servicePicker(),
-                      BlocBuilder<ServiceBloc, ServiceBlocState>(
-                        builder: (context, state) {
-                          final map = state.switches;
-                          bool anySelected = false;
-                          for (var selected in map.values) {
-                            if (selected == true) {
-                              anySelected = true;
-                            }
-                          }
-                          if (!anySelected && registerbuttonPressed(context)) {
-                            return Align(
-                              alignment: Alignment.topLeft,
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                    left: mediaqueryHeight(0.02, context),
-                                    top: mediaqueryHeight(0.007, context)),
-                                child: Text(
-                                  "pick select atleast one service",
-                                  style: TextStyle(
-                                    color: Colors.red.shade800,
-                                    fontSize: 13.0,
-                                  ),
-                                ),
-                              ),
-                            );
-                          } else {
-                            return Container();
-                          }
-                        },
-                      ),
+                      ServiceNotPickedError(),
                       textFormFieldSizedBox(context),
                       const WorkingHoursHeading(),
                       const SizedBox(
@@ -166,3 +136,5 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 }
+
+

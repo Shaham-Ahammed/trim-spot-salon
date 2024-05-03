@@ -8,3 +8,5 @@ final class ProfileSaveButtonInitial extends ProfileSaveButtonState{}
 final class ProfileUpdating extends ProfileSaveButtonState{}
 
 final class ProfileUpdationFinished extends ProfileSaveButtonState{}
+
+final class NetworkErrorWhileUpdatingProfile extends ProfileSaveButtonState{}

@@ -7,11 +7,21 @@ import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 import 'package:trim_spot_barber_side/widgets/profile_widgets/shop_image_edit_button.dart';
 
-class ShopImageDisplay extends StatelessWidget {
+class ShopImageDisplay extends StatefulWidget {
   const ShopImageDisplay({
     super.key,
   });
 
+  @override
+  State<ShopImageDisplay> createState() => _ShopImageDisplayState();
+}
+
+class _ShopImageDisplayState extends State<ShopImageDisplay> {
+  @override
+  void initState() {
+     context.read<ProfileShopImageBloc>().add(FetchShopImage());
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProfileShopImageBloc, ProfileShopImageState>(

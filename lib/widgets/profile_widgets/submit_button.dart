@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/profile_save_button_bloc/profile_save_button_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/email_bloc/profile_email_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/name_bloc/profile_name_bloc.dart';
-import 'package:trim_spot_barber_side/blocs/profile_blocs/shop_image/profile_shop_image_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/user_profile_image_bloc/profile_user_image_bloc.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/font.dart';
@@ -72,11 +71,8 @@ Color boxColor(context) {
       BlocProvider.of<ProfileEmailBloc>(context, listen: true)
               .state
               .editPressed ==
-          false &&
-      BlocProvider.of<ProfileShopImageBloc>(context, listen: true)
-          .state
-          .newShopImagePath
-          .isEmpty) {
+          false 
+   ) {
     return greyColor3;
   } else {
     return cyanColor;

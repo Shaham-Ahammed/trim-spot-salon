@@ -12,8 +12,6 @@ import 'package:trim_spot_barber_side/widgets/profile_widgets/initstate/initial_
 import 'package:trim_spot_barber_side/widgets/profile_widgets/phone_textfield.dart';
 import 'package:trim_spot_barber_side/widgets/profile_widgets/profile_appbar.dart';
 import 'package:trim_spot_barber_side/widgets/profile_widgets/profile_pic_display.dart';
-import 'package:trim_spot_barber_side/widgets/profile_widgets/shop_image_caption.dart';
-import 'package:trim_spot_barber_side/widgets/profile_widgets/shop_image_display.dart';
 import 'package:trim_spot_barber_side/widgets/profile_widgets/sizedbox_heading_textformfield.dart';
 import 'package:trim_spot_barber_side/widgets/profile_widgets/state_handler/profile_state_handler.dart';
 import 'package:trim_spot_barber_side/widgets/profile_widgets/submit_button.dart';
@@ -29,7 +27,6 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  
   @override
   void initState() {
     profileInitialFunctions(context);
@@ -92,15 +89,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       },
                       child: changePasswordText(context),
                     ),
-                    SizedBox(
-                      height: mediaqueryHeight(0.014, context),
-                    ),
-                    profilePageHeadings(context, "Shop Image"),
-                    shopImageCaption(context),
-                    SizedBox(
-                      height: mediaqueryHeight(0.012, context),
-                    ),
-                    ShopImageDisplay(),
+                 
                     SizedBox(
                       height: mediaqueryHeight(0.04, context),
                     ),

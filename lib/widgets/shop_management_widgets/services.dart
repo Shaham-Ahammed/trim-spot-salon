@@ -4,11 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/shop_management_blocs/service_bloc/service_bloc.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
-import 'package:trim_spot_barber_side/utils/registration_page/textediting_controllers.dart';
 import 'package:trim_spot_barber_side/utils/shop_management/formkey_services.dart';
 import 'package:trim_spot_barber_side/utils/shop_management/service_controllers.dart';
 import 'package:trim_spot_barber_side/widgets/shop_management_widgets/service_helper.dart';
-import 'package:trim_spot_barber_side/widgets/signup_widgets/service.dart';
 
 class ServicesMenu extends StatefulWidget {
   const ServicesMenu({

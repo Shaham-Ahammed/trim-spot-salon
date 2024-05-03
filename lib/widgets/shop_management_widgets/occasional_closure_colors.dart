@@ -4,19 +4,17 @@ import 'package:trim_spot_barber_side/blocs/shop_management_blocs/occasional_clo
 import 'package:trim_spot_barber_side/utils/colors.dart';
 
 Color fontColorOfOccasionalClosure(DateTime dateTime, context) {
-   final date = DateTime(dateTime.year, dateTime.month, dateTime.day);
+  final date = DateTime(dateTime.year, dateTime.month, dateTime.day);
   final occasionalClosure =
       BlocProvider.of<OccasionalClosureBloc>(context).state.occasionalHolidays;
   return occasionalClosure.contains(date) ? blackColor : greyColor;
 }
 
 Color containerColorOfOccasionalClosure(DateTime dateTime, context) {
-   final date = DateTime(dateTime.year, dateTime.month, dateTime.day);
+  final date = DateTime(dateTime.year, dateTime.month, dateTime.day);
   final occasionalClosure =
       BlocProvider.of<OccasionalClosureBloc>(context).state.occasionalHolidays;
-  return occasionalClosure.contains(date)
-      ? cyanColor
-      : Colors.grey.shade800;
+  return occasionalClosure.contains(date) ? cyanColor : Colors.grey.shade800;
 }
 
 Color containerBorderColorOfOccasionalClosure(DateTime dateTime, context) {

@@ -5,7 +5,6 @@ import 'package:trim_spot_barber_side/blocs/bloc_observer.dart';
 import 'package:trim_spot_barber_side/blocs/bottom_navigation_bloc/bottom_navigation_bar_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/email_bloc/profile_email_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/name_bloc/profile_name_bloc.dart';
-import 'package:trim_spot_barber_side/blocs/profile_blocs/shop_image/profile_shop_image_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/user_profile_image_bloc/profile_user_image_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/profile_password_bloc/profile_password_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/registration_blocs/holiday_bloc/holiday_bloc_bloc.dart';
@@ -40,8 +39,7 @@ void main(List<String> args) async {
       BlocProvider<ImageBloc>(create: (context) => ImageBloc()),
       BlocProvider(create: (context) => RegisterButtonBloc()),
       BlocProvider<ProfileEmailBloc>(create: (context) => ProfileEmailBloc()),
-      BlocProvider<ProfileShopImageBloc>(
-          create: (context) => ProfileShopImageBloc()),
+  
       BlocProvider<ProfileUserImageBloc>(
           create: (context) => ProfileUserImageBloc()),
       BlocProvider<ProfileNameBloc>(create: (context) => ProfileNameBloc()),
