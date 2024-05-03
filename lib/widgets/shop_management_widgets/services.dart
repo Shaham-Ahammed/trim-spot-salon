@@ -5,6 +5,8 @@ import 'package:trim_spot_barber_side/blocs/shop_management_blocs/service_bloc/s
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 import 'package:trim_spot_barber_side/utils/registration_page/textediting_controllers.dart';
+import 'package:trim_spot_barber_side/utils/shop_management/formkey_services.dart';
+import 'package:trim_spot_barber_side/utils/shop_management/service_controllers.dart';
 import 'package:trim_spot_barber_side/widgets/shop_management_widgets/service_helper.dart';
 import 'package:trim_spot_barber_side/widgets/signup_widgets/service.dart';
 
@@ -37,34 +39,37 @@ class _ServicesMenuState extends State<ServicesMenu> {
         child: BlocBuilder<ShopManagementServiceBloc,
             ShopManagementServiceBlocState>(
           builder: (context, state) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                registerServicesShopManagement(
-                    context, "HAIRCUT", state.switches["haircut"]!, "haircut",
-                    serviceRateController: haircutRateController,
-                    serviceTimeController: haircutTimeController),
-                registerServicesShopManagement(
-                    context, "FACIAL", state.switches["facial"]!, "facial",
-                    serviceRateController: facialRateController,
-                    serviceTimeController: facialTimeController),
-                registerServicesShopManagement(context, "STRAIGHTEN",
-                    state.switches["straighten"]!, "straighten",
-                    serviceRateController: straightenRateController,
-                    serviceTimeController: straightenTimeController),
-                registerServicesShopManagement(
-                    context, "MASSAGE", state.switches["massage"]!, "massage",
-                    serviceRateController: massageRateController,
-                    serviceTimeController: massageTimeController),
-                registerServicesShopManagement(context, "BEARD TRIM",
-                    state.switches["beard trim"]!, "beard trim",
-                    serviceRateController: beardTrimRateController,
-                    serviceTimeController: beardTrimTimeController),
-                registerServicesShopManagement(
-                    context, "SHAVE", state.switches["shave"]!, "shave",
-                    serviceRateController: shaveRateController,
-                    serviceTimeController: shaveTimeController)
-              ],
+            return Form(
+              key: shopManagementFormKeyForServices,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  registerServicesShopManagement(
+                      context, "HAIRCUT", state.switches["haircut"]!, "haircut",
+                      serviceRateController: sMhaircutRateController,
+                      serviceTimeController: sMhaircutTimeController),
+                  registerServicesShopManagement(
+                      context, "FACIAL", state.switches["facial"]!, "facial",
+                      serviceRateController: sMfacialRateController,
+                      serviceTimeController: sMfacialTimeController),
+                  registerServicesShopManagement(context, "STRAIGHTEN",
+                      state.switches["straighten"]!, "straighten",
+                      serviceRateController: sMstraightenRateController,
+                      serviceTimeController: sMstraightenTimeController),
+                  registerServicesShopManagement(
+                      context, "MASSAGE", state.switches["massage"]!, "massage",
+                      serviceRateController: sMmassageRateController,
+                      serviceTimeController: sMmassageTimeController),
+                  registerServicesShopManagement(context, "BEARD TRIM",
+                      state.switches["beard trim"]!, "beard trim",
+                      serviceRateController: sMbeardTrimRateController,
+                      serviceTimeController: sMbeardTrimTimeController),
+                  registerServicesShopManagement(
+                      context, "SHAVE", state.switches["shave"]!, "shave",
+                      serviceRateController: sMshaveRateController,
+                      serviceTimeController: sMshaveTimeController)
+                ],
+              ),
             );
           },
         ),

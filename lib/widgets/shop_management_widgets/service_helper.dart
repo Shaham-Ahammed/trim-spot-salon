@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/shop_management_blocs/service_bloc/service_bloc.dart';
@@ -19,7 +18,6 @@ Column registerServicesShopManagement(
         children: [
           Container(
             width: mediaqueryWidth(0.3, context),
-         
             child: myFont(service,
                 fontFamily: balooChettan,
                 fontSize: mediaqueryHeight(0.0214, context),
@@ -27,14 +25,17 @@ Column registerServicesShopManagement(
                 fontColor: greyColor),
           ),
           Transform.scale(
-            scale: 0.7,
-            child: Switch(
-              activeTrackColor: cyanColor,
+            scale: 1,
+            child: Checkbox(
+              activeColor: Colors.blueGrey.shade500,
+              checkColor: whiteColor,
               value: state,
               onChanged: (value) {
-                context
-                    .read<ShopManagementServiceBloc>()
-                    .add(ServiceSwitchPressed(service: serviceName, ratecontroller: serviceRateController, timeController: serviceTimeController));
+                context.read<ShopManagementServiceBloc>().add(
+                    ServiceSwitchPressed(
+                        service: serviceName,
+                        ratecontroller: serviceRateController,
+                        timeController: serviceTimeController));
               },
               materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
             ),
