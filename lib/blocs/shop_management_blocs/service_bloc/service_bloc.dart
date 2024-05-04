@@ -48,7 +48,7 @@ class ShopManagementServiceBloc extends Bloc<ShopManagementServiceBlocEvent,
       }
     });
 
-    print(currentServices);
+   
     List<String> services = [];
     currentServices.forEach((key, value) {
       services.add(key);
@@ -72,7 +72,14 @@ class ShopManagementServiceBloc extends Bloc<ShopManagementServiceBlocEvent,
         sMstraightenTimeController.text = value['time']!;
       }
     });
-    Map<String, bool> map = state.switches;
+    Map<String, bool> map = {
+          "haircut": false,
+          "facial": false,
+          "shave": false,
+          "beard trim": false,
+          "massage": false,
+          "straighten": false
+        };
     services.forEach((element) {
       if (map.containsKey(element)) {
         map[element] = true;

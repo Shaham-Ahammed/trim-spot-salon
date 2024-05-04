@@ -5,8 +5,8 @@ import 'package:trim_spot_barber_side/blocs/shop_management_blocs/service_bloc/s
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/font.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
-import 'package:trim_spot_barber_side/widgets/signup_widgets/service_rate.dart';
-import 'package:trim_spot_barber_side/widgets/signup_widgets/service_time.dart';
+import 'package:trim_spot_barber_side/widgets/shop_management_widgets/service_rate.dart';
+import 'package:trim_spot_barber_side/widgets/shop_management_widgets/service_time.dart';
 
 Column registerServicesShopManagement(
     BuildContext context, String service, bool state, String serviceName,
@@ -43,14 +43,14 @@ Column registerServicesShopManagement(
           SizedBox(
             width: mediaqueryWidth(0.01, context),
           ),
-          ServiceTimeTextFormField(
+          ShopManagementServiceTimeTextFormField(
             enabled: state,
             timeController: serviceTimeController,
           ),
           SizedBox(
             width: mediaqueryWidth(0.02, context),
           ),
-          ServiceRateTextFormField(
+          ShopManagementServiceRateTextFormField(
             enabled: state,
             rateController: serviceRateController,
           )

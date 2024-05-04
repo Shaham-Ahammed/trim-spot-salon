@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/slot_selection_bloc/slot_selection_bloc.dart';
@@ -15,9 +14,9 @@ class LockSlotsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SlotSelectionBloc, SlotSelectionState>(
       builder: (context, state) {
-        return submitButtonCyan(context, text: "Lock Slots",
-            function: () {
-          return null;
+        return submitButtonCyan(context, text: "Lock Slots", function: () {
+          context.read<SlotSelectionBloc>().add(FetchingDaysBookedList());
+          return;
         },
             heigh: mediaqueryHeight(0.05, context),
             width: mediaqueryWidth(0.3, context),

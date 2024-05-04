@@ -7,5 +7,8 @@ final class SelectedSlot extends SlotSelectionEvent {
   final String time;
 
   SelectedSlot({required this.time});
-  
 }
+
+final class FetchTotalSlots extends SlotSelectionEvent{}
+
+final class FetchingDaysBookedList extends SlotSelectionEvent{}

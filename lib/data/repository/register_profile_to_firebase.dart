@@ -5,11 +5,15 @@ import 'package:trim_spot_barber_side/blocs/registration_blocs/location_bloc/loc
 import 'package:trim_spot_barber_side/blocs/registration_blocs/working_hours/working_hours_bloc.dart';
 import 'package:trim_spot_barber_side/data/data_provider/adding_image_to_firebase.dart';
 import 'package:trim_spot_barber_side/data/firebase_references/shop_collection_reference.dart';
+import 'package:trim_spot_barber_side/data/repository/firebase_doc_and_collection_names.dart';
 import 'package:trim_spot_barber_side/models/registration_model.dart';
 import 'package:trim_spot_barber_side/utils/registration_page/service_convertion.dart';
 import 'package:trim_spot_barber_side/utils/registration_page/textediting_controllers.dart';
 
 class RegisterProfileToFirebase {
+  final CollectionReference collection =
+      CollectionReferences().shopDetailsReference();
+
   addDatasToFirebase(context) async {
     final profileImageUrl = await AddImageToFirebaseStorage()
         .addProfileImageToFirebaseStorage(context);
@@ -17,9 +21,6 @@ class RegisterProfileToFirebase {
         await AddImageToFirebaseStorage().shopImageToFirebaseStorage(context);
     final licenseImageUrl = await AddImageToFirebaseStorage()
         .licenseImageToFirebaseStorage(context);
-
-    final CollectionReference collection =
-        CollectionReferences().shopDetailsReference();
 
     final data = RegistraitonModel(
       name: registrationNameController.text.trim(),
@@ -47,9 +48,22 @@ class RegisterProfileToFirebase {
       occasionalClosures: [],
     ).toMap();
     try {
-      await collection.add(data);
+      DocumentReference docReference = await collection.add(data);
+      await addingBookingsCollection(docReference);
     } catch (e) {
       print("error und $e");
+    }
+  }
+
+  addingBookingsCollection(DocumentReference docReference) async {
+    try {
+      CollectionReference bookingCollectionRef = docReference
+          .collection(FirebaseNamesShopSide.bookingCollectionReference);
+      await bookingCollectionRef
+          .doc(FirebaseNamesShopSide.slotsBookingDocument)
+          .set({"adnan":[]});
+    } catch (e) {
+      print("error while creating collection $e");
     }
   }
 }
