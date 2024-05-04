@@ -15,7 +15,7 @@ class LockSlotsButton extends StatelessWidget {
     return BlocBuilder<SlotSelectionBloc, SlotSelectionState>(
       builder: (context, state) {
         return submitButtonCyan(context, text: "Lock Slots", function: () {
-          context.read<SlotSelectionBloc>().add(FetchingDaysBookedList());
+          context.read<SlotSelectionBloc>().add(LockSlotsPressed());
           return;
         },
             heigh: mediaqueryHeight(0.05, context),

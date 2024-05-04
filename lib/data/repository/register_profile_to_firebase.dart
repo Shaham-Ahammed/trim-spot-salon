@@ -61,7 +61,7 @@ class RegisterProfileToFirebase {
           .collection(FirebaseNamesShopSide.bookingCollectionReference);
       await bookingCollectionRef
           .doc(FirebaseNamesShopSide.slotsBookingDocument)
-          .set({"adnan":[]});
+          .set({"dates":[]});
     } catch (e) {
       print("error while creating collection $e");
     }

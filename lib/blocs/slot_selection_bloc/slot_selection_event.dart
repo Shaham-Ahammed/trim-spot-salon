@@ -11,4 +11,5 @@ final class SelectedSlot extends SlotSelectionEvent {
 
 final class FetchTotalSlots extends SlotSelectionEvent{}
 
-final class FetchingDaysBookedList extends SlotSelectionEvent{}
+
+final class LockSlotsPressed extends SlotSelectionEvent{}
