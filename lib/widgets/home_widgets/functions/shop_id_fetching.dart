@@ -12,9 +12,7 @@ class SlotTileFucntions {
 
   Future<String> fetchingBookedSlots() async {
     final data = await UserDataDocumentFromFirebase().userDocument();
-
     String date = DateFormat('dd-MM-yyyy').format(DateTime.now());
-
     final bookedSlotsReference = await CollectionReferences()
         .shopDetailsReference()
         .doc(data.id)
