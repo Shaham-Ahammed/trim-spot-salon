@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/login_button_bloc/login_validation_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/user_details_bloc/user_details_bloc.dart';
-import 'package:trim_spot_barber_side/utils/constant_variables/login_screen_constants.dart';
+import 'package:trim_spot_barber_side/utils/login_page/login_screen_constants.dart';
 import 'package:trim_spot_barber_side/utils/error_snackbars.dart';
 import 'package:trim_spot_barber_side/utils/loading_indicator.dart';
 import 'package:trim_spot_barber_side/utils/network_error_snackbar.dart';

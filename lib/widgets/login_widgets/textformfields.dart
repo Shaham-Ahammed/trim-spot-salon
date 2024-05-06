@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:trim_spot_barber_side/utils/constant_variables/login_screen_constants.dart';
+import 'package:trim_spot_barber_side/utils/login_page/login_screen_constants.dart';
 import 'package:trim_spot_barber_side/utils/textformfields.dart';
 
 

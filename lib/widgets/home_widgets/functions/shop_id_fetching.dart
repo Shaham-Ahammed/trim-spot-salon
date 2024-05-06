@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import 'package:trim_spot_barber_side/data/data_provider/user_data_document.dart';
 import 'package:trim_spot_barber_side/data/firebase_references/shop_collection_reference.dart';
@@ -23,7 +22,9 @@ class SlotTileFucntions {
     if (bookedSlotsCollection.data()!.containsKey(date)) {
       print("Already present");
     } else {
-      await bookedSlotsReference.set({date: []}, SetOptions(merge: true));
+      await bookedSlotsReference.update(
+        {date: []},
+      );
     }
     final fetchUserId = await fetchingId();
     return fetchUserId;
