@@ -108,6 +108,7 @@ flutter:
     - assets/images/registraion denied.png
     - assets/animations/email_sended.json
     - assets/images/icons8-person-48.png
+    - assets/images/no review.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

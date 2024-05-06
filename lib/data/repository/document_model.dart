@@ -28,3 +28,9 @@ class UserDocumentModel {
   static const String password = "password";
 }
 
+class ReviewDocumentModel {
+  static const String imagePath = 'imagePath';
+  static const String userNmae = "userName";
+  static const String ratings = "ratings";
+  static const String review = "review";
+}

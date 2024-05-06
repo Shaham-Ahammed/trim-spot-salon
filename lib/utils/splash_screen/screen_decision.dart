@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:trim_spot_barber_side/data/data_provider/user_data_document.dart';
 import 'package:trim_spot_barber_side/data/firebase_references/shop_collection_reference.dart';
 import 'package:trim_spot_barber_side/data/repository/document_model.dart';
 
@@ -47,6 +48,7 @@ checkTheRegistrationStatus(String loginNumber, context) async {
   if (data.docs.isNotEmpty) {
     final userData = data.docs.first;
     if (userData[SalonDocumentModel.isApproved]) {
+      UserDataDocumentFromFirebase().getShopId();
       Navigator.of(context).pushReplacement(
           FadeTransitionPageRoute(child: BottomNavigationScreen()));
       return;
