@@ -9,6 +9,7 @@ import 'package:trim_spot_barber_side/screens/home.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 import 'package:trim_spot_barber_side/utils/network_stream/network_stream.dart';
+import 'package:trim_spot_barber_side/utils/no_network_display_widget.dart';
 import 'package:trim_spot_barber_side/widgets/bookings_widgets/listview_pendings.dart';
 import 'package:trim_spot_barber_side/widgets/bookings_widgets/nopendings.dart';
 import 'package:trim_spot_barber_side/widgets/bookings_widgets/shimmer_effect.dart';

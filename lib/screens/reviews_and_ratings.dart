@@ -7,6 +7,7 @@ import 'package:trim_spot_barber_side/screens/home.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 import 'package:trim_spot_barber_side/utils/network_stream/network_stream.dart';
+import 'package:trim_spot_barber_side/utils/no_network_display_widget.dart';
 import 'package:trim_spot_barber_side/widgets/ratings_and_reviews/appbar.dart';
 import 'package:trim_spot_barber_side/widgets/ratings_and_reviews/no_reviews.dart';
 import 'package:trim_spot_barber_side/widgets/ratings_and_reviews/shimmer_effect.dart';

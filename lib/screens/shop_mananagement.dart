@@ -5,6 +5,7 @@ import 'package:trim_spot_barber_side/screens/home.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 import 'package:trim_spot_barber_side/utils/network_stream/network_stream.dart';
+import 'package:trim_spot_barber_side/utils/no_network_display_widget.dart';
 import 'package:trim_spot_barber_side/widgets/profile_widgets/shop_image_caption.dart';
 import 'package:trim_spot_barber_side/widgets/profile_widgets/shop_image_display.dart';
 import 'package:trim_spot_barber_side/widgets/shop_management_widgets/appbar.dart';

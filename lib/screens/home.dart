@@ -6,6 +6,7 @@ import 'package:trim_spot_barber_side/utils/font.dart';
 import 'package:trim_spot_barber_side/utils/homepage/animation_control.dart';
 import 'package:trim_spot_barber_side/utils/homepage/page_transition_home.dart';
 import 'package:trim_spot_barber_side/utils/network_stream/network_stream.dart';
+import 'package:trim_spot_barber_side/utils/no_network_display_widget.dart';
 import 'package:trim_spot_barber_side/widgets/home_widgets/functions/total_earnings_fetching.dart';
 import 'package:trim_spot_barber_side/widgets/home_widgets/shimmer_containers.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
@@ -103,43 +104,6 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             }),
       )),
-    );
-  }
-}
-
-class NoNetworkDisplayWidget extends StatelessWidget {
-  const NoNetworkDisplayWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Center(
-          child: Image.asset(
-            "assets/images/no internet 4.png",
-            height: mediaqueryHeight(0.25, context),
-          ),
-        ),
-        SizedBox(
-          height: mediaqueryHeight(0.02, context),
-        ),
-        myFont("SOMETHING WENT WRONG",
-            fontFamily: belleza,
-            fontSize: mediaqueryHeight(0.018, context),
-            fontWeight: FontWeight.w600,
-            fontColor: whiteColor),
-        SizedBox(
-          height: mediaqueryHeight(0.01, context),
-        ),
-        myFont("please check your network connectivity.",
-            fontFamily: balooChettan,
-            fontSize: mediaqueryHeight(0.016, context),
-            fontWeight: FontWeight.w400,
-            fontColor: whiteColor),
-      ],
     );
   }
 }
