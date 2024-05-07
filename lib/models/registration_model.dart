@@ -11,7 +11,7 @@ class RegistraitonModel {
   String profileImage;
   String shopImage;
   Map<String, Map<String, String>> services;
-  List<Timestamp> occasionalClosures;
+  List<String> occasionalClosures;
   String parsedOpeningTime;
 
   String parsedClosingTime;

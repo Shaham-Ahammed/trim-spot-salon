@@ -1,10 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ShopUpdationModel {
  
   String shopImage;
   Map<String, Map<String, String>> services;
-  List<Timestamp> occasionalClosures;
+  List<String> occasionalClosures;
   String parsedOpeningTime;
   String parsedClosingTime;
   List<String> holidays;

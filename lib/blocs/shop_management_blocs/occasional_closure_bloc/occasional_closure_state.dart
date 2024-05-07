@@ -2,14 +2,14 @@ part of 'occasional_closure_bloc.dart';
 
 @immutable
 sealed class OccasionalClosureState {
-  final List<DateTime> occasionalHolidays;
-  final List<Timestamp> holidaysIntimeStamp;
+  final List<String> occasionalHolidays;
 
-  OccasionalClosureState({required this.occasionalHolidays, required this.holidaysIntimeStamp});
+
+  OccasionalClosureState({required this.occasionalHolidays});
  
 }
 
 final class OccasionalClosureInitial extends OccasionalClosureState {
-  OccasionalClosureInitial({required super.occasionalHolidays, required super.holidaysIntimeStamp});
+  OccasionalClosureInitial({required super.occasionalHolidays,});
  
 }

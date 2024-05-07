@@ -1,4 +1,3 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/shop_image/profile_shop_image_bloc.dart';
@@ -80,7 +79,7 @@ class ShopManagementSaveButtonBloc
                       event.context,
                       listen: false)
                   .state
-                  .holidaysIntimeStamp,
+                  .occasionalHolidays,
               parsedOpeningTime:
                   BlocProvider.of<ShopManagementWorkingHoursBloc>(event.context,
                           listen: false)

@@ -9,7 +9,7 @@ import 'package:trim_spot_barber_side/data/repository/firebase_doc_and_collectio
 import 'package:trim_spot_barber_side/utils/font.dart';
 import 'package:trim_spot_barber_side/utils/homepage/slo_booking_colors.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
-import 'package:trim_spot_barber_side/widgets/home_widgets/functions/shop_id_fetching.dart';
+import 'package:trim_spot_barber_side/widgets/home_widgets/functions/total_slots_fetching.dart.dart';
 import 'package:trim_spot_barber_side/widgets/home_widgets/slots_shimmer_effect.dart';
 
 class SlotTiles extends StatefulWidget {
