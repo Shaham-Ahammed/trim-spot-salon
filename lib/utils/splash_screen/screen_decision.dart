@@ -14,7 +14,7 @@ import 'package:trim_spot_barber_side/screens/registration_successful.dart';
 import 'package:trim_spot_barber_side/utils/page_transitions/fade_transition.dart';
 
 checkTheScreen(context) async {
-  await Future.delayed(Duration(milliseconds: 2500));
+
   final sharedPreferences = await SharedPreferences.getInstance();
   final bool? userStatus = sharedPreferences.getBool(firstTimeUser);
 
@@ -26,7 +26,7 @@ checkTheScreen(context) async {
   }
 
   final String? loginNumber = sharedPreferences.getString(loggedInNumber);
-
+ await Future.delayed(Duration(milliseconds: 2500));
   if (loginNumber == null) {
     Navigator.of(context)
         .pushReplacement(FadeTransitionPageRoute(child: LoginOrSignup()));
@@ -36,8 +36,11 @@ checkTheScreen(context) async {
         .pushReplacement(FadeTransitionPageRoute(child: LoginScreen()));
     return;
   } else {
+    await  UserDataDocumentFromFirebase().getShopId();
     checkTheRegistrationStatus(loginNumber, context);
+    
   }
+   
 }
 
 checkTheRegistrationStatus(String loginNumber, context) async {
@@ -48,7 +51,7 @@ checkTheRegistrationStatus(String loginNumber, context) async {
   if (data.docs.isNotEmpty) {
     final userData = data.docs.first;
     if (userData[SalonDocumentModel.isApproved]) {
-      UserDataDocumentFromFirebase().getShopId();
+    
       Navigator.of(context).pushReplacement(
           FadeTransitionPageRoute(child: BottomNavigationScreen()));
       return;

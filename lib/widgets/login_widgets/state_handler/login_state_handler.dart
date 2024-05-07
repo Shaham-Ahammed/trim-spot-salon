@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:trim_spot_barber_side/blocs/bottom_navigation_bloc/bottom_navigation_bar_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/login_button_bloc/login_validation_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_barber_side/utils/login_page/login_screen_constants.dart';
@@ -29,6 +30,9 @@ class LoginStateHandler {
           }
           if (state is LoginSuccess) {
             Navigator.pop(context);
+              context
+                            .read<BottomNavigationBarBloc>()
+                            .add(BottomNavItemPressed(page: 0));
             context
                 .read<UserDetailsBloc>()
                 .add(FetchingUserDetailsFromSplash());

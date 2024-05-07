@@ -34,3 +34,10 @@ class ReviewDocumentModel {
   static const String ratings = "ratings";
   static const String review = "review";
 }
+
+class BookingsDocumentModel {
+  static const String time = "time";
+  static const String name = "name";
+  static const String services = "services";
+  static const String totalAmount = "totalAmount";
+}

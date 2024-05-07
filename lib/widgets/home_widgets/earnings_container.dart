@@ -1,11 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+
+import 'package:intl/intl.dart';
+import 'package:trim_spot_barber_side/data/data_provider/user_data_document.dart';
+import 'package:trim_spot_barber_side/data/firebase_references/shop_collection_reference.dart';
+import 'package:trim_spot_barber_side/data/repository/document_model.dart';
+import 'package:trim_spot_barber_side/data/repository/firebase_doc_and_collection_names.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/font.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 
-
 class EarningsPageView extends StatelessWidget {
-  const EarningsPageView({
+    final String totalEarnings;
+  const EarningsPageView(this.totalEarnings,{
     super.key,
   });
 
@@ -35,20 +42,44 @@ class EarningsPageView extends StatelessWidget {
               SizedBox(
                 width: mediaqueryWidth(0.146, context),
               ),
-              Column(
-                children: [
-                  myFont("720",
-                      fontFamily: bebasNeue,
-                      fontSize: mediaqueryHeight(0.05, context),
-                      fontWeight: FontWeight.normal,
-                      fontColor: cyanColor),
-                  myFont("Todays",
-                      fontFamily: balooChettan,
-                      fontSize: mediaqueryHeight(0.022, context),
-                      fontWeight: FontWeight.normal,
-                      fontColor: whiteColor)
-                ],
-              ),
+              StreamBuilder<QuerySnapshot>(
+                  stream: CollectionReferences()
+                      .shopDetailsReference()
+                      .doc(UserDataDocumentFromFirebase.shopId)
+                      .collection(FirebaseNamesShopSide.dailyBookingsCollection)
+                      .doc(DateFormat('dd-MM-yyyy')
+                          .format(DateTime.now())
+                          .toString())
+                      .collection(
+                          FirebaseNamesShopSide.bookingDetailsCollection)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(child: CircularProgressIndicator());
+                    }
+                    int total = 0;
+                    if (snapshot.data!.docs.isNotEmpty) {
+                      for (var docs in snapshot.data!.docs) {
+                        int i =
+                            int.parse(docs[BookingsDocumentModel.totalAmount]);
+                        total += i;
+                      }
+                    }
+                    return Column(
+                      children: [
+                        myFont(total.toString(),
+                            fontFamily: bebasNeue,
+                            fontSize: mediaqueryHeight(0.05, context),
+                            fontWeight: FontWeight.normal,
+                            fontColor: cyanColor),
+                        myFont("Todays",
+                            fontFamily: balooChettan,
+                            fontSize: mediaqueryHeight(0.022, context),
+                            fontWeight: FontWeight.normal,
+                            fontColor: whiteColor)
+                      ],
+                    );
+                  }),
               SizedBox(
                 width: mediaqueryWidth(0.146, context),
               ),
@@ -62,12 +93,19 @@ class EarningsPageView extends StatelessWidget {
               ),
               Column(
                 children: [
-                  myFont("12000",
-                      fontFamily: bebasNeue,
-                      fontSize: mediaqueryHeight(0.05, context),
-                      fontWeight: FontWeight.normal,
-                      fontColor: cyanColor),
-                  myFont("Monthly",
+               
+                       Text(
+                        totalEarnings,
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            overflow: TextOverflow.ellipsis,
+                            fontFamily: bebasNeue,
+                            fontSize: mediaqueryHeight(0.05, context),
+                            fontWeight: FontWeight.normal,
+                            color: cyanColor),
+                      ),
+                   
+                  myFont("Total",
                       fontFamily: balooChettan,
                       fontSize: mediaqueryHeight(0.022, context),
                       fontWeight: FontWeight.normal,

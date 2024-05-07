@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:trim_spot_barber_side/data/repository/document_model.dart';
 
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
@@ -32,7 +33,7 @@ import 'package:trim_spot_barber_side/widgets/bookings_widgets/texts.dart';
                     SizedBox(width: mediaqueryWidth(0.02, context)),
                     Container(
                          width: mediaqueryWidth(0.49, context),
-                      child: valueOfPendings(booking['name'], context),
+                      child: valueOfPendings(booking[BookingsDocumentModel.name], context),
                     ),
                   ],
                 ),
@@ -48,7 +49,7 @@ import 'package:trim_spot_barber_side/widgets/bookings_widgets/texts.dart';
                     ),
                     SizedBox(width: mediaqueryWidth(0.02, context)),
                     Container(
-                      child: valueOfPendings(booking['time'], context),
+                      child: valueOfPendings(booking[BookingsDocumentModel.time], context),
                     ),
                   ],
                 ),
@@ -65,7 +66,7 @@ import 'package:trim_spot_barber_side/widgets/bookings_widgets/texts.dart';
                     SizedBox(width: mediaqueryWidth(0.02, context)),
                     Container(
                       width: mediaqueryWidth(0.49, context),
-                      child: valueOfPendings(booking['services'], context),
+                      child: valueOfPendings(booking[BookingsDocumentModel.services], context),
                     ),
                   ],
                 ),

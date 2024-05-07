@@ -83,7 +83,7 @@ class BookingsPageView extends StatelessWidget {
                             (!snapshot.hasData ||
                                     snapshot.data!.docs.isEmpty ||
                                     completedDocs.isEmpty)
-                                ? "00"
+                                ? "0"
                                 : completedDocs.length.toString(),
                             fontFamily: bebasNeue,
                             fontSize: mediaqueryHeight(0.05, context),
@@ -113,13 +113,13 @@ class BookingsPageView extends StatelessWidget {
                             (!snapshot.hasData ||
                                     snapshot.data!.docs.isEmpty ||
                                     pendingDocs.isEmpty)
-                                ? "00"
+                                ? "0"
                                 : pendingDocs.length.toString(),
                             fontFamily: bebasNeue,
                             fontSize: mediaqueryHeight(0.05, context),
                             fontWeight: FontWeight.normal,
                             fontColor: cyanColor),
-                        myFont("Pending",
+                        myFont("Pendings",
                             fontFamily: balooChettan,
                             fontSize: mediaqueryHeight(0.022, context),
                             fontWeight: FontWeight.normal,

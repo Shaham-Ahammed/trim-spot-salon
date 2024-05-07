@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:trim_spot_barber_side/blocs/bottom_navigation_bloc/bottom_navigation_bar_bloc.dart';
 import 'package:trim_spot_barber_side/data/shared_preference_operations/functions.dart';
 import 'package:trim_spot_barber_side/screens/login.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
@@ -51,9 +53,13 @@ Future<dynamic> logoutConfirmationHome(BuildContext context) {
                     GestureDetector(
                       onTap: () async {
                         await SharedPreferenceOperation().setPhoneNumber("");
-                        Navigator.of(context).push(FadeTransitionPageRoute(
-                          child: LoginScreen(),
-                        ));
+                      
+                        Navigator.of(context).pushAndRemoveUntil(
+                          FadeTransitionPageRoute(
+                            child: LoginScreen(),
+                          ),
+                          (route) => false,
+                        );
                       },
                       child: myFont("Logout",
                           fontFamily: balooChettan,

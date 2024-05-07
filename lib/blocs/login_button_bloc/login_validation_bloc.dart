@@ -38,7 +38,6 @@ class LoginValidationBloc
         return;
       } else {
         final data = shopDetailsCollection.docs.first;
-
         final password = data['password'];
         if (password == loginPasswordController.text) {
           await SharedPreferenceOperation()

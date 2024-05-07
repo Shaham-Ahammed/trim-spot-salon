@@ -75,7 +75,7 @@ class SlotSelectionBloc extends Bloc<SlotSelectionEvent, SlotSelectionState> {
     String today = DateFormat('dd-MM-yyyy').format(DateTime.now());
     final dbSelectedTimes = dbData.data()![today];
     final newBookings = [...dbSelectedTimes, ...state.selectedSlots];
-    await gettingBookedSlots.set({today: newBookings});
+    await gettingBookedSlots.update({today: newBookings});
     emit(SlotSelectionInitial(selectedSlots: [], totalSlots: state.totalSlots));
   }
 }

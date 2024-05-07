@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:trim_spot_barber_side/blocs/home_screen_pageview_bloc/home_screen_page_controller_bloc.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/homepage/animation_control.dart';
 import 'package:trim_spot_barber_side/utils/homepage/page_transition_home.dart';
+import 'package:trim_spot_barber_side/widgets/home_widgets/functions/total_earnings_fetching.dart';
+import 'package:trim_spot_barber_side/widgets/home_widgets/shimmer_containers.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 import 'package:trim_spot_barber_side/widgets/home_widgets/app_bar.dart';
 import 'package:trim_spot_barber_side/widgets/home_widgets/bookings_container.dart';
@@ -49,17 +52,25 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Container(
                 height: mediaqueryHeight(0.2, context),
-                child: PageView(
-                  controller: homePageController,
-                  onPageChanged: (int page) {
-                    context
-                        .read<HomeScreenPageControllerBloc>()
-                        .add(PageChanged(newPage: page));
+                child: FutureBuilder(
+                  future: futureFucntion(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return ShimmerEffectPageViewContainersInHome();
+                    }
+                    return PageView(
+                      controller: homePageController,
+                      onPageChanged: (int page) {
+                        context
+                            .read<HomeScreenPageControllerBloc>()
+                            .add(PageChanged(newPage: page));
+                      },
+                      children: [
+                        EarningsPageView(snapshot.data.toString()),
+                        BookingsPageView(),
+                      ],
+                    );
                   },
-                  children: [
-                    EarningsPageView(),
-                    BookingsPageView(),
-                  ],
                 ),
               ),
               SizedBox(
