@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/profile_save_button_bloc/profile_save_button_bloc.dart';
+import 'package:trim_spot_barber_side/screens/home.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
+import 'package:trim_spot_barber_side/utils/network_stream/network_stream.dart';
 import 'package:trim_spot_barber_side/utils/profile_screen/form_keys.dart';
 import 'package:trim_spot_barber_side/widgets/profile_widgets/change_password_alert.dart';
 import 'package:trim_spot_barber_side/widgets/profile_widgets/change_password_text.dart';
@@ -48,57 +50,69 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Size(double.infinity, mediaqueryHeight(0.106, context)),
               child: profileAppBar(context, widget.fromDawer)),
           body: SafeArea(
-              child: Padding(
-            padding: EdgeInsets.all(mediaqueryHeight(0.02, context)),
-            child: SingleChildScrollView(
-              child: Form(
-                key: profileFormKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ProfilePictureDispaly(),
-                    SizedBox(
-                      height: mediaqueryHeight(0.015, context),
+              child: StreamBuilder<bool>(
+              stream: checkInternetconnectivity(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+               return CircularProgressIndicator(color: blackColor,);
+              }
+
+              if (!snapshot.data!) {
+                return NoNetworkDisplayWidget();
+              }
+                  return Padding(
+                              padding: EdgeInsets.all(mediaqueryHeight(0.02, context)),
+                              child: SingleChildScrollView(
+                  child: Form(
+                    key: profileFormKey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ProfilePictureDispaly(),
+                        SizedBox(
+                          height: mediaqueryHeight(0.015, context),
+                        ),
+                        UserNameDisaply(),
+                        SizedBox(
+                          height: mediaqueryHeight(0.015, context),
+                        ),
+                        profilePageHeadings(context, "Name"),
+                        spaceBetweenHeadingAndTextfield(context),
+                        UserNameTextField(),
+                        SizedBox(
+                          height: mediaqueryHeight(0.014, context),
+                        ),
+                        profilePageHeadings(context, "Phone"),
+                        spaceBetweenHeadingAndTextfield(context),
+                        PhoneTextField(),
+                        SizedBox(
+                          height: mediaqueryHeight(0.014, context),
+                        ),
+                        profilePageHeadings(context, "Email"),
+                        spaceBetweenHeadingAndTextfield(context),
+                        EmailTextField(),
+                        SizedBox(
+                          height: mediaqueryHeight(0.03, context),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            changePasswordAlert(context);
+                          },
+                          child: changePasswordText(context),
+                        ),
+                     
+                        SizedBox(
+                          height: mediaqueryHeight(0.04, context),
+                        ),
+                        SubmitButton()
+                      ],
                     ),
-                    UserNameDisaply(),
-                    SizedBox(
-                      height: mediaqueryHeight(0.015, context),
-                    ),
-                    profilePageHeadings(context, "Name"),
-                    spaceBetweenHeadingAndTextfield(context),
-                    UserNameTextField(),
-                    SizedBox(
-                      height: mediaqueryHeight(0.014, context),
-                    ),
-                    profilePageHeadings(context, "Phone"),
-                    spaceBetweenHeadingAndTextfield(context),
-                    PhoneTextField(),
-                    SizedBox(
-                      height: mediaqueryHeight(0.014, context),
-                    ),
-                    profilePageHeadings(context, "Email"),
-                    spaceBetweenHeadingAndTextfield(context),
-                    EmailTextField(),
-                    SizedBox(
-                      height: mediaqueryHeight(0.03, context),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        changePasswordAlert(context);
-                      },
-                      child: changePasswordText(context),
-                    ),
-                 
-                    SizedBox(
-                      height: mediaqueryHeight(0.04, context),
-                    ),
-                    SubmitButton()
-                  ],
-                ),
-              ),
-            ),
-          )),
+                  ),
+                              ),
+                            );
+                }
+              )),
         ),
       ),
     );

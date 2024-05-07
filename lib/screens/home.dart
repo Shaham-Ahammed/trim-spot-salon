@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:trim_spot_barber_side/blocs/home_screen_pageview_bloc/home_screen_page_controller_bloc.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
+import 'package:trim_spot_barber_side/utils/font.dart';
 import 'package:trim_spot_barber_side/utils/homepage/animation_control.dart';
 import 'package:trim_spot_barber_side/utils/homepage/page_transition_home.dart';
+import 'package:trim_spot_barber_side/utils/network_stream/network_stream.dart';
 import 'package:trim_spot_barber_side/widgets/home_widgets/functions/total_earnings_fetching.dart';
 import 'package:trim_spot_barber_side/widgets/home_widgets/shimmer_containers.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
@@ -44,52 +45,101 @@ class _HomeScreenState extends State<HomeScreen> {
           preferredSize:
               Size(double.infinity, mediaqueryHeight(0.106, context)),
           child: AppBarHomeScreen()),
-      body: SingleChildScrollView(
-        child: SafeArea(
-            child: Padding(
-          padding: EdgeInsets.all(mediaqueryWidth(0.04, context)),
-          child: Column(
-            children: [
-              Container(
-                height: mediaqueryHeight(0.2, context),
-                child: FutureBuilder(
-                  future: futureFucntion(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return ShimmerEffectPageViewContainersInHome();
-                    }
-                    return PageView(
-                      controller: homePageController,
-                      onPageChanged: (int page) {
-                        context
-                            .read<HomeScreenPageControllerBloc>()
-                            .add(PageChanged(newPage: page));
-                      },
-                      children: [
-                        EarningsPageView(snapshot.data.toString()),
-                        BookingsPageView(),
-                      ],
-                    );
-                  },
+      body: SafeArea(
+          child: Padding(
+        padding: EdgeInsets.all(mediaqueryWidth(0.04, context)),
+        child: StreamBuilder<bool>(
+            stream: checkInternetconnectivity(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+              return CircularProgressIndicator(color: blackColor,);
+              }
+
+              if (!snapshot.data!) {
+                return NoNetworkDisplayWidget();
+              }
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Container(
+                      height: mediaqueryHeight(0.2, context),
+                      child: FutureBuilder(
+                        future: futureFucntion(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return ShimmerEffectPageViewContainersInHome();
+                          }
+                          return PageView(
+                            controller: homePageController,
+                            onPageChanged: (int page) {
+                              context
+                                  .read<HomeScreenPageControllerBloc>()
+                                  .add(PageChanged(newPage: page));
+                            },
+                            children: [
+                              EarningsPageView(snapshot.data.toString()),
+                              BookingsPageView(),
+                            ],
+                          );
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: mediaqueryHeight(0.01, context),
+                    ),
+                    SmoothPageIndicatorHomeScreen(),
+                    SizedBox(
+                      height: mediaqueryHeight(0.015, context),
+                    ),
+                    TodaysBookingsHeading(),
+                    SlotTiles(),
+                    SizedBox(
+                      height: mediaqueryHeight(0.023, context),
+                    ),
+                    LockSlotsButton()
+                  ],
                 ),
-              ),
-              SizedBox(
-                height: mediaqueryHeight(0.01, context),
-              ),
-              SmoothPageIndicatorHomeScreen(),
-              SizedBox(
-                height: mediaqueryHeight(0.015, context),
-              ),
-              TodaysBookingsHeading(),
-              SlotTiles(),
-              SizedBox(
-                height: mediaqueryHeight(0.023, context),
-              ),
-              LockSlotsButton()
-            ],
+              );
+            }),
+      )),
+    );
+  }
+}
+
+class NoNetworkDisplayWidget extends StatelessWidget {
+  const NoNetworkDisplayWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Center(
+          child: Image.asset(
+            "assets/images/no internet 4.png",
+            height: mediaqueryHeight(0.25, context),
           ),
-        )),
-      ),
+        ),
+        SizedBox(
+          height: mediaqueryHeight(0.02, context),
+        ),
+        myFont("SOMETHING WENT WRONG",
+            fontFamily: belleza,
+            fontSize: mediaqueryHeight(0.018, context),
+            fontWeight: FontWeight.w600,
+            fontColor: whiteColor),
+        SizedBox(
+          height: mediaqueryHeight(0.01, context),
+        ),
+        myFont("please check your network connectivity.",
+            fontFamily: balooChettan,
+            fontSize: mediaqueryHeight(0.016, context),
+            fontWeight: FontWeight.w400,
+            fontColor: whiteColor),
+      ],
     );
   }
 }

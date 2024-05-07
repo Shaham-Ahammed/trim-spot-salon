@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/shop_management_blocs/save_button_bloc/save_button_shop_managemen_bloct.dart';
+import 'package:trim_spot_barber_side/screens/home.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
+import 'package:trim_spot_barber_side/utils/network_stream/network_stream.dart';
 import 'package:trim_spot_barber_side/widgets/profile_widgets/shop_image_caption.dart';
 import 'package:trim_spot_barber_side/widgets/profile_widgets/shop_image_display.dart';
 import 'package:trim_spot_barber_side/widgets/shop_management_widgets/appbar.dart';
@@ -36,61 +38,70 @@ class ShopManagementScreen extends StatelessWidget {
               preferredSize:
                   Size(double.infinity, mediaqueryHeight(0.106, context)),
               child: appBarShopManagement(fromDrawer: fromDrawer)),
-          body: SingleChildScrollView(
-            child: SafeArea(
-                child: Padding(
-              padding: EdgeInsets.all(mediaqueryHeight(0.02, context)),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Column(
-                    children: [
-                      shopImageHeading(context),
-                      SizedBox(
-                        height: mediaqueryHeight(0.002, context),
-                      )
-                    ],
-                  ),
-                  shopImageCaption(context),
-                  SizedBox(
-                    height: mediaqueryHeight(0.012, context),
-                  ),
-                  ShopImageDisplay(),
-                  SizedBox(
-                    height: mediaqueryHeight(0.015, context),
-                  ),
-                  shopManagementHeadings(context, "Services"),
-                  ServicesMenu(),
-                  NoServiceSelectedErrorDisplay(),
-                  SizedBox(
-                    height: mediaqueryHeight(0.02, context),
-                  ),
-                  shopManagementHeadings(context, "Opening Time"),
-                  OpeningTimeSelector(),
-                  SizedBox(
-                    height: mediaqueryHeight(0.02, context),
-                  ),
-                  shopManagementHeadings(context, "Closing Time"),
-                  ClosingTimeSelector(),
-                  SizedBox(
-                    height: mediaqueryHeight(0.02, context),
-                  ),
-                  shopManagementHeadings(context, "Holidays"),
-                  HolidaySelector(),
-                  shopManagementHeadings(context, "Occasional Closures"),
-                  OccasionalClosuresSelector(),
-                  SizedBox(
-                    height: mediaqueryHeight(0.03, context),
-                  ),
-                  SaveChangesButton()
-                ],
-              ),
-            )),
-          ),
+          body: StreamBuilder<bool>(
+              stream: checkInternetconnectivity(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator(color: blackColor,);
+                }
+
+                if (!snapshot.data!) {
+                  return NoNetworkDisplayWidget();
+                }
+                return SingleChildScrollView(
+                  child: SafeArea(
+                      child: Padding(
+                    padding: EdgeInsets.all(mediaqueryHeight(0.02, context)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Column(
+                          children: [
+                            shopImageHeading(context),
+                            SizedBox(
+                              height: mediaqueryHeight(0.002, context),
+                            )
+                          ],
+                        ),
+                        shopImageCaption(context),
+                        SizedBox(
+                          height: mediaqueryHeight(0.012, context),
+                        ),
+                        ShopImageDisplay(),
+                        SizedBox(
+                          height: mediaqueryHeight(0.015, context),
+                        ),
+                        shopManagementHeadings(context, "Services"),
+                        ServicesMenu(),
+                        NoServiceSelectedErrorDisplay(),
+                        SizedBox(
+                          height: mediaqueryHeight(0.02, context),
+                        ),
+                        shopManagementHeadings(context, "Opening Time"),
+                        OpeningTimeSelector(),
+                        SizedBox(
+                          height: mediaqueryHeight(0.02, context),
+                        ),
+                        shopManagementHeadings(context, "Closing Time"),
+                        ClosingTimeSelector(),
+                        SizedBox(
+                          height: mediaqueryHeight(0.02, context),
+                        ),
+                        shopManagementHeadings(context, "Holidays"),
+                        HolidaySelector(),
+                        shopManagementHeadings(context, "Occasional Closures"),
+                        OccasionalClosuresSelector(),
+                        SizedBox(
+                          height: mediaqueryHeight(0.03, context),
+                        ),
+                        SaveChangesButton()
+                      ],
+                    ),
+                  )),
+                );
+              }),
         ),
       ),
     );
   }
-
- 
 }
