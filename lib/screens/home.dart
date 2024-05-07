@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:trim_spot_barber_side/blocs/home_screen_pageview_bloc/home_screen_page_controller_bloc.dart';
+import 'package:trim_spot_barber_side/data/data_provider/user_data_document.dart';
+import 'package:trim_spot_barber_side/data/repository/document_model.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/font.dart';
 import 'package:trim_spot_barber_side/utils/homepage/animation_control.dart';
@@ -15,8 +19,10 @@ import 'package:trim_spot_barber_side/widgets/home_widgets/bookings_container.da
 import 'package:trim_spot_barber_side/widgets/home_widgets/earnings_container.dart';
 import 'package:trim_spot_barber_side/widgets/home_widgets/lock_slots_button.dart';
 import 'package:trim_spot_barber_side/widgets/home_widgets/slots.dart';
+import 'package:trim_spot_barber_side/widgets/home_widgets/slots_shimmer_effect.dart';
 import 'package:trim_spot_barber_side/widgets/home_widgets/smooth_page_indicator.dart';
 import 'package:trim_spot_barber_side/widgets/home_widgets/todays_booking_heading.dart';
+import 'package:lottie/lottie.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
@@ -26,6 +32,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   @override
   void initState() {
     pageViewAutomaticTransition(context);
@@ -53,7 +60,9 @@ class _HomeScreenState extends State<HomeScreen> {
             stream: checkInternetconnectivity(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-              return CircularProgressIndicator(color: blackColor,);
+                return CircularProgressIndicator(
+                  color: blackColor,
+                );
               }
 
               if (!snapshot.data!) {
@@ -93,12 +102,33 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(
                       height: mediaqueryHeight(0.015, context),
                     ),
-                    TodaysBookingsHeading(),
-                    SlotTiles(),
-                    SizedBox(
-                      height: mediaqueryHeight(0.023, context),
-                    ),
-                    LockSlotsButton()
+                  TodaysBookingsHeading(),
+                        FutureBuilder<bool>(
+                      future: holidaychecking(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return SlotsInShimmerEffect();
+                        }
+                        if (snapshot.data!) {
+                          return Center(
+                              child: LottieBuilder.asset(
+                                
+                                  "assets/animations/shop_closed 1.json",
+                                  
+                                  height: mediaqueryHeight(0.4, context),));
+                        }
+                        return Column(
+                          children: [
+                            SlotTiles(),
+                            SizedBox(
+                              height: mediaqueryHeight(0.023, context),
+                            ),
+                            LockSlotsButton()
+                          ],
+                        );
+                      },
+                    )
                   ],
                 ),
               );
@@ -106,4 +136,15 @@ class _HomeScreenState extends State<HomeScreen> {
       )),
     );
   }
+}
+
+Future<bool> holidaychecking() async {
+  final today = DateFormat('E').format(DateTime.now());
+  final data = await UserDataDocumentFromFirebase().userDocument();
+  List<String> holidays =
+      (data[SalonDocumentModel.holidays] as List<dynamic>).cast<String>();
+  if (holidays.contains(today)) {
+    return true;
+  }
+  return false;
 }

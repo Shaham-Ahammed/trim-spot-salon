@@ -40,11 +40,7 @@ class ShopManagementSaveButtonBloc
         emit(ErrorInUpdation("please select atleast one service"));
         return;
       }
-      final connectivity = await Connectivity().checkConnectivity();
-      if (connectivity.contains(ConnectionState.none)) {
-        emit(NetworkError());
-        return;
-      }
+   
       emit(ShopMangaementLoadingIndicator());
       if (!BlocProvider.of<ProfileShopImageBloc>(event.context, listen: false)
           .state

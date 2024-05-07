@@ -26,38 +26,41 @@ class ReviewsAndRatingsScreen extends StatelessWidget {
             child: AppBarReviewsAndRatings()),
         body: SafeArea(
             child: StreamBuilder<bool>(
-             stream: checkInternetconnectivity(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-         return CircularProgressIndicator(color: blackColor,);
-              }
+                stream: checkInternetconnectivity(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return CircularProgressIndicator(
+                      color: blackColor,
+                    );
+                  }
 
-              if (!snapshot.data!) {
-                return NoNetworkDisplayWidget();
-              }
-                return Padding(
-                          padding: EdgeInsets.all(mediaqueryHeight(0.02, context)),
-                          child: StreamBuilder<QuerySnapshot>(
-                  stream: CollectionReferences()
-                      .shopDetailsReference()
-                      .doc(UserDataDocumentFromFirebase.shopId)
-                      .collection(FirebaseNamesShopSide.reviewscollectionReference)
-                      .snapshots(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return ShimmerOfReviewsLoading();
-                    }
-                    if (!snapshot.hasData) {
-                      return NoReviewsYetIllustration();
-                    } else if (snapshot.data!.docs.isEmpty) {
-                      return NoReviewsYetIllustration();
-                    } else if (snapshot.data!.docs.isNotEmpty) {
-                      return userRatingsAndReviews(snapshot);
-                    }
-                    return Container();
-                  }),
-                        );
-              }
-            )));
+                  if (!snapshot.data!) {
+                    return NoNetworkDisplayWidget();
+                  }
+                  return Padding(
+                    padding: EdgeInsets.all(mediaqueryHeight(0.02, context)),
+                    child: StreamBuilder<QuerySnapshot>(
+                        stream: CollectionReferences()
+                            .shopDetailsReference()
+                            .doc(UserDataDocumentFromFirebase.shopId)
+                            .collection(FirebaseNamesShopSide
+                                .reviewscollectionReference)
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return ShimmerOfReviewsLoading();
+                          }
+                          if (!snapshot.hasData) {
+                            return NoReviewsYetIllustration();
+                          } else if (snapshot.data!.docs.isEmpty) {
+                            return NoReviewsYetIllustration();
+                          } else if (snapshot.data!.docs.isNotEmpty) {
+                            return userRatingsAndReviews(snapshot);
+                          }
+                          return Container();
+                        }),
+                  );
+                })));
   }
 }

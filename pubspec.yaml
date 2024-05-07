@@ -114,6 +114,8 @@ flutter:
     - assets/images/no internet 3.png
     - assets/images/no internet 4.png
     - assets/images/no internet 5.png
+    - assets/animations/shop_closed.json
+    - assets/animations/shop_closed 1.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
