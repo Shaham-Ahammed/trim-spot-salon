@@ -39,7 +39,7 @@ class ShopManagementSaveButtonBloc
         emit(ErrorInUpdation("please select atleast one service"));
         return;
       }
-   
+
       emit(ShopMangaementLoadingIndicator());
       if (!BlocProvider.of<ProfileShopImageBloc>(event.context, listen: false)
           .state
@@ -94,7 +94,8 @@ class ShopManagementSaveButtonBloc
                       event.context,
                       listen: false)
                   .state
-                  .holidays)
+                  .holidays,
+              servicesList: servicesListArray(event.context))
           .toMap();
 
       emit(ShopManagementSaveButtonStateInitial());
@@ -112,4 +113,18 @@ class ShopManagementSaveButtonBloc
       return;
     }
   }
+}
+
+List<String> servicesListArray(context) {
+  final servicesMap =
+      BlocProvider.of<ShopManagementServiceBloc>(context, listen: false)
+          .state
+          .switches;
+  List<String> services = [];
+  servicesMap.forEach((key, value) {
+    if (value == true) {
+      services.add(key);
+    }
+  });
+  return services;
 }

@@ -13,7 +13,7 @@ class RegistraitonModel {
   Map<String, Map<String, String>> services;
   List<String> occasionalClosures;
   String parsedOpeningTime;
-
+  List<String> servicesList;
   String parsedClosingTime;
   List<String> holidays;
   String password;
@@ -31,6 +31,7 @@ class RegistraitonModel {
     required this.occasionalClosures,
     required this.profileImage,
     required this.shopImage,
+    required this.servicesList,
     required this.services,
     required this.parsedOpeningTime,
     required this.parsedClosingTime,
@@ -58,7 +59,8 @@ class RegistraitonModel {
       "password": password,
       "isApproved": isApproved,
       "isRejected": isRejected,
-      "occasionalClosures":occasionalClosures
+      "occasionalClosures": occasionalClosures,
+      "servicesList" :servicesList
     };
   }
 }

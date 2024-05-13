@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/registration_blocs/holiday_bloc/holiday_bloc_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/registration_blocs/location_bloc/location_bloc.dart';
+import 'package:trim_spot_barber_side/blocs/registration_blocs/service_bloc/service_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/registration_blocs/working_hours/working_hours_bloc.dart';
 import 'package:trim_spot_barber_side/data/data_provider/adding_image_to_firebase.dart';
 import 'package:trim_spot_barber_side/data/firebase_references/shop_collection_reference.dart';
@@ -46,6 +47,7 @@ class RegisterProfileToFirebase {
       services: serviceToMapConversion(context),
       isRejected: false,
       occasionalClosures: [],
+      servicesList: servicesListArray(context),
     ).toMap();
     try {
       DocumentReference docReference = await collection.add(data);
@@ -66,4 +68,16 @@ class RegisterProfileToFirebase {
       print("error while creating collection $e");
     }
   }
+}
+
+List<String> servicesListArray(context) {
+  final servicesMap =
+      BlocProvider.of<ServiceBloc>(context, listen: false).state.switches;
+  List<String> services = [];
+  servicesMap.forEach((key, value) {
+    if (value == true) {
+      services.add(key);
+    }
+  });
+  return services;
 }

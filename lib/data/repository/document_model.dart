@@ -25,6 +25,7 @@ class SalonDocumentModel {
   static const String serviceStraighten = "straighten";
   static const String serviceTime = "time";
   static const String serviceRate = "rate";
+  static const String servicesList = "servicesList";
 }
 
 class UserDocumentModel {
