@@ -22,7 +22,7 @@ class SlotSelectionBloc extends Bloc<SlotSelectionEvent, SlotSelectionState> {
     final gettingBookedSlots = await CollectionReferences()
         .shopDetailsReference()
         .doc(id.id)
-        .collection(FirebaseNamesShopSide.bookingCollectionReference)
+        .collection(FirebaseNamesShopSide.slotBookingCollectionReference)
         .doc(FirebaseNamesShopSide.slotsBookingDocument)
         .get();
     String today = DateFormat('dd-MM-yyyy').format(DateTime.now());
@@ -69,7 +69,7 @@ class SlotSelectionBloc extends Bloc<SlotSelectionEvent, SlotSelectionState> {
     final gettingBookedSlots = CollectionReferences()
         .shopDetailsReference()
         .doc(id.id)
-        .collection(FirebaseNamesShopSide.bookingCollectionReference)
+        .collection(FirebaseNamesShopSide.slotBookingCollectionReference)
         .doc(FirebaseNamesShopSide.slotsBookingDocument);
     final dbData = await gettingBookedSlots.get();
     String today = DateFormat('dd-MM-yyyy').format(DateTime.now());

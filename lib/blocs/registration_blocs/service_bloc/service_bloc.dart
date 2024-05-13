@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:trim_spot_barber_side/data/repository/document_model.dart';
 
 part 'service_state.dart';
 part 'service_event.dart';
@@ -7,12 +8,12 @@ part 'service_event.dart';
 class ServiceBloc extends Bloc<ServiceBlocEvent, ServiceBlocState> {
   ServiceBloc()
       : super(ServiceBlocInitial(switches: {
-          "haircut": false,
-          "facial": false,
-          "shave": false,
-          "beard trim": false,
-          "massage": false,
-          "straighten": false
+          SalonDocumentModel.serviceHaircut: false,
+          SalonDocumentModel.serviceFacial: false,
+          SalonDocumentModel.serviceShave: false,
+          SalonDocumentModel.serviceBeardTrim: false,
+          SalonDocumentModel.serviceMassage: false,
+          SalonDocumentModel.serviceStraighten: false
         })) {
     on<ServiceSwitchPressed>(_serviceSwitchPressed);
   }

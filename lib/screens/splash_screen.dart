@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     checkTheScreen(context);
     context.read<UserDetailsBloc>().add(FetchingUserDetailsFromSplash());
-     
+
     super.initState();
   }
 

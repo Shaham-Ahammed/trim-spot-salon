@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:trim_spot_barber_side/data/data_provider/user_data_document.dart';
 import 'package:trim_spot_barber_side/data/firebase_references/shop_collection_reference.dart';
 import 'package:trim_spot_barber_side/data/repository/document_model.dart';
 
@@ -36,7 +35,7 @@ checkTheScreen(context) async {
         .pushReplacement(FadeTransitionPageRoute(child: LoginScreen()));
     return;
   } else {
-    await  UserDataDocumentFromFirebase().getShopId();
+
     checkTheRegistrationStatus(loginNumber, context);
     
   }

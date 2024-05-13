@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Container(
                       height: mediaqueryHeight(0.2, context),
                       child: FutureBuilder(
-                        future: futureFucntion(),
+                        future: futureFucntion(context),
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {

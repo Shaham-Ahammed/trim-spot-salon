@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:trim_spot_barber_side/blocs/slot_selection_bloc/slot_selection_bloc.dart';
-import 'package:trim_spot_barber_side/data/data_provider/user_data_document.dart';
+import 'package:trim_spot_barber_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_barber_side/data/firebase_references/shop_collection_reference.dart';
 import 'package:trim_spot_barber_side/data/repository/firebase_doc_and_collection_names.dart';
 
@@ -32,7 +32,7 @@ class _SlotTilesState extends State<SlotTiles> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: SlotTileFucntions().fetchingBookedSlots(),
+        future: SlotTileFucntions().fetchingBookedSlots(context),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return SlotsInShimmerEffect();
@@ -41,8 +41,8 @@ class _SlotTilesState extends State<SlotTiles> {
           return StreamBuilder(
               stream: CollectionReferences()
                   .shopDetailsReference()
-                  .doc(UserDataDocumentFromFirebase.shopId)
-                  .collection(FirebaseNamesShopSide.bookingCollectionReference)
+                  .doc(BlocProvider.of<UserDetailsBloc>(context).state.shopId)
+                  .collection(FirebaseNamesShopSide.slotBookingCollectionReference)
                   .doc(FirebaseNamesShopSide.slotsBookingDocument)
                   .snapshots(),
               builder: (context, snapshot) {

@@ -3,7 +3,6 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:trim_spot_barber_side/data/data_provider/user_data_document.dart';
 import 'package:trim_spot_barber_side/data/firebase_references/shop_collection_reference.dart';
 
 import 'package:trim_spot_barber_side/data/shared_preference_operations/functions.dart';
@@ -42,7 +41,7 @@ class LoginValidationBloc
         if (password == loginPasswordController.text) {
           await SharedPreferenceOperation()
               .setPhoneNumber(loginPhoneController.text);
-          await UserDataDocumentFromFirebase().getShopId();
+         
           emit(LoginSuccess());
         } else {
           emit(LoginFailure("incorrect password"));

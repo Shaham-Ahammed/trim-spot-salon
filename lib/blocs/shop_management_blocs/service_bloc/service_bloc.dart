@@ -11,12 +11,12 @@ class ShopManagementServiceBloc extends Bloc<ShopManagementServiceBlocEvent,
     ShopManagementServiceBlocState> {
   ShopManagementServiceBloc()
       : super(ServiceBlocInitial(switches: {
-          "haircut": false,
-          "facial": false,
-          "shave": false,
-          "beard trim": false,
-          "massage": false,
-          "straighten": false
+          SalonDocumentModel.serviceHaircut: false,
+          SalonDocumentModel.serviceFacial: false,
+          SalonDocumentModel.serviceShave: false,
+          SalonDocumentModel.serviceBeardTrim: false,
+          SalonDocumentModel.serviceMassage: false,
+          SalonDocumentModel.serviceStraighten: false
         })) {
     on<ServiceSwitchPressed>(_serviceSwitchPressed);
     on<FetchingOriginalServices>(_fetchingOriginalServices);
@@ -48,38 +48,39 @@ class ShopManagementServiceBloc extends Bloc<ShopManagementServiceBlocEvent,
       }
     });
 
-   
     List<String> services = [];
     currentServices.forEach((key, value) {
       services.add(key);
-      if (key == "haircut") {
-        sMhaircutRateController.text = value['rate']!;
-        sMhaircutTimeController.text = value['time']!;
-      } else if (key == "facial") {
-        sMfacialRateController.text = value['rate']!;
-        sMfacialTimeController.text = value['time']!;
-      } else if (key == "shave") {
-        sMshaveRateController.text = value['rate']!;
-        sMshaveTimeController.text = value['time']!;
-      } else if (key == "beard trim") {
-        sMbeardTrimRateController.text = value['rate']!;
-        sMbeardTrimTimeController.text = value['time']!;
-      } else if (key == "massage") {
-        sMmassageRateController.text = value['rate']!;
-        sMmassageTimeController.text = value['time']!;
-      } else if (key == "straighten") {
-        sMstraightenRateController.text = value['rate']!;
-        sMstraightenTimeController.text = value['time']!;
+      if (key == SalonDocumentModel.serviceHaircut) {
+        sMhaircutRateController.text = value[SalonDocumentModel.serviceRate]!;
+        sMhaircutTimeController.text = value[SalonDocumentModel.serviceTime]!;
+      } else if (key == SalonDocumentModel.serviceFacial) {
+        sMfacialRateController.text = value[SalonDocumentModel.serviceRate]!;
+        sMfacialTimeController.text = value[SalonDocumentModel.serviceTime]!;
+      } else if (key == SalonDocumentModel.serviceShave) {
+        sMshaveRateController.text = value[SalonDocumentModel.serviceRate]!;
+        sMshaveTimeController.text = value[SalonDocumentModel.serviceTime]!;
+      } else if (key == SalonDocumentModel.serviceBeardTrim) {
+        sMbeardTrimRateController.text = value[SalonDocumentModel.serviceRate]!;
+        sMbeardTrimTimeController.text = value[SalonDocumentModel.serviceTime]!;
+      } else if (key == SalonDocumentModel.serviceMassage) {
+        sMmassageRateController.text = value[SalonDocumentModel.serviceRate]!;
+        sMmassageTimeController.text = value[SalonDocumentModel.serviceTime]!;
+      } else if (key == SalonDocumentModel.serviceStraighten) {
+        sMstraightenRateController.text =
+            value[SalonDocumentModel.serviceRate]!;
+        sMstraightenTimeController.text =
+            value[SalonDocumentModel.serviceTime]!;
       }
     });
     Map<String, bool> map = {
-          "haircut": false,
-          "facial": false,
-          "shave": false,
-          "beard trim": false,
-          "massage": false,
-          "straighten": false
-        };
+      SalonDocumentModel.serviceHaircut: false,
+      SalonDocumentModel.serviceFacial: false,
+      SalonDocumentModel.serviceShave: false,
+      SalonDocumentModel.serviceBeardTrim: false,
+      SalonDocumentModel.serviceMassage: false,
+      SalonDocumentModel.serviceStraighten: false
+    };
     services.forEach((element) {
       if (map.containsKey(element)) {
         map[element] = true;

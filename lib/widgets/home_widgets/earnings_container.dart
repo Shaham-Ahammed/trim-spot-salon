@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:intl/intl.dart';
-import 'package:trim_spot_barber_side/data/data_provider/user_data_document.dart';
+import 'package:trim_spot_barber_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_barber_side/data/firebase_references/shop_collection_reference.dart';
 import 'package:trim_spot_barber_side/data/repository/document_model.dart';
 import 'package:trim_spot_barber_side/data/repository/firebase_doc_and_collection_names.dart';
@@ -45,7 +46,7 @@ class EarningsPageView extends StatelessWidget {
               StreamBuilder<QuerySnapshot>(
                   stream: CollectionReferences()
                       .shopDetailsReference()
-                      .doc(UserDataDocumentFromFirebase.shopId)
+                      .doc(BlocProvider.of<UserDetailsBloc>(context).state.shopId)
                       .collection(FirebaseNamesShopSide.dailyBookingsCollection)
                       .doc(DateFormat('dd-MM-yyyy')
                           .format(DateTime.now())

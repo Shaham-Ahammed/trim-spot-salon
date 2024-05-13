@@ -58,7 +58,7 @@ class RegisterProfileToFirebase {
   addingBookingsCollection(DocumentReference docReference) async {
     try {
       CollectionReference bookingCollectionRef = docReference
-          .collection(FirebaseNamesShopSide.bookingCollectionReference);
+          .collection(FirebaseNamesShopSide.slotBookingCollectionReference);
       await bookingCollectionRef
           .doc(FirebaseNamesShopSide.slotsBookingDocument)
           .set({"dates": []});

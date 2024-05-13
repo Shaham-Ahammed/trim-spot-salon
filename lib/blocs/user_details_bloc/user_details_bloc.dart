@@ -13,6 +13,7 @@ class UserDetailsBloc extends Bloc<UserDetailsEvent, UserDetailsState> {
             profileImage: '',
             userName: '',
             phone: '',
+            shopId: "",
             shopImage: '',
             password: '',
             email: '')) {
@@ -35,6 +36,7 @@ class UserDetailsBloc extends Bloc<UserDetailsEvent, UserDetailsState> {
         phone: userData[SalonDocumentModel.phone],
         shopImage: userData[SalonDocumentModel.shopImage],
         password: userData[SalonDocumentModel.password],
-        email: userData[SalonDocumentModel.email]));
+        email: userData[SalonDocumentModel.email],
+        shopId: userData.id));
   }
 }
