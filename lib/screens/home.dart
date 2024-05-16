@@ -4,7 +4,7 @@ import 'package:trim_spot_barber_side/blocs/home_screen_pageview_bloc/home_scree
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/homepage/animation_control.dart';
 import 'package:trim_spot_barber_side/utils/homepage/page_transition_home.dart';
-import 'package:trim_spot_barber_side/utils/network_stream/network_stream.dart';
+import 'package:trim_spot_barber_side/data/repository/network_stream.dart';
 import 'package:trim_spot_barber_side/utils/no_network_display_widget.dart';
 import 'package:trim_spot_barber_side/widgets/home_widgets/functions/total_earnings_fetching.dart';
 import 'package:trim_spot_barber_side/widgets/home_widgets/shimmer_containers.dart';

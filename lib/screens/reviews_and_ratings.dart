@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_barber_side/data/firebase_references/shop_collection_reference.dart';
+import 'package:trim_spot_barber_side/data/repository/document_model.dart';
 import 'package:trim_spot_barber_side/data/repository/firebase_doc_and_collection_names.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
-import 'package:trim_spot_barber_side/utils/network_stream/network_stream.dart';
+import 'package:trim_spot_barber_side/data/repository/network_stream.dart';
 import 'package:trim_spot_barber_side/utils/no_network_display_widget.dart';
 import 'package:trim_spot_barber_side/widgets/ratings_and_reviews/appbar.dart';
 import 'package:trim_spot_barber_side/widgets/ratings_and_reviews/no_reviews.dart';
@@ -42,9 +43,13 @@ class ReviewsAndRatingsScreen extends StatelessWidget {
                     child: StreamBuilder<QuerySnapshot>(
                         stream: CollectionReferences()
                             .shopDetailsReference()
-                            .doc(BlocProvider.of<UserDetailsBloc>(context).state.shopId)
+                            .doc(BlocProvider.of<UserDetailsBloc>(context)
+                                .state
+                                .shopId)
                             .collection(FirebaseNamesShopSide
                                 .reviewscollectionReference)
+                            .orderBy(ReviewDocumentModel.timeStamp,
+                                descending: true)
                             .snapshots(),
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==

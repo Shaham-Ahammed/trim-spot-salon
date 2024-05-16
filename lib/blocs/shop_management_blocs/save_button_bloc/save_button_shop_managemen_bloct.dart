@@ -5,6 +5,7 @@ import 'package:trim_spot_barber_side/blocs/shop_management_blocs/holiday_bloc/h
 import 'package:trim_spot_barber_side/blocs/shop_management_blocs/occasional_closure_bloc/occasional_closure_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/shop_management_blocs/service_bloc/service_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/shop_management_blocs/working_hours/working_hours_bloc.dart';
+import 'package:trim_spot_barber_side/data/data_provider/save_button_shop_management_functions.dart';
 import 'package:trim_spot_barber_side/data/data_provider/user_data_document.dart';
 import 'package:trim_spot_barber_side/data/firebase_references/shop_collection_reference.dart';
 import 'package:trim_spot_barber_side/data/repository/document_model.dart';
@@ -41,6 +42,26 @@ class ShopManagementSaveButtonBloc
       }
 
       emit(ShopMangaementLoadingIndicator());
+
+      final data = await UserDataDocumentFromFirebase().userDocument();
+
+      List<String> firebaseOccasionalHolidays =
+          (data[SalonDocumentModel.occasionalClosures] as List<dynamic>)
+              .cast<String>();
+      final currentOccasionalClosures =
+          BlocProvider.of<OccasionalClosureBloc>(event.context, listen: false)
+              .state
+              .occasionalHolidays;
+      if (firebaseOccasionalHolidays != currentOccasionalClosures &&
+          currentOccasionalClosures.isNotEmpty) {
+        await HandlingOccasionalClosures().removingAllBookedSlotsFromSlotList(
+            event.context, currentOccasionalClosures);
+            
+        await HandlingOccasionalClosures()
+            .deleteAllPendingsFromShopSideOnThatDay(
+                event.context, currentOccasionalClosures);
+      }
+
       if (!BlocProvider.of<ProfileShopImageBloc>(event.context, listen: false)
           .state
           .newShopImagePath
@@ -71,7 +92,7 @@ class ShopManagementSaveButtonBloc
       }
       final collectionreference =
           await CollectionReferences().shopDetailsReference();
-      final data = await UserDataDocumentFromFirebase().userDocument();
+
       final newUpdates = ShopUpdationModel(
               shopImage: data[SalonDocumentModel.shopImage],
               services: serviceToMapConversionInShopManagement(event.context),

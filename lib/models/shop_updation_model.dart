@@ -6,6 +6,7 @@ class ShopUpdationModel {
   String parsedClosingTime;
   List<String> holidays;
   List<String> servicesList;
+  
   ShopUpdationModel({
     required this.shopImage,
     required this.services,

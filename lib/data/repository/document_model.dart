@@ -41,11 +41,13 @@ class ReviewDocumentModel {
   static const String userNmae = "userName";
   static const String ratings = "ratings";
   static const String review = "review";
+    static const String timeStamp = "timeStamp";
 }
 
 class BookingsDocumentModel {
   static const String time = "time";
   static const String name = "name";
   static const String services = "services";
+  static const String timeStamp = "timeStamp";
   static const String totalAmount = "totalAmount";
 }

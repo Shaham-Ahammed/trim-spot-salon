@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/shop_management_blocs/save_button_bloc/save_button_shop_managemen_bloct.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
-import 'package:trim_spot_barber_side/utils/network_stream/network_stream.dart';
+import 'package:trim_spot_barber_side/data/repository/network_stream.dart';
 import 'package:trim_spot_barber_side/utils/no_network_display_widget.dart';
 import 'package:trim_spot_barber_side/widgets/profile_widgets/shop_image_caption.dart';
 import 'package:trim_spot_barber_side/widgets/profile_widgets/shop_image_display.dart';

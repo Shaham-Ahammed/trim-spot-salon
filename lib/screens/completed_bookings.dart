@@ -4,10 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:trim_spot_barber_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_barber_side/data/firebase_references/shop_collection_reference.dart';
+import 'package:trim_spot_barber_side/data/repository/document_model.dart';
 import 'package:trim_spot_barber_side/data/repository/firebase_doc_and_collection_names.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
-import 'package:trim_spot_barber_side/utils/network_stream/network_stream.dart';
+import 'package:trim_spot_barber_side/data/repository/network_stream.dart';
 import 'package:trim_spot_barber_side/utils/no_network_display_widget.dart';
 import 'package:trim_spot_barber_side/widgets/bookings_widgets/completed.dart';
 import 'package:trim_spot_barber_side/widgets/bookings_widgets/nopendings.dart';
@@ -29,7 +30,6 @@ class CompletedBookingsScreen extends StatelessWidget {
                     color: blackColor,
                   );
                 }
-
                 if (!snapshot.data!) {
                   return NoNetworkDisplayWidget();
                 }
@@ -38,12 +38,15 @@ class CompletedBookingsScreen extends StatelessWidget {
                   child: StreamBuilder<QuerySnapshot>(
                       stream: CollectionReferences()
                           .shopDetailsReference()
-                          .doc(BlocProvider.of<UserDetailsBloc>(context).state.shopId)
+                          .doc(BlocProvider.of<UserDetailsBloc>(context)
+                              .state
+                              .shopId)
                           .collection(
                               FirebaseNamesShopSide.dailyBookingsCollection)
                           .doc(DateFormat("dd-MM-yyyy").format(DateTime.now()))
                           .collection(
                               FirebaseNamesShopSide.bookingDetailsCollection)
+                          .orderBy(BookingsDocumentModel.timeStamp)
                           .snapshots(),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
