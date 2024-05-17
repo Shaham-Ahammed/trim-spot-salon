@@ -33,7 +33,7 @@ import 'package:trim_spot_barber_side/widgets/bookings_widgets/texts.dart';
                     SizedBox(width: mediaqueryWidth(0.02, context)),
                     Container(
                          width: mediaqueryWidth(0.49, context),
-                      child: valueOfPendings(booking[BookingsDocumentModel.name], context),
+                      child: valueOfPendings(booking[BookingsShopSideDocumentModel.name], context),
                     ),
                   ],
                 ),
@@ -49,7 +49,7 @@ import 'package:trim_spot_barber_side/widgets/bookings_widgets/texts.dart';
                     ),
                     SizedBox(width: mediaqueryWidth(0.02, context)),
                     Container(
-                      child: valueOfPendings(booking[BookingsDocumentModel.time], context),
+                      child: valueOfPendings(booking[BookingsShopSideDocumentModel.time], context),
                     ),
                   ],
                 ),
@@ -66,7 +66,7 @@ import 'package:trim_spot_barber_side/widgets/bookings_widgets/texts.dart';
                     SizedBox(width: mediaqueryWidth(0.02, context)),
                     Container(
                       width: mediaqueryWidth(0.49, context),
-                      child: valueOfPendings(booking[BookingsDocumentModel.services], context),
+                      child: valueOfPendings(booking[BookingsShopSideDocumentModel.services], context),
                     ),
                   ],
                 ),

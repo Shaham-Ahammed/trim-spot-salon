@@ -46,7 +46,7 @@ class CompletedBookingsScreen extends StatelessWidget {
                           .doc(DateFormat("dd-MM-yyyy").format(DateTime.now()))
                           .collection(
                               FirebaseNamesShopSide.bookingDetailsCollection)
-                          .orderBy(BookingsDocumentModel.timeStamp)
+                          .orderBy(BookingsShopSideDocumentModel.timeStamp)
                           .snapshots(),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==

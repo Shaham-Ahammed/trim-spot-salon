@@ -34,6 +34,7 @@ class UserDocumentModel {
   static const String email = "email";
   static const String phone = "phone";
   static const String password = "password";
+  static const String bookmarkedShops = "bookmarkedShops";
 }
 
 class ReviewDocumentModel {
@@ -41,13 +42,43 @@ class ReviewDocumentModel {
   static const String userNmae = "userName";
   static const String ratings = "ratings";
   static const String review = "review";
-    static const String timeStamp = "timeStamp";
+  static const String timeStamp = "timeStamp";
+  static const String ratingTime = "ratingTime";
+  static const String serviceDoneOn = "serviceDoneOn";
+  static const String timeSlotWasOn = "timeSlot";
 }
 
-class BookingsDocumentModel {
+class BookingsShopSideDocumentModel {
+  static const String userDocId = "userId";
   static const String time = "time";
   static const String name = "name";
   static const String services = "services";
-  static const String timeStamp = "timeStamp";
   static const String totalAmount = "totalAmount";
+  static const String timeStamp = "timeStamp";
+}
+
+class BookingHisotryUserDocumentModel {
+  static const String shopId = "shopId";
+  static const String currentStatus = "currentStatus";
+  static const String date = "date";
+  static const String service = "service";
+  static const String shopLocation = "shopLocation";
+  static const String shopName = "shopName";
+  static const String timeStamp = "timeStamp";
+  static const String time = "time";
+  static const String currentStatusPending = "PENDING";
+  static const String currentStatusCompleted = "COMPLETED";
+  static const String currentStatusCancelled = "CANCELLED";
+  static const String totalAmount = "amount";
+}
+
+class WalletUserDocumentModel {
+  static const String shopName = "shopName";
+  static const String amount = "amount";
+  static const String transferDate = "transferDate";
+  static const String action = "action";
+  static const String credit = 'credit';
+  static const String booking = "BOOKING";
+  static const String refund = "REFUND";
+  static const String timeStamp = "timeStamp";
 }

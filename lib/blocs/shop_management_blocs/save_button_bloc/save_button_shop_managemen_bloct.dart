@@ -54,9 +54,14 @@ class ShopManagementSaveButtonBloc
               .occasionalHolidays;
       if (firebaseOccasionalHolidays != currentOccasionalClosures &&
           currentOccasionalClosures.isNotEmpty) {
+
+        await HandlingOccasionalClosures()
+            .changingThePendingToCancelledInUserSide(
+                event.context, currentOccasionalClosures);
+
         await HandlingOccasionalClosures().removingAllBookedSlotsFromSlotList(
             event.context, currentOccasionalClosures);
-            
+
         await HandlingOccasionalClosures()
             .deleteAllPendingsFromShopSideOnThatDay(
                 event.context, currentOccasionalClosures);

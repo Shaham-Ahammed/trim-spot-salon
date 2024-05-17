@@ -62,7 +62,7 @@ class EarningsPageView extends StatelessWidget {
                     if (snapshot.data!.docs.isNotEmpty) {
                       for (var docs in snapshot.data!.docs) {
                         int i =
-                            int.parse(docs[BookingsDocumentModel.totalAmount]);
+                            int.parse(docs[BookingsShopSideDocumentModel.totalAmount]);
                         total += i;
                       }
                     }
