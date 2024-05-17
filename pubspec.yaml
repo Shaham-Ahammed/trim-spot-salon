@@ -92,24 +92,14 @@ flutter:
     - assets/images/introduction2-1.jpg
     - assets/images/profile upload.png
     - assets/images/splash barber.jpg
-    - assets/images/spalsh user blur.jpg
-    - assets/images/spalsh user.jpg
     - assets/images/splash barber.jpg
     - assets/images/intoduction1-2.jpeg
-    - assets/icons/mdi--google.svg
     - assets/images/splash barber blur.jpg
     - assets/icons/menu_icon.svg
     - assets/images/registration success.png
     - assets/images/registraion denied.png
-    - assets/animations/email_sended.json
-    - assets/images/icons8-person-48.png
     - assets/images/no review.png
-    - assets/images/no internet 1.png
-    - assets/images/no internet 2.png
-    - assets/images/no internet 3.png
     - assets/images/no internet 4.png
-    - assets/images/no internet 5.png
-    - assets/animations/shop_closed.json
     - assets/animations/shop_closed 1.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
