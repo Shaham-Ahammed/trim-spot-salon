@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trim_spot_barber_side/blocs/shop_management_blocs/save_button_bloc/save_button_shop_managemen_bloct.dart';
-import 'package:trim_spot_barber_side/utils/error_snackbars.dart';
+import 'package:trim_spot_barber_side/utils/snackbar.dart';
 import 'package:trim_spot_barber_side/utils/loading_indicator.dart';
 import 'package:trim_spot_barber_side/utils/network_error_snackbar.dart';
 
@@ -9,6 +9,11 @@ class ShopManagementStateHandler {
       BuildContext context, ShopManagementSaveButtonState state) {
     if (state is ShopMangaementLoadingIndicator) {
       loadingIndicator(context);
+    }
+
+    if (state is UpdationSuccessfull) {
+      Navigator.pop(context); 
+     ScaffoldMessenger.of(context).showSnackBar( successSnackBar("UPDATION SUCCESSFULL!"));
     }
     if (state is ErrorInUpdation) {
       ScaffoldMessenger.of(context)

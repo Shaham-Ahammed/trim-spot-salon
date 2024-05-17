@@ -33,8 +33,12 @@ class HandlingOccasionalClosures {
           .doc(element)
           .collection(FirebaseNamesShopSide.bookingDetailsCollection)
           .get();
+
+      print(dailyBookingData.docs.length);
       final documentsOfPending = dailyBookingData.docs;
+
       for (var doc in documentsOfPending) {
+        print("shaham ${doc.id}");
         final customerUserId = doc[BookingsShopSideDocumentModel.userDocId];
         final serviceTime = doc[BookingsShopSideDocumentModel.time];
         final shopId = BlocProvider.of<UserDetailsBloc>(context, listen: false)
@@ -89,15 +93,31 @@ class HandlingOccasionalClosures {
     await walletReference.add(data);
   }
 
-
   deleteAllPendingsFromShopSideOnThatDay(
       context, List<String> currentOccasionalClosures) async {
     final CollectionReference dailyBookingCollectionReference =
         CollectionReferences()
             .shopDetailsReference()
-            .doc(BlocProvider.of<UserDetailsBloc>(context).state.shopId)
+            .doc(BlocProvider.of<UserDetailsBloc>(context, listen: false)
+                .state
+                .shopId)
             .collection(FirebaseNamesShopSide.dailyBookingsCollection);
 
+    currentOccasionalClosures.forEach((element) async {
+      final docsRefOfSpecificDate = await dailyBookingCollectionReference
+          .doc(element)
+          .collection(FirebaseNamesShopSide.bookingDetailsCollection)
+          .get();
+      final docsNeedToBeDeleted = docsRefOfSpecificDate.docs;
+      for (var document in docsNeedToBeDeleted) {
+        final DocumentReference docRef = dailyBookingCollectionReference
+            .doc(element)
+            .collection(FirebaseNamesShopSide.bookingDetailsCollection)
+            .doc(document.id);
+
+        await docRef.delete();
+      }
+    });
     final QuerySnapshot<Object?> docsInCollection =
         await dailyBookingCollectionReference.get();
     for (var docs in docsInCollection.docs) {

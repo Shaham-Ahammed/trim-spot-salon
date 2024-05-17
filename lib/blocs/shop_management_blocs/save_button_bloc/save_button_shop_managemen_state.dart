@@ -15,3 +15,5 @@ final class ErrorInUpdation extends ShopManagementSaveButtonState {
 }
 
 final class NetworkError extends ShopManagementSaveButtonState{}
+
+final class UpdationSuccessfull extends ShopManagementSaveButtonState{}

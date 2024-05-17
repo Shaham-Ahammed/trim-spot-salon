@@ -5,8 +5,7 @@ import 'package:trim_spot_barber_side/blocs/shop_management_blocs/save_button_bl
 class ShapManagementProvider {
   List<BlocProvider> getBlocProviders() {
     return [
- BlocProvider<ShopManagementSaveButtonBloc>(
-          create: (context) => ShopManagementSaveButtonBloc()),
+ 
       BlocProvider<OccasionalClosureBloc>(
           create: (context) => OccasionalClosureBloc()),
     

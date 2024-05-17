@@ -6,7 +6,7 @@ import 'package:trim_spot_barber_side/blocs/bottom_navigation_bloc/bottom_naviga
 import 'package:trim_spot_barber_side/blocs/login_button_bloc/login_validation_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_barber_side/utils/login_page/login_screen_constants.dart';
-import 'package:trim_spot_barber_side/utils/error_snackbars.dart';
+import 'package:trim_spot_barber_side/utils/snackbar.dart';
 import 'package:trim_spot_barber_side/utils/loading_indicator.dart';
 import 'package:trim_spot_barber_side/utils/network_error_snackbar.dart';
 import 'package:trim_spot_barber_side/utils/splash_screen/screen_decision.dart';

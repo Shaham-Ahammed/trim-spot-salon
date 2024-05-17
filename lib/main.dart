@@ -14,9 +14,10 @@ import 'package:trim_spot_barber_side/blocs/registration_blocs/location_bloc/loc
 import 'package:trim_spot_barber_side/blocs/registration_blocs/register_button_bloc/register_button_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/registration_blocs/service_bloc/service_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/registration_blocs/working_hours/working_hours_bloc.dart';
-import 'package:trim_spot_barber_side/blocs/shop_management_blocs/holiday_bloc/holiday_bloc_bloc.dart';
+import 'package:trim_spot_barber_side/blocs/shop_management_blocs/save_button_bloc/save_button_shop_managemen_bloct.dart';
+
 import 'package:trim_spot_barber_side/blocs/shop_management_blocs/service_bloc/service_bloc.dart';
-import 'package:trim_spot_barber_side/blocs/shop_management_blocs/working_hours/working_hours_bloc.dart';
+
 import 'package:trim_spot_barber_side/blocs/slot_selection_bloc/slot_selection_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/user_details_bloc/user_details_bloc.dart';
 import 'package:trim_spot_barber_side/firebase_options.dart';
@@ -38,8 +39,8 @@ void main(List<String> args) async {
           create: (context) => ProfileShopImageBloc()),
        BlocProvider<SlotSelectionBloc>(
             create: (context) => SlotSelectionBloc()),
-      BlocProvider(create: (context) => ShopManagementHolidayBloc()),
-      BlocProvider(create: (context) => ShopManagementWorkingHoursBloc()),
+BlocProvider<ShopManagementSaveButtonBloc>(
+          create: (context) => ShopManagementSaveButtonBloc()),
       BlocProvider(create: (context) => ProfilePasswordBloc()),
       BlocProvider(create: (context) => UserDetailsBloc()),
       BlocProvider(create: (context) => HolidayBloc()),

@@ -4,6 +4,7 @@ import 'package:trim_spot_barber_side/blocs/shop_management_blocs/save_button_bl
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 import 'package:trim_spot_barber_side/utils/submit_buttons.dart';
+import 'package:trim_spot_barber_side/widgets/shop_management_widgets/confirm_changes_alert.dart';
 
 class SaveChangesButton extends StatelessWidget {
   const SaveChangesButton({
@@ -14,13 +15,11 @@ class SaveChangesButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: submitButtonCyan(context, text: "save changes", function: () {
-          
-      context
-          .read<ShopManagementSaveButtonBloc>()
-          .add(SaveChangesButtonPressed(context: context));
+      saveChangesAlert(context);
+
       return null;
     },
-    inkwellColor: cyanColor,
+            inkwellColor: cyanColor,
             heigh: mediaqueryHeight(0.042, context),
             width: mediaqueryWidth(0.36, context),
             fontSize: mediaqueryHeight(0.02, context)));

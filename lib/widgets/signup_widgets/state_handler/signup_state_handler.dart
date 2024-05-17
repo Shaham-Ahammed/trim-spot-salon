@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trim_spot_barber_side/blocs/registration_blocs/register_button_bloc/register_button_bloc.dart';
-import 'package:trim_spot_barber_side/utils/error_snackbars.dart';
+import 'package:trim_spot_barber_side/utils/snackbar.dart';
 import 'package:trim_spot_barber_side/utils/loading_indicator.dart';
 import 'package:trim_spot_barber_side/utils/network_error_snackbar.dart';
 import 'package:trim_spot_barber_side/utils/registration_page/textediting_controllers.dart';

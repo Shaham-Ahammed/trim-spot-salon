@@ -8,10 +8,9 @@ import 'package:trim_spot_barber_side/utils/no_network_display_widget.dart';
 import 'package:trim_spot_barber_side/widgets/profile_widgets/shop_image_caption.dart';
 import 'package:trim_spot_barber_side/widgets/profile_widgets/shop_image_display.dart';
 import 'package:trim_spot_barber_side/widgets/shop_management_widgets/appbar.dart';
-import 'package:trim_spot_barber_side/widgets/shop_management_widgets/closing_time.dart';
-import 'package:trim_spot_barber_side/widgets/shop_management_widgets/holiday_selector.dart';
+
 import 'package:trim_spot_barber_side/widgets/shop_management_widgets/occasional_closure.dart';
-import 'package:trim_spot_barber_side/widgets/shop_management_widgets/opening_time.dart';
+
 import 'package:trim_spot_barber_side/widgets/shop_management_widgets/providers/providers.dart';
 import 'package:trim_spot_barber_side/widgets/shop_management_widgets/save_changes_button.dart';
 import 'package:trim_spot_barber_side/widgets/shop_management_widgets/service_error.dart';
@@ -77,18 +76,9 @@ class ShopManagementScreen extends StatelessWidget {
                         SizedBox(
                           height: mediaqueryHeight(0.02, context),
                         ),
-                        shopManagementHeadings(context, "Opening Time"),
-                        OpeningTimeSelector(),
-                        SizedBox(
-                          height: mediaqueryHeight(0.02, context),
-                        ),
-                        shopManagementHeadings(context, "Closing Time"),
-                        ClosingTimeSelector(),
-                        SizedBox(
-                          height: mediaqueryHeight(0.02, context),
-                        ),
-                        shopManagementHeadings(context, "Holidays"),
-                        HolidaySelector(),
+                      
+                      
+                      
                         shopManagementHeadings(context, "Occasional Closures"),
                         OccasionalClosuresSelector(),
                         SizedBox(

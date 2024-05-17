@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/profile_blocs/shop_image/profile_shop_image_bloc.dart';
-import 'package:trim_spot_barber_side/blocs/shop_management_blocs/holiday_bloc/holiday_bloc_bloc.dart';
+
 import 'package:trim_spot_barber_side/blocs/shop_management_blocs/occasional_closure_bloc/occasional_closure_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/shop_management_blocs/service_bloc/service_bloc.dart';
-import 'package:trim_spot_barber_side/blocs/shop_management_blocs/working_hours/working_hours_bloc.dart';
+
 import 'package:trim_spot_barber_side/data/data_provider/save_button_shop_management_functions.dart';
 import 'package:trim_spot_barber_side/data/data_provider/user_data_document.dart';
 import 'package:trim_spot_barber_side/data/firebase_references/shop_collection_reference.dart';
@@ -54,7 +54,6 @@ class ShopManagementSaveButtonBloc
               .occasionalHolidays;
       if (firebaseOccasionalHolidays != currentOccasionalClosures &&
           currentOccasionalClosures.isNotEmpty) {
-
         await HandlingOccasionalClosures()
             .changingThePendingToCancelledInUserSide(
                 event.context, currentOccasionalClosures);
@@ -106,29 +105,12 @@ class ShopManagementSaveButtonBloc
                       listen: false)
                   .state
                   .occasionalHolidays,
-              parsedOpeningTime:
-                  BlocProvider.of<ShopManagementWorkingHoursBloc>(event.context,
-                          listen: false)
-                      .state
-                      .openTimeDisplayText,
-              parsedClosingTime:
-                  BlocProvider.of<ShopManagementWorkingHoursBloc>(event.context,
-                          listen: false)
-                      .state
-                      .closingTimeDisplayText,
-              holidays: BlocProvider.of<ShopManagementHolidayBloc>(
-                      event.context,
-                      listen: false)
-                  .state
-                  .holidays,
               servicesList: servicesListArray(event.context))
           .toMap();
 
       emit(ShopManagementSaveButtonStateInitial());
       try {
         await collectionreference.doc(data.id).update(newUpdates);
-        Navigator.pop(event.context);
-        emit(ShopManagementSaveButtonStateInitial());
       } catch (e) {
         Navigator.pop(event.context);
         emit(ErrorInUpdation("error while updating. please try again"));
@@ -138,6 +120,7 @@ class ShopManagementSaveButtonBloc
       emit(ErrorInUpdation("some service details are not provided"));
       return;
     }
+    emit(UpdationSuccessfull());
   }
 }
 
