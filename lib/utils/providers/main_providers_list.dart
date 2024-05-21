@@ -28,13 +28,13 @@ List<BlocProvider> mainProviders = [
   BlocProvider<SlotSelectionBloc>(create: (context) => SlotSelectionBloc()),
   BlocProvider<ShopManagementSaveButtonBloc>(
       create: (context) => ShopManagementSaveButtonBloc()),
-  BlocProvider(create: (context) => ProfilePasswordBloc()),
-  BlocProvider(create: (context) => UserDetailsBloc()),
-  BlocProvider(create: (context) => HolidayBloc()),
+  BlocProvider<ProfilePasswordBloc>(create: (context) => ProfilePasswordBloc()),
+  BlocProvider<UserDetailsBloc>(create: (context) => UserDetailsBloc()),
+  BlocProvider<HolidayBloc>(create: (context) => HolidayBloc()),
   BlocProvider<ServiceBloc>(create: (context) => ServiceBloc()),
   BlocProvider<WorkingHoursBloc>(create: (context) => WorkingHoursBloc()),
   BlocProvider<ImageBloc>(create: (context) => ImageBloc()),
-  BlocProvider(create: (context) => RegisterButtonBloc()),
+  BlocProvider<RegisterButtonBloc>(create: (context) => RegisterButtonBloc()),
   BlocProvider<ProfileEmailBloc>(create: (context) => ProfileEmailBloc()),
   BlocProvider<ProfileUserImageBloc>(
       create: (context) => ProfileUserImageBloc()),

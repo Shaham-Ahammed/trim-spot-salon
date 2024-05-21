@@ -15,6 +15,7 @@ class UserNameDisaply extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
+      
       child: myFont(context.watch<UserDetailsBloc>().state.userName,
           fontFamily: bebasNeue,
           fontSize: mediaqueryHeight(0.028, context),

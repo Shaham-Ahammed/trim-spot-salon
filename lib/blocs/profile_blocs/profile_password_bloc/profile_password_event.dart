@@ -8,3 +8,5 @@ final class PressedSubmitButtonPressed extends ProfilePasswordEvent {
 
   PressedSubmitButtonPressed({required this.context});
 }
+
+final class PressedEyeIconOnPassword extends ProfilePasswordEvent {}
