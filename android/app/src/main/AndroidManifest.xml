@@ -5,9 +5,9 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     
     <application
-        android:label="trim_spot_barber_side"
+        android:label="TrimSpot Suite"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/app_icon_salon">
         <activity
             android:name=".MainActivity"
             android:exported="true"

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:trim_spot_barber_side/blocs/shop_management_blocs/occasional_closure_bloc/occasional_closure_bloc.dart';
-
 import 'package:trim_spot_barber_side/data/data_provider/save_button_shop_management_functions.dart';
 import 'package:trim_spot_barber_side/data/data_provider/shop_management.dart';
 import 'package:trim_spot_barber_side/data/data_provider/user_data_document.dart';
