@@ -31,7 +31,7 @@ class ShopLicensePicker extends StatelessWidget {
             ),
             myFont("Shop License",
                 fontFamily: balooChettan,
-                fontSize: 13,
+                fontSize: mediaqueryHeight(0.019, context),
                 fontWeight: FontWeight.w600,
                 fontColor: greyColor2),
             SizedBox(
@@ -63,7 +63,7 @@ class ShopLicensePicker extends StatelessWidget {
                           return Icon(
                             Icons.document_scanner_outlined,
                             color: greyColor,
-                            size: 30,
+                             size: mediaqueryHeight(0.04, context),
                           );
                         }))),
                   ),

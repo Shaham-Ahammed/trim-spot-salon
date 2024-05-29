@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/registration_blocs/service_bloc/service_bloc.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/font.dart';
+import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 import 'package:trim_spot_barber_side/utils/registration_page/textediting_controllers.dart';
 import 'package:trim_spot_barber_side/widgets/signup_widgets/service.dart';
 
@@ -23,35 +24,35 @@ Container servicePicker() {
               children: [
                 myFont("This can be modified later after registeration",
                     fontFamily: balooChettan,
-                    fontSize: 13,
+                    fontSize: mediaqueryHeight(0.015, context),
                     fontWeight: FontWeight.normal,
                     fontColor: greyColor,
                     textalign: TextAlign.start),
                 const SizedBox(
                   height: 3,
                 ),
-                registerServices(context, "HAIRCUT",
-                    state.switches["haircut"]!, "haircut",
+                registerServices(
+                    context, "HAIRCUT", state.switches["haircut"]!, "haircut",
                     serviceRateController: haircutRateController,
                     serviceTimeController: haircutTimeController),
-                registerServices(context, "FACIAL",
-                    state.switches["facial"]!, "facial",
+                registerServices(
+                    context, "FACIAL", state.switches["facial"]!, "facial",
                     serviceRateController: facialRateController,
                     serviceTimeController: facialTimeController),
                 registerServices(context, "STRAIGHTEN",
                     state.switches["straighten"]!, "straighten",
                     serviceRateController: straightenRateController,
                     serviceTimeController: straightenTimeController),
-                registerServices(context, "MASSAGE",
-                    state.switches["massage"]!, "massage",
+                registerServices(
+                    context, "MASSAGE", state.switches["massage"]!, "massage",
                     serviceRateController: massageRateController,
                     serviceTimeController: massageTimeController),
                 registerServices(context, "BEARD TRIM",
                     state.switches["beard trim"]!, "beard trim",
                     serviceRateController: beardTrimRateController,
                     serviceTimeController: beardTrimTimeController),
-                registerServices(context, "SHAVE",
-                    state.switches["shave"]!, "shave",
+                registerServices(
+                    context, "SHAVE", state.switches["shave"]!, "shave",
                     serviceRateController: shaveRateController,
                     serviceTimeController: shaveTimeController)
               ],

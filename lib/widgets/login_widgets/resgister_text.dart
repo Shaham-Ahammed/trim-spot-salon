@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:trim_spot_barber_side/screens/signup.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/font.dart';
+import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 import 'package:trim_spot_barber_side/utils/page_transitions/fade_transition.dart';
 
 class RegisterNowText extends StatelessWidget {
@@ -16,17 +17,17 @@ class RegisterNowText extends StatelessWidget {
       children: [
         myFont("Don't have an account ? ",
             fontFamily: balooChettan,
-            fontSize: 16,
+            fontSize: mediaqueryHeight(0.0205, context),
             fontWeight: FontWeight.w500,
             fontColor: whiteColor),
         GestureDetector(
           onTap: () {
             Navigator.of(context)
-                .push(FadeTransitionPageRoute(child: SignUpScreen()));
+                .push(FadeTransitionPageRoute(child: const SignUpScreen()));
           },
           child: myFont("Register Now",
               fontFamily: balooChettan,
-              fontSize: 16,
+              fontSize: mediaqueryHeight(0.021, context),
               fontWeight: FontWeight.w600,
               fontColor: cyanColor),
         )

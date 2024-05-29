@@ -18,7 +18,7 @@ class ClosingTimePicker extends StatelessWidget {
       children: [
         myFont("closing time",
             fontFamily: b612,
-            fontSize: 14,
+          fontSize: mediaqueryHeight(0.018, context),
             fontWeight: FontWeight.normal,
             fontColor: Colors.grey),
         SizedBox(
@@ -66,13 +66,13 @@ class ClosingTimePicker extends StatelessWidget {
                             state.closingTime != null) {
                           return myFont(state.closingTimeDisplayText,
                               fontFamily: balooChettan,
-                              fontSize: 18,
+                            fontSize: mediaqueryHeight(0.0215, context),
                               fontWeight: FontWeight.w600,
                               fontColor: greyColor2);
                         }
                         return myFont("Closing Time",
                             fontFamily: balooChettan,
-                            fontSize: 16,
+                           fontSize: mediaqueryHeight(0.02, context),
                             fontWeight: FontWeight.normal,
                             fontColor: greyColor2);
                       },
@@ -80,6 +80,7 @@ class ClosingTimePicker extends StatelessWidget {
                     Icon(
                       Icons.schedule,
                       color: Colors.red.shade600,
+                        size: mediaqueryHeight(0.031, context),
                     )
                   ],
                 ),

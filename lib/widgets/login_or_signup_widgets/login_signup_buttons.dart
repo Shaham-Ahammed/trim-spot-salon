@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:trim_spot_barber_side/utils/font.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 
-
 loginPageButtons(
     {required context,
     required double left,
@@ -30,7 +29,7 @@ loginPageButtons(
           child: Center(
             child: myFont(text,
                 fontFamily: cabinCondensed,
-                fontSize: 20,
+                fontSize: mediaqueryHeight(0.025, context),
                 fontWeight: FontWeight.bold,
                 textalign: TextAlign.center,
                 fontColor: textColor),

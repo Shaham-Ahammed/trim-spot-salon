@@ -31,7 +31,7 @@ class ProfilePicker extends StatelessWidget {
             ),
             myFont("Profile",
                 fontFamily: balooChettan,
-                fontSize: 13,
+                fontSize: mediaqueryHeight(0.019, context),
                 fontWeight: FontWeight.w600,
                 fontColor: greyColor2),
             SizedBox(
@@ -65,7 +65,7 @@ class ProfilePicker extends StatelessWidget {
                             return Icon(
                               Icons.person_outline,
                               color: greyColor,
-                              size: 30,
+                              size: mediaqueryHeight(0.04, context),
                             );
                           }),
                         )),

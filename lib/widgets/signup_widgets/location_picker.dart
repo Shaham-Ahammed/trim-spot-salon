@@ -23,7 +23,7 @@ class _LocationPickerState extends State<LocationPicker> {
       listener: (context, state) {
         if (state is NavigateToMap) {
           Navigator.of(context)
-              .push(NoTransitionPageRoute(child: GoogleMapScreen( )));
+              .push(NoTransitionPageRoute(child: GoogleMapScreen()));
         }
       },
       builder: (context, state) {
@@ -51,7 +51,7 @@ class _LocationPickerState extends State<LocationPicker> {
                     if (state.address.isEmpty)
                       myFont("Shop Location",
                           fontFamily: balooChettan,
-                          fontSize: 18,
+                          fontSize: mediaqueryHeight(0.023, context),
                           fontWeight: FontWeight.w600,
                           fontColor: Colors.black54),
                     if (state.address.isNotEmpty)
@@ -59,12 +59,13 @@ class _LocationPickerState extends State<LocationPicker> {
                           child: Container(
                         child: myFont(state.address,
                             fontFamily: balooChettan,
-                            fontSize: 18,
+                            fontSize: mediaqueryHeight(0.023, context),
                             fontWeight: FontWeight.w600,
                             fontColor: Colors.black54),
                       )),
                     Icon(
                       Icons.location_pin,
+                      size: mediaqueryHeight(0.0312, context),
                       color: Colors.red.shade800,
                     )
                   ],

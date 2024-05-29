@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/registration_blocs/image_bloc/image_bloc.dart';
@@ -27,12 +26,15 @@ class ShopImagePicker extends StatelessWidget {
           const SizedBox(
             height: 3,
           ),
-          myFont(
-              "This image will be seen by clients as a reference to your shop",
-              fontFamily: balooChettan,
-              fontSize: 12,
-              fontWeight: FontWeight.normal,
-              fontColor: greyColor2),
+          Text(
+            "This image will be seen by clients as a reference to your shop",
+            textAlign: TextAlign.start,
+            style: TextStyle(
+                fontFamily: balooChettan,
+                fontSize: mediaqueryHeight(0.015, context),
+                fontWeight: FontWeight.normal,
+                color: greyColor2),
+          ),
           const SizedBox(
             height: 7,
           ),
@@ -53,14 +55,14 @@ class ShopImagePicker extends StatelessWidget {
                               width: double.maxFinite,
                               height: double.maxFinite,
                               child: Image.memory(
-                              state.ShopImageInBytes!,
+                                state.ShopImageInBytes!,
                                 fit: BoxFit.cover,
                               ),
                             );
                           }
                           return Icon(
                             Icons.store,
-                            size: 35,
+                            size: mediaqueryHeight(0.045, context),
                             color: greyColor,
                           );
                         },

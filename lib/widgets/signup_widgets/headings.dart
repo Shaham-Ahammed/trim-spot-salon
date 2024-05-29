@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/font.dart';
+import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 
 
 class ProofsHeading extends StatelessWidget {
@@ -14,7 +15,7 @@ class ProofsHeading extends StatelessWidget {
       alignment: Alignment.centerLeft,
       child: myFont("Proofs",
           fontFamily: balooChettan,
-          fontSize: 18,
+          fontSize: mediaqueryHeight(0.023, context),
           fontWeight: FontWeight.w600,
           fontColor: greyColor2),
     );
@@ -32,7 +33,7 @@ class ShopImageHeading extends StatelessWidget {
       alignment: Alignment.centerLeft,
       child: myFont("Shop Image",
           fontFamily: balooChettan,
-          fontSize: 18,
+          fontSize: mediaqueryHeight(0.023, context),
           fontWeight: FontWeight.w600,
           fontColor: greyColor2),
     );
@@ -81,7 +82,7 @@ class RegisterHeadings extends StatelessWidget {
       alignment: Alignment.centerLeft,
       child: myFont(heading,
           fontFamily: balooChettan,
-          fontSize: 18,
+          fontSize:mediaqueryHeight(0.023, context),
           fontWeight: FontWeight.w600,
           fontColor: greyColor2),
     );

@@ -32,7 +32,7 @@ class RegisterButton extends StatelessWidget {
             child: Center(
               child: myFont("Register",
                   fontFamily: balooChettan,
-                  fontSize: 20,
+                  fontSize: mediaqueryHeight(0.025, context),
                   fontWeight: FontWeight.w600,
                   fontColor: blackColor),
             ),

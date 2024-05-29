@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -6,7 +5,6 @@ import 'package:trim_spot_barber_side/blocs/on_boarding_bloc/onboardind_bloc_blo
 import 'package:trim_spot_barber_side/models/introduction_lists.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
-
 
 class SmoothPageIndincatorAndNextButton extends StatelessWidget {
   const SmoothPageIndincatorAndNextButton({
@@ -32,7 +30,11 @@ class SmoothPageIndincatorAndNextButton extends StatelessWidget {
           SmoothPageIndicator(
             controller: pageController,
             count: controller.items.length,
-            effect: const ExpandingDotsEffect(activeDotColor: cyanColor),
+            effect: ExpandingDotsEffect(
+                radius: mediaqueryHeight(0.02, context),
+                dotWidth: mediaqueryHeight(0.02, context),
+                dotHeight: mediaqueryHeight(0.02, context),
+                activeDotColor: cyanColor),
           ),
           SizedBox(width: mediaqueryWidth(0.33, context)),
           InkWell(
@@ -46,7 +48,7 @@ class SmoothPageIndincatorAndNextButton extends StatelessWidget {
               height: mediaqueryWidth(0.15, context),
               decoration: BoxDecoration(
                   color: cyanColor, borderRadius: BorderRadius.circular(12)),
-              child: const Icon(Icons.arrow_forward_ios_rounded),
+              child:  Icon(Icons.arrow_forward_ios_rounded,size: mediaqueryHeight(0.036, context),),
             ),
           )
         ],

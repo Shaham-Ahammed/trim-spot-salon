@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/font.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
@@ -19,7 +20,8 @@ class ServiceRateTextFormField extends StatelessWidget {
       child: SizedBox(
         height: mediaqueryHeight(0.033, context),
         child: TextFormField(
-            autovalidateMode: AutovalidateMode.onUserInteraction,
+          style: TextStyle(fontSize: mediaqueryHeight(0.023, context)),
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: enabled
               ? (value) {
                   if (value!.isEmpty) {
@@ -29,26 +31,29 @@ class ServiceRateTextFormField extends StatelessWidget {
                   }
                 }
               : (value) => null,
-        
           controller: rateController,
           cursorColor: cyanColor,
+          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           keyboardType: TextInputType.number,
           maxLength: 4,
+          cursorHeight: mediaqueryHeight(0.03, context),
           textAlign: TextAlign.center,
           decoration: InputDecoration(
               focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: cyanColor)),
-                     focusedErrorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: redErrorColor,width: 1)),
+              focusedErrorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: redErrorColor, width: 1)),
               errorStyle:
                   TextStyle(fontSize: mediaqueryHeight(0.0000000001, context)),
               errorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color:enabled? redErrorColor:greyColor,width: 1.5)),
+                  borderSide: BorderSide(
+                      color: enabled ? redErrorColor : greyColor, width: 1.5)),
               counterText: "",
               hintStyle: TextStyle(
-                  fontFamily: balooChettan,
-                  color: enabled ? blackColor : greyColor,
-                  fontSize: 14),
+                fontFamily: balooChettan,
+                color: enabled ? blackColor : greyColor,
+                fontSize: mediaqueryHeight(0.018, context),
+              ),
               border: const OutlineInputBorder(),
               filled: true,
               fillColor: enabled ? whiteColor : greyColor3,

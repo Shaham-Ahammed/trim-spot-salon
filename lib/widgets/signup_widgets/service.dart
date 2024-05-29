@@ -26,7 +26,7 @@ Column registerServices(
                 fontColor: greyColor),
           ),
           Transform.scale(
-            scale: 0.7,
+            scale: mediaqueryHeight(0.001, context),
             child: Switch(
               activeTrackColor: cyanColor,
               value: state,

@@ -49,7 +49,7 @@ class HolidayPicker extends StatelessWidget {
                       child: myFont(
                         weekDays[index],
                         fontFamily: balooChettan,
-                        fontSize: 18,
+                         fontSize: mediaqueryHeight(0.0215, context),
                         fontWeight: FontWeight.w600,
                         fontColor: state.holidays.contains(weekDays[index])
                             ? blackColor

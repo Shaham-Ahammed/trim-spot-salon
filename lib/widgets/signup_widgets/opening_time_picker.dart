@@ -6,7 +6,6 @@ import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/font.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 
-
 class OpeningTimePicker extends StatelessWidget {
   const OpeningTimePicker({
     super.key,
@@ -17,8 +16,14 @@ class OpeningTimePicker extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-         myFont("opening time", fontFamily: b612, fontSize: 14, fontWeight: FontWeight.normal, fontColor: Colors.grey),
-        SizedBox(height: 4,),
+        myFont("opening time",
+            fontFamily: b612,
+            fontSize: mediaqueryHeight(0.018, context),
+            fontWeight: FontWeight.normal,
+            fontColor: Colors.grey),
+        SizedBox(
+          height: 4,
+        ),
         Material(
           borderRadius: BorderRadius.circular(8),
           color: Colors.blueGrey.shade900,
@@ -61,20 +66,24 @@ class OpeningTimePicker extends StatelessWidget {
                             state.openingTime != null) {
                           return myFont(state.openTimeDisplayText,
                               fontFamily: balooChettan,
-                              fontSize: 18,
+                              fontSize: mediaqueryHeight(0.0215, context),
                               fontWeight: FontWeight.normal,
                               fontColor: greyColor2);
                         }
                         return myFont("Opening Time",
                             fontFamily: balooChettan,
-                            fontSize: 16,
+                            fontSize: mediaqueryHeight(0.02, context),
                             fontWeight: FontWeight.normal,
                             fontColor: greyColor2);
                       },
                     ),
                     Transform.flip(
                       flipX: true,
-                      child: Icon(Icons.schedule, color: Colors.blue.shade400),
+                      child: Icon(
+                        Icons.schedule,
+                        color: Colors.blue.shade400,
+                        size: mediaqueryHeight(0.031, context),
+                      ),
                     )
                   ],
                 ),
