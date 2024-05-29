@@ -14,11 +14,21 @@ class SlotSelectionBloc extends Bloc<SlotSelectionEvent, SlotSelectionState> {
   }
 
   _selectedSlot(SelectedSlot event, Emitter<SlotSelectionState> emit) async {
-    final currentlySelectedSlots = await SlotSelectionFunctions()
-        .selectedSlots(selectedSlots: state.selectedSlots, time: event.time);
-
-    emit(SlotSelectionInitial(
-        selectedSlots: currentlySelectedSlots, totalSlots: state.totalSlots));
+    final toAdd = await SlotSelectionFunctions()
+        .selectedSlots(selectedSlotsFromBloc: state.selectedSlots, time: event.time);
+    if (toAdd != null) {
+      if (toAdd) {
+        final alreadySelected = state.selectedSlots;
+        alreadySelected.add(event.time);
+        emit(SlotSelectionInitial(
+            selectedSlots: alreadySelected, totalSlots: state.totalSlots));
+      } else if (!toAdd) {
+        final alreadySelected = state.selectedSlots;
+        alreadySelected.remove(event.time);
+        emit(SlotSelectionInitial(
+            selectedSlots: alreadySelected, totalSlots: state.totalSlots));
+      }
+    }
   }
 
   _fetchingOpneingAndClosingTime(

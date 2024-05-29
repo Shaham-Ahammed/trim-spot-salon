@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/slot_selection_bloc/slot_selection_bloc.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 
-
 Color contianerColor(String time, context, list) {
   final blocSelectedList =
       BlocProvider.of<SlotSelectionBloc>(context).state.selectedSlots;
@@ -16,7 +15,7 @@ Color contianerColor(String time, context, list) {
   }
 }
 
-Color textColor(String time, context,list) {
+Color textColor(String time, context, list) {
   final blocSelectedList =
       BlocProvider.of<SlotSelectionBloc>(context).state.selectedSlots;
   if (list.contains(time)) {
@@ -28,10 +27,12 @@ Color textColor(String time, context,list) {
   }
 }
 
-Color borderColor(String time, context,list) {
+Color borderColor(String time, context, list) {
   final blocSelectedList =
       BlocProvider.of<SlotSelectionBloc>(context).state.selectedSlots;
-  if (blocSelectedList.contains(time)) {
+  if (list.contains(time)) {
+    return greyColor;
+  } else if (blocSelectedList.contains(time)) {
     return cyanColor;
   } else {
     return Colors.grey;

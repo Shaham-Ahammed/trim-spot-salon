@@ -5,8 +5,8 @@ import 'package:trim_spot_barber_side/data/repository/document_model.dart';
 import 'package:trim_spot_barber_side/data/repository/firebase_doc_and_collection_names.dart';
 
 class SlotSelectionFunctions {
-  Future<List<String>> selectedSlots(
-      {required String time, required List<String> selectedSlots}) async {
+  Future<bool?> selectedSlots(
+      {required String time, required List<String> selectedSlotsFromBloc}) async {
     final id = await UserDataDocumentFromFirebase().userDocument();
     final gettingBookedSlots = await CollectionReferences()
         .shopDetailsReference()
@@ -17,20 +17,22 @@ class SlotSelectionFunctions {
     String today = DateFormat('dd-MM-yyyy').format(DateTime.now());
     final List<String> selectedSlots =
         (gettingBookedSlots.data()![today] as List<dynamic>).cast<String>();
-    List<String> currentlySelectedSlots = selectedSlots;
+    List<String> currentlySelectedSlots = selectedSlotsFromBloc;
+    print(currentlySelectedSlots);
     if (selectedSlots.contains(time)) {
-      return [];
+      return null;
     } else {
       if (currentlySelectedSlots.contains(time)) {
-        currentlySelectedSlots.remove(time);
+        print("here");
+        return false;
       } else {
-        currentlySelectedSlots.add(time);
+        print("hereeee");
+        return true;
       }
     }
-    return selectedSlots;
   }
 
- Future<List<String>>  fetchingTimeForSlotsPreparation() async {
+  Future<List<String>> fetchingTimeForSlotsPreparation() async {
     final data = await UserDataDocumentFromFirebase().userDocument();
     final String openingTime = data[SalonDocumentModel.parsedOpeningTime];
     final String closingTime = data[SalonDocumentModel.parsedClosingTime];
@@ -49,7 +51,7 @@ class SlotSelectionFunctions {
     return slots;
   }
 
- addingSelectedSlotsAsBookedInToFirebase(List<String> selectedSlots)async{
+  addingSelectedSlotsAsBookedInToFirebase(List<String> selectedSlots) async {
     final id = await UserDataDocumentFromFirebase().userDocument();
     final gettingBookedSlots = CollectionReferences()
         .shopDetailsReference()
@@ -61,5 +63,5 @@ class SlotSelectionFunctions {
     final dbSelectedTimes = dbData.data()![today];
     final newBookings = [...dbSelectedTimes, ...selectedSlots];
     await gettingBookedSlots.update({today: newBookings});
- }
+  }
 }

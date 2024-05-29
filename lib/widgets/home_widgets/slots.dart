@@ -7,7 +7,7 @@ import 'package:trim_spot_barber_side/data/firebase_references/shop_collection_r
 import 'package:trim_spot_barber_side/data/repository/firebase_doc_and_collection_names.dart';
 
 import 'package:trim_spot_barber_side/utils/font.dart';
-import 'package:trim_spot_barber_side/utils/homepage/slo_booking_colors.dart';
+import 'package:trim_spot_barber_side/utils/homepage/slot_booking_colors.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 import 'package:trim_spot_barber_side/widgets/home_widgets/functions/total_slots_fetching.dart.dart';
 import 'package:trim_spot_barber_side/widgets/home_widgets/slots_shimmer_effect.dart';
