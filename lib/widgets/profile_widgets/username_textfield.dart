@@ -29,9 +29,6 @@ class UserNameTextField extends StatelessWidget {
               children: [
                 Expanded(
                     child: TextFormField(
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp(r'^[a-zA-Z\s]*$'))
-                  ],
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: (value) {
                     if (value!.trim().isEmpty) {
@@ -41,12 +38,16 @@ class UserNameTextField extends StatelessWidget {
                     }
                   },
                   style: TextStyle(
+                      fontSize: mediaqueryHeight(0.02, context),
                       color: state.editPressed ? blackColor : whiteColor,
                       fontFamily: b612),
                   decoration: InputDecoration(
                       contentPadding: EdgeInsets.symmetric(
                           vertical: mediaqueryHeight(0.0072, context)),
                       border: InputBorder.none),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'^[a-zA-Z\s]*$'))
+                  ],
                   controller: profileNameController,
                   cursorColor: Colors.blueGrey.shade200,
                   enableInteractiveSelection: false,
@@ -58,7 +59,10 @@ class UserNameTextField extends StatelessWidget {
                           .read<ProfileNameBloc>()
                           .add(NameEditButtonPressed(editPressed: true));
                     },
-                    child: Icon(Icons.edit))
+                    child: Icon(
+                      Icons.edit,
+                      size: mediaqueryHeight(0.032, context),
+                    ))
               ],
             ),
           ),

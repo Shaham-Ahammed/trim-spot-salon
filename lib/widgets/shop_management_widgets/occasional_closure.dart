@@ -70,19 +70,19 @@ class _OccasionalClosuresSelectorState
                           children: [
                             myFont(formattedMonth,
                                 fontFamily: balooChettan,
-                                fontSize: 14,
+                                fontSize: mediaqueryHeight(0.018, context),
                                 fontWeight: FontWeight.normal,
                                 fontColor: fontColorOfOccasionalClosure(
                                     days[index], context)),
                             myFont(formattedDate,
                                 fontFamily: balooChettan,
-                                fontSize: 16,
+                              fontSize: mediaqueryHeight(0.022, context),
                                 fontWeight: FontWeight.normal,
                                 fontColor: fontColorOfOccasionalClosure(
                                     days[index], context)),
                             myFont(formattedDay,
                                 fontFamily: cabinCondensed,
-                                fontSize: 14,
+                                   fontSize: mediaqueryHeight(0.018, context),
                                 fontWeight: FontWeight.normal,
                                 fontColor: fontColorOfOccasionalClosure(
                                     days[index], context)),

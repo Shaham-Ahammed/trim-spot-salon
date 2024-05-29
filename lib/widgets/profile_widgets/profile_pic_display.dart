@@ -18,7 +18,7 @@ class ProfilePictureDispaly extends StatelessWidget {
           child: BlocBuilder<ProfileUserImageBloc, ProfileUserImageState>(
             builder: (context, state) {
               return CircleAvatar(
-                  radius: mediaqueryWidth(0.17, context),
+                  radius: mediaqueryHeight(0.08, context),
                   backgroundImage: state.newImagePath.isEmpty
                       ? NetworkImage(
                          state.originalProfilePic)

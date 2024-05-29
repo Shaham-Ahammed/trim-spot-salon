@@ -27,6 +27,7 @@ class PhoneTextField extends StatelessWidget {
                 Expanded(
                     child: TextFormField(
                   style: TextStyle(
+                     fontSize: mediaqueryHeight(0.02, context),
                       color: whiteColor,
                       fontFamily: b612),
                   decoration: InputDecoration(border: InputBorder.none),

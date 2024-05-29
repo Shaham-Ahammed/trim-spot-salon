@@ -18,7 +18,7 @@ class AppBarReviewsAndRatings extends StatelessWidget {
             horizontalTitleGap: mediaqueryHeight(0.022, context),
             leading: IconButton(
               onPressed: () => Navigator.pop(context),
-              icon: Icon(Icons.arrow_back_ios_new_rounded),
+              icon: Icon(Icons.arrow_back_ios_new_rounded,size: mediaqueryHeight(0.024, context),),
               color: whiteColor,
             ),
             title: myFont("REVIEWS & RATINGS",

@@ -25,7 +25,7 @@ Column registerServicesShopManagement(
                 fontColor: greyColor),
           ),
           Transform.scale(
-            scale: 1,
+            scale: mediaqueryHeight(0.0014, context),
             child: Checkbox(
               activeColor: Colors.blueGrey.shade500,
               checkColor: whiteColor,

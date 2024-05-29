@@ -10,11 +10,11 @@ class AppBarHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: mediaqueryHeight(0.2, context),
+      height: mediaqueryHeight(0.12, context),
       decoration: BoxDecoration(color: appBarColor),
       child: Column(
         children: [
-          SizedBox(height: mediaqueryHeight(0.06, context)),
+          SizedBox(height: mediaqueryHeight(0.035, context)),
           Padding(
             padding: EdgeInsets.symmetric(
                 horizontal: mediaqueryWidth(0.05, context)),
@@ -22,7 +22,7 @@ class AppBarHomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Transform.scale(
-                    scale: 1.25,
+                    scale: mediaqueryHeight(0.0016, context),
                     child: GestureDetector(
                         onTap: () {
                           homeScaffoldKey.currentState?.openDrawer();

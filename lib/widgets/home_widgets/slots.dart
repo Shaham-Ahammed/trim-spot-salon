@@ -42,7 +42,8 @@ class _SlotTilesState extends State<SlotTiles> {
               stream: CollectionReferences()
                   .shopDetailsReference()
                   .doc(BlocProvider.of<UserDetailsBloc>(context).state.shopId)
-                  .collection(FirebaseNamesShopSide.slotBookingCollectionReference)
+                  .collection(
+                      FirebaseNamesShopSide.slotBookingCollectionReference)
                   .doc(FirebaseNamesShopSide.slotsBookingDocument)
                   .snapshots(),
               builder: (context, snapshot) {
@@ -105,7 +106,7 @@ class _SlotTilesState extends State<SlotTiles> {
                                             child: Center(
                                               child: myFont(time,
                                                   fontFamily: cabinCondensed,
-                                                  fontSize: 13,
+                                                  fontSize: mediaqueryHeight(0.015, context),
                                                   fontWeight: FontWeight.normal,
                                                   fontColor: textColor(
                                                       time, context, list)),

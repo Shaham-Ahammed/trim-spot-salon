@@ -40,66 +40,69 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: blackColor,
-      appBar: PreferredSize(
-          preferredSize:
-              Size(double.infinity, mediaqueryHeight(0.106, context)),
-          child: AppBarHomeScreen()),
+    
       body: SafeArea(
-          child: Padding(
-        padding: EdgeInsets.all(mediaqueryWidth(0.04, context)),
-        child: StreamBuilder<bool>(
-            stream: checkInternetconnectivity(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return CircularProgressIndicator(
-                  color: blackColor,
-                );
-              }
-
-              if (!snapshot.data!) {
-                return NoNetworkDisplayWidget();
-              }
-              return SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Container(
-                      height: mediaqueryHeight(0.2, context),
-                      child: FutureBuilder(
-                        future: futureFucntion(context),
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return ShimmerEffectPageViewContainersInHome();
-                          }
-                          return PageView(
-                            controller: homePageController,
-                            onPageChanged: (int page) {
-                              context
-                                  .read<HomeScreenPageControllerBloc>()
-                                  .add(PageChanged(newPage: page));
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                AppBarHomeScreen(),
+                Padding(
+                        padding: EdgeInsets.all(mediaqueryHeight(0.02, context)),
+                        child: StreamBuilder<bool>(
+                  stream: checkInternetconnectivity(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator(
+                        color: blackColor,
+                      );
+                    }
+                
+                    if (!snapshot.data!) {
+                      return NoNetworkDisplayWidget();
+                    }
+                    return Column(
+                      children: [
+                        // AppBarHomeScreen(),
+                        Container(
+                          height: mediaqueryHeight(0.2, context),
+                          child: FutureBuilder(
+                            future: futureFucntion(context),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return ShimmerEffectPageViewContainersInHome();
+                              }
+                              return PageView(
+                                controller: homePageController,
+                                onPageChanged: (int page) {
+                                  context
+                                      .read<HomeScreenPageControllerBloc>()
+                                      .add(PageChanged(newPage: page));
+                                },
+                                children: [
+                                  EarningsPageView(snapshot.data.toString()),
+                                  BookingsPageView(),
+                                ],
+                              );
                             },
-                            children: [
-                              EarningsPageView(snapshot.data.toString()),
-                              BookingsPageView(),
-                            ],
-                          );
-                        },
+                          ),
+                        ),
+                        SizedBox(
+                          height: mediaqueryHeight(0.01, context),
+                        ),
+                        SmoothPageIndicatorHomeScreen(),
+                        SizedBox(
+                          height: mediaqueryHeight(0.015, context),
+                        ),
+                        TodaysBookingsHeading(),
+                        SlotsAndHolidayWidget()
+                      ],
+                    );
+                  }),
                       ),
-                    ),
-                    SizedBox(
-                      height: mediaqueryHeight(0.01, context),
-                    ),
-                    SmoothPageIndicatorHomeScreen(),
-                    SizedBox(
-                      height: mediaqueryHeight(0.015, context),
-                    ),
-                    TodaysBookingsHeading(),
-                    SlotsAndHolidayWidget()
-                  ],
-                ),
-              );
-            }),
-      )),
+              ],
+            ),
+          )),
     );
   }
 }

@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/font.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
@@ -26,6 +27,7 @@ class _ShopManagementServiceTimeTextFormFieldState
       child: SizedBox(
         height: mediaqueryHeight(0.033, context),
         child: TextFormField(
+            style: TextStyle(fontSize: mediaqueryHeight(0.023, context)),
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: widget.enabled
               ? (value) {
@@ -40,6 +42,7 @@ class _ShopManagementServiceTimeTextFormFieldState
           keyboardType: TextInputType.number,
           maxLength: 3,
           cursorColor: cyanColor,
+           inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           textAlign: TextAlign.center,
           decoration: InputDecoration(
               focusedErrorBorder: OutlineInputBorder(
@@ -54,7 +57,7 @@ class _ShopManagementServiceTimeTextFormFieldState
               hintStyle: TextStyle(
                   fontFamily: balooChettan,
                   color: widget.enabled ? blackColor : greyColor,
-                  fontSize: 14),
+               fontSize: mediaqueryHeight(0.018, context),),
               filled: true,
               fillColor: widget.enabled ? whiteColor : greyColor3,
               contentPadding: const EdgeInsets.symmetric(horizontal: 5),

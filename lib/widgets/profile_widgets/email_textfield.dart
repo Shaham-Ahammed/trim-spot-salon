@@ -39,6 +39,7 @@ class EmailTextField extends StatelessWidget {
                     return null;
                   },
                   style: TextStyle(
+                     fontSize: mediaqueryHeight(0.02, context),
                       color: state.editPressed ? blackColor : whiteColor,
                       fontFamily: b612),
                   decoration: InputDecoration(
@@ -56,7 +57,7 @@ class EmailTextField extends StatelessWidget {
                           .read<ProfileEmailBloc>()
                           .add(EmailEditButtonPressed(editPressed: true));
                     },
-                    child: Icon(Icons.edit))
+                    child: Icon(Icons.edit,size: mediaqueryHeight(0.032, context),))
               ],
             ),
           ),

@@ -26,7 +26,7 @@ class BottomNavBar extends StatelessWidget {
         gap: mediaqueryHeight(0.01, context),
         backgroundColor: appBarColor,
         rippleColor: cyanColor,
-        
+        iconSize: mediaqueryHeight(0.03, context),
         tabs: gButtons);
   }
 }

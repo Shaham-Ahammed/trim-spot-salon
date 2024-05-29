@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/font.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
@@ -26,6 +27,7 @@ class _ShopManagementServiceRateTextFormFieldState
       child: SizedBox(
         height: mediaqueryHeight(0.033, context),
         child: TextFormField(
+          style: TextStyle(fontSize: mediaqueryHeight(0.023, context)),
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: widget.enabled
               ? (value) {
@@ -37,15 +39,15 @@ class _ShopManagementServiceRateTextFormFieldState
                 }
               : (value) => null,
           controller: widget.rateController,
-          cursorColor: cyanColor,
           keyboardType: TextInputType.number,
-          maxLength: 4,
+          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+          maxLength: 3,
+          cursorHeight: mediaqueryHeight(0.03, context),
+          cursorColor: cyanColor,
           textAlign: TextAlign.center,
           decoration: InputDecoration(
-              focusedBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: cyanColor)),
               focusedErrorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: redErrorColor, width: 1)),
+                  borderSide: BorderSide(color: redErrorColor)),
               errorStyle:
                   TextStyle(fontSize: mediaqueryHeight(0.0000000001, context)),
               errorBorder: OutlineInputBorder(
@@ -54,19 +56,21 @@ class _ShopManagementServiceRateTextFormFieldState
                       width: 1.5)),
               counterText: "",
               hintStyle: TextStyle(
-                  fontFamily: balooChettan,
-                  color: widget.enabled ? blackColor : greyColor,
-                  fontSize: 14),
-              border: const OutlineInputBorder(),
+                fontFamily: balooChettan,
+                color: widget.enabled ? blackColor : greyColor,
+                fontSize: mediaqueryHeight(0.018, context),
+              ),
               filled: true,
               fillColor: widget.enabled ? whiteColor : greyColor3,
               contentPadding: const EdgeInsets.symmetric(horizontal: 5),
               enabled: widget.enabled,
+              focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: cyanColor)),
               disabledBorder:
                   OutlineInputBorder(borderSide: BorderSide(color: greyColor)),
               enabledBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: cyanColor)),
-              hintText: "rate"),
+              hintText: "min"),
         ),
       ),
     );

@@ -15,7 +15,8 @@ class ProfileImageDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: mediaqueryHeight(0.05, context),
-      backgroundImage: NetworkImage(context.watch<UserDetailsBloc>().state.profileImage),
+      backgroundImage:
+          NetworkImage(context.watch<UserDetailsBloc>().state.profileImage),
     );
   }
 }
@@ -36,14 +37,12 @@ class ProfileImageEditButton extends StatelessWidget {
           child: InkWell(
             onTap: () {
               Navigator.pop(context);
-              Navigator.of(context).push(
-                  FadeTransitionPageRoute(
-                      child: ProfileScreen()));
+              Navigator.of(context)
+                  .push(FadeTransitionPageRoute(child: ProfileScreen()));
             },
             borderRadius: BorderRadius.circular(90),
             child: Container(
-              padding: EdgeInsets.all(
-                  mediaqueryHeight(0.007, context)),
+              padding: EdgeInsets.all(mediaqueryHeight(0.007, context)),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
               ),
@@ -56,4 +55,3 @@ class ProfileImageEditButton extends StatelessWidget {
         ));
   }
 }
-
