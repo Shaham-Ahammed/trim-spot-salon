@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
+import 'package:trim_spot_barber_side/utils/font.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -17,9 +18,10 @@ ratingAlert(BuildContext context) {
               Text(
                 "RATE US",
                 style: TextStyle(
-                  fontFamily: "FiraSans",
+                  fontFamily: balooChettan,
+                  fontWeight: FontWeight.w600,
                   color: Colors.black,
-                  fontSize: mediaqueryWidth(0.052, context),
+                  fontSize: mediaqueryHeight(0.026, context),
                 ),
               ),
               Divider(
@@ -28,11 +30,7 @@ ratingAlert(BuildContext context) {
             ],
           ),
         ),
-        // contentPadding: EdgeInsets.only(
-        //     left: mediaqueryWidth(0.05, context),
-        //     right: mediaqueryWidth(0.05, context),
-
-        //     ),
+      
         titlePadding: EdgeInsets.only(
             top: mediaqueryHeight(0.02, context),
             bottom: mediaqueryHeight(0.01, context),
@@ -48,18 +46,20 @@ ratingAlert(BuildContext context) {
                 textAlign: TextAlign.center,
                 "How would you rate your experience with our app ?",
                 style: TextStyle(
-                  fontFamily: "FiraSans",
+                  fontFamily: balooChettan,
                   color: Colors.black,
-                  fontSize: mediaqueryWidth(0.048, context),
+                  fontSize: mediaqueryHeight(0.021, context),
                 ),
               ),
               SizedBox(
                 height: mediaqueryHeight(0.013, context),
               ),
               RatingBar.builder(
+                itemSize: mediaqueryHeight(0.045, context),
                 itemBuilder: (context, _) {
                   return Icon(
                     Icons.star,
+                  
                     color: Colors.amber.shade500,
                   );
                 },

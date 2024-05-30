@@ -13,3 +13,4 @@ const Color opaqueBlack = Colors.black54;
 const Color appBarColor = Color.fromRGBO(73, 73, 73, 0.631);
 const Color subTitlesTextGrey = Color.fromRGBO(177, 177, 177, 1);
 final Color redErrorColor = Colors.red.shade800;
+final Color textColorOfShopManagement = Color.fromRGBO(192, 192, 192, 1);

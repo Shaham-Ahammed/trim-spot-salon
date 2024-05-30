@@ -16,7 +16,12 @@ class UserDetailsBloc extends Bloc<UserDetailsEvent, UserDetailsState> {
             shopId: "",
             shopImage: '',
             password: '',
-            email: '')) {
+            email: '',
+            shopName: '',
+            shopLocation: '',
+            openingTime: '',
+            closingTime: '',
+            holidays: '')) {
     on<FetchingUserDetailsFromSplash>(_fetchingDetailsFromSplash);
   }
   _fetchingDetailsFromSplash(FetchingUserDetailsFromSplash event,
@@ -37,6 +42,13 @@ class UserDetailsBloc extends Bloc<UserDetailsEvent, UserDetailsState> {
         shopImage: userData[SalonDocumentModel.shopImage],
         password: userData[SalonDocumentModel.password],
         email: userData[SalonDocumentModel.email],
-        shopId: userData.id));
+        shopId: userData.id,
+        shopName: userData[SalonDocumentModel.shopName],
+        closingTime: userData[SalonDocumentModel.parsedClosingTime],
+        openingTime: userData[SalonDocumentModel.parsedOpeningTime],
+        shopLocation: userData[SalonDocumentModel.locationName],
+        holidays: (userData[SalonDocumentModel.holidays] as List<dynamic>)
+            .cast<String>()
+            .join(",")));
   }
 }
