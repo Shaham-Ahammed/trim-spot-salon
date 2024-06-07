@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/registration_blocs/register_button_bloc/register_button_bloc.dart';
+import 'package:trim_spot_barber_side/data/firebae_authentication/phone_number_validation.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 import 'package:trim_spot_barber_side/widgets/login_widgets/background_image.dart';
-
 import 'package:trim_spot_barber_side/widgets/otp_page/headings_and_texts.dart';
 import 'package:trim_spot_barber_side/widgets/otp_page/otp_box.dart';
+import 'package:trim_spot_barber_side/widgets/otp_page/resend_otp_widgets.dart';
 import 'package:trim_spot_barber_side/widgets/otp_page/state_handler/state_handler.dart';
-
 import 'package:trim_spot_barber_side/widgets/otp_page/submit_button.dart';
 import 'package:trim_spot_barber_side/widgets/signup_widgets/screen_padding.dart';
 
 class OtpVerificationScreen extends StatelessWidget {
-  final String verificationId;
-  const OtpVerificationScreen({super.key, required this.verificationId});
+  const OtpVerificationScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +47,17 @@ class OtpVerificationScreen extends StatelessWidget {
                     ),
                     const OtpBoxe(),
                     SizedBox(
-                      height: mediaqueryHeight(0.3, context),
+                      height: mediaqueryHeight(0.1, context),
                     ),
-                    submitButtonOtpPage(context, verificationId)
+
+                    ResendOtpWidgets(),
+
+                    SizedBox(
+                      height: mediaqueryHeight(0.1, context),
+                    ),
+                    //     TextButton(onPressed: (){}, child: )
+                    submitButtonOtpPage(
+                        context, PhoneNumberAuthentication.verficationId),
                   ],
                 ),
               ),
@@ -59,3 +68,4 @@ class OtpVerificationScreen extends StatelessWidget {
     );
   }
 }
+

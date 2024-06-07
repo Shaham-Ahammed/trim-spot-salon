@@ -18,5 +18,12 @@ final class OtpValidation extends RegisterButtonEvent {
 final class SubmitOtpButtonPressed extends RegisterButtonEvent {
   final String verificationId;
   final context;
-  SubmitOtpButtonPressed(this.context,{required this.verificationId});
+  SubmitOtpButtonPressed(this.context, {required this.verificationId});
+}
+
+final class ResendOtpButtonPressed extends RegisterButtonEvent {
+  final BuildContext context;
+
+  ResendOtpButtonPressed({required this.context});
+
 }

@@ -70,7 +70,7 @@ class _ShopManagementServiceRateTextFormFieldState
                   OutlineInputBorder(borderSide: BorderSide(color: greyColor)),
               enabledBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: cyanColor)),
-              hintText: "min"),
+              hintText: "rate"),
         ),
       ),
     );

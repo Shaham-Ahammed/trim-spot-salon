@@ -20,6 +20,7 @@ class RegisterButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(90),
         child: InkWell(
           onTap: () {
+          
             context
                 .read<RegisterButtonBloc>()
                 .add(RegisterButtonPressed(context: context));

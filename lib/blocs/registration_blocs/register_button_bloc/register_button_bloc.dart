@@ -19,6 +19,7 @@ class RegisterButtonBloc
     on<RegisterButtonPressed>(_registerButtonPressed);
     on<OtpValidation>(_otpValidation);
     on<SubmitOtpButtonPressed>(_submitOtpButtonPressed);
+    on<ResendOtpButtonPressed>(_resendOtpButtonPressed);
   }
   _registerButtonPressed(
       RegisterButtonPressed event, Emitter<RegisterButtonState> emit) async {
@@ -52,6 +53,15 @@ class RegisterButtonBloc
     }
   }
 
+  _resendOtpButtonPressed(
+      ResendOtpButtonPressed event, Emitter<RegisterButtonState> emit) async {
+    try {
+      await PhoneNumberAuthentication().resendOTP(event.context);
+    } catch (e) {
+      print("error adichu $e");
+    }
+  }
+
   _submitOtpButtonPressed(
       SubmitOtpButtonPressed event, Emitter<RegisterButtonState> emit) async {
     if (registerOtpFormKey.currentState!.validate()) {
@@ -62,7 +72,7 @@ class RegisterButtonBloc
                 event.verificationId, event.context);
         await SharedPreferenceOperation()
             .setPhoneNumber(registrationPhoneController.text);
-      
+
         emit(NavigateToRegisterSuccessPage(buttonPressed: state.buttonPressed));
       } catch (e) {
         emit(RegisrationFailure("error in verification",
