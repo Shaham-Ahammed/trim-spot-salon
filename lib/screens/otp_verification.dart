@@ -55,7 +55,7 @@ class OtpVerificationScreen extends StatelessWidget {
                     SizedBox(
                       height: mediaqueryHeight(0.1, context),
                     ),
-                    //     TextButton(onPressed: (){}, child: )
+                   
                     submitButtonOtpPage(
                         context, PhoneNumberAuthentication.verficationId),
                   ],
@@ -68,4 +68,3 @@ class OtpVerificationScreen extends StatelessWidget {
     );
   }
 }
-

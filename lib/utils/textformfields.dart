@@ -18,7 +18,7 @@ class TextFormFieldCyan extends StatelessWidget {
   final String hintText;
   final String? Function(String?)? validator;
   final TextInputType textInputType;
-  final FilteringTextInputFormatter? filteringTextInputFormatter;
+  final TextInputFormatter? filteringTextInputFormatter;
   final bool obscureText;
   final int? maxLenght;
   @override

@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:trim_spot_barber_side/blocs/forget_password_bloc/forget_password_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/home_screen_pageview_bloc/home_screen_page_controller_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/bottom_navigation_bloc/bottom_navigation_bar_bloc.dart';
 import 'package:trim_spot_barber_side/blocs/on_boarding_bloc/onboardind_bloc_bloc.dart';
@@ -21,6 +22,7 @@ import 'package:trim_spot_barber_side/blocs/slot_selection_bloc/slot_selection_b
 import 'package:trim_spot_barber_side/blocs/user_details_bloc/user_details_bloc.dart';
 
 List<BlocProvider> mainProviders = [
+  BlocProvider<ForgetPasswordBloc>(create: (context) => ForgetPasswordBloc()),
   BlocProvider<ShopManagementServiceBloc>(
       create: (context) => ShopManagementServiceBloc()),
   BlocProvider<ProfileShopImageBloc>(

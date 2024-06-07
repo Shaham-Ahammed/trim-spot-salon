@@ -10,16 +10,16 @@ import 'package:trim_spot_barber_side/utils/submit_buttons.dart';
 
 
 
-class ResendOtpWidgets extends StatefulWidget {
-  const ResendOtpWidgets({
+class ResendOtpWidgetsForgetPassword extends StatefulWidget {
+  const ResendOtpWidgetsForgetPassword({
     super.key,
   });
 
   @override
-  State<ResendOtpWidgets> createState() => _ResendOtpTextState();
+  State<ResendOtpWidgetsForgetPassword> createState() => _ResendOtpTextState();
 }
 
-class _ResendOtpTextState extends State<ResendOtpWidgets> {
+class _ResendOtpTextState extends State<ResendOtpWidgetsForgetPassword> {
   int _counter = 120; 
   late Timer _timer;
 
@@ -72,9 +72,7 @@ class _ResendOtpTextState extends State<ResendOtpWidgets> {
             heigh: mediaqueryHeight(0.03, context),
             width: mediaqueryWidth(0.3, context), function: () {
           if (_counter == 0) {
-            context
-                .read<RegisterButtonBloc>()
-                .add(ResendOtpButtonPressed(context: context));
+          
             setState(() {
               _counter = 120;
             });
