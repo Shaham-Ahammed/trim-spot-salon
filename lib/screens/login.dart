@@ -61,9 +61,7 @@ class LoginScreen extends StatelessWidget {
                           SizedBox(height: mediaqueryHeight(0.015, context)),
                           GestureDetector(
                               onTap: () {
-                                Navigator.of(context).push(
-                                    FadeTransitionPageRoute(
-                                        child: ForgotPasswordScreen()));
+                                Navigator.of(context).push(FadeTransitionPageRoute(child: ForgotPasswordScreen()));
                               },
                               child: Align(
                                 alignment: Alignment.centerRight,

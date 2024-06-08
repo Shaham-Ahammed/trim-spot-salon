@@ -1,14 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:trim_spot_barber_side/blocs/registration_blocs/register_button_bloc/register_button_bloc.dart';
+import 'package:trim_spot_barber_side/blocs/forget_password_blocs/forget_password_bloc/forget_password_bloc.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/font.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';
 import 'package:trim_spot_barber_side/utils/submit_buttons.dart';
-
-
-
 
 class ResendOtpWidgetsForgetPassword extends StatefulWidget {
   const ResendOtpWidgetsForgetPassword({
@@ -20,7 +17,7 @@ class ResendOtpWidgetsForgetPassword extends StatefulWidget {
 }
 
 class _ResendOtpTextState extends State<ResendOtpWidgetsForgetPassword> {
-  int _counter = 120; 
+  int _counter = 120;
   late Timer _timer;
 
   @override
@@ -72,7 +69,9 @@ class _ResendOtpTextState extends State<ResendOtpWidgetsForgetPassword> {
             heigh: mediaqueryHeight(0.03, context),
             width: mediaqueryWidth(0.3, context), function: () {
           if (_counter == 0) {
-          
+            context
+                .read<ForgetPasswordBloc>()
+                .add(ResendOtpButtonPressed(context: context));
             setState(() {
               _counter = 120;
             });

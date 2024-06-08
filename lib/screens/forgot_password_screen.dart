@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:trim_spot_barber_side/blocs/forget_password_bloc/forget_password_bloc.dart';
+import 'package:trim_spot_barber_side/blocs/forget_password_blocs/forget_password_bloc/forget_password_bloc.dart';
 import 'package:trim_spot_barber_side/utils/colors.dart';
 import 'package:trim_spot_barber_side/utils/forgot_password/formkey.dart';
 import 'package:trim_spot_barber_side/utils/mediaquery.dart';

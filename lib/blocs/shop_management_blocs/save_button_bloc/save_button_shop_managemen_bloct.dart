@@ -64,7 +64,7 @@ class ShopManagementSaveButtonBloc
           await CollectionReferences().shopDetailsReference();
 
       final newUpdates = ShopUpdationModel(
-              shopImage: data[SalonDocumentModel.shopImage],
+             
               services: serviceToMapConversionInShopManagement(event.context),
               occasionalClosures: BlocProvider.of<OccasionalClosureBloc>(
                       event.context,

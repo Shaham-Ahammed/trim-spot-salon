@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:trim_spot_barber_side/blocs/forget_password_bloc/forget_password_bloc.dart';
+import 'package:trim_spot_barber_side/blocs/forget_password_blocs/forget_password_bloc/forget_password_bloc.dart';
+import 'package:trim_spot_barber_side/screens/change_password_screen.dart';
 import 'package:trim_spot_barber_side/screens/forget_pass_otp_screen.dart';
 import 'package:trim_spot_barber_side/utils/loading_indicator.dart';
 import 'package:trim_spot_barber_side/utils/network_error_snackbar.dart';
@@ -24,6 +25,11 @@ class ForgetPasswordStateHandler {
       Navigator.pop(context);
       Navigator.of(context).push(
           FadeTransitionPageRoute(child: ForgetPassOtpVerificationScreen()));
+    }
+    if (state is OtpVerfied) {
+      Navigator.pop(context);
+      Navigator.of(context).pushReplacement(
+          FadeTransitionPageRoute(child: ChangePasswordScreen()));
     }
   }
 }
